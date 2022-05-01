@@ -62,15 +62,4 @@ const Nav: React.FC = () => {
   );
 };
 
-function VancouverTime() {
-  const TimeFomatter = new Intl.DateTimeFormat('en-GB', {
-    timeZone: 'Canada/Pacific',
-    hour: 'numeric',
-    minute: 'numeric',
-    weekday: 'short',
-    hour12: false
-  }).format();
-  return <span>{TimeFomatter}, Vancouver</span>;
-}
-
 export default Nav;

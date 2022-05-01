@@ -7,18 +7,18 @@ import Link from 'next/link';
 
 export const components = {
   a: ({ href = '', ...props }) => {
-    if (href.match(/http|https/)) {
+    if (href.match(/http|https|mailto/)) {
       return (
-        <a href={href} className="link-btn" target="_blank" rel="noopener noreferrer" {...props} />
+        <a href={href} style={{ color: '#0070F3' }} className="hover:underline hover:opacity-80" target="_blank" rel="noopener noreferrer" {...props} />
       );
     }
     return (
       <Link href={href} passHref>
-        <a className="link-btn" {...props} />
+        <a {...props} />
       </Link>
     );
   },
-  img: ({ children, ...props }: { children: React.ReactNode }) => (
+  img: ({ ...props }: { children: React.ReactNode }) => (
     <div className="my-10">
       <img {...(props as any)} layout="fill" />
     </div>
