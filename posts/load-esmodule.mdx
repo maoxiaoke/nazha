@@ -56,7 +56,7 @@ Dynamic Import 的浏览器兼容性如下：
 
 可以认为，支持 ES modules 的浏览器版本，对 Dynamic Import 的支持也非常良好。同时，为了兼容旧版浏览器，通过 `new Function()` 将其包裹：
 
-```js
+```js {3}
 const dynamicImport = new Function('url', 'return import(url)');
 
 const { mount, unmount } = await dynamicImport(url);

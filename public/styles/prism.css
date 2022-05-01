@@ -21,7 +21,7 @@ pre[class*='language-'] ::selection,
 code[class*='language-']::selection,
 code[class*='language-'] ::selection {
   color: var(--color-background);
-  background: var(--color-text);
+  background: black;
 }
 
 @media print {

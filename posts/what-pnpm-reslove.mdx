@@ -1,0 +1,87 @@
+---
+title: A diagram to show how pnpm works
+published: true
+listed: true
+date: '02/22/2022'
+lastUpdateDate: '02/22/2022'
+tags: technical pnpm,promotion
+description: Pnpm may be alternative of npm、yarn and lerna. But do you know how pnpm works?
+language: Chinese
+---
+
+![pnpm-change.png](https://nazha-image-store.oss-cn-shanghai.aliyuncs.com/frontends/what-is-pnpm.png)
+
+> 该图已被 [pnpm 官网收录](https://pnpm.io/motivation)
+
+#### [幽灵依赖问题](https://rushjs.io/pages/advanced/phantom_deps/)
+仓库依赖的 NPM 包，及其依赖包的依赖，**平铺**在 **.pnpm **这个隐藏的磁盘目录。只有仓库依赖的包会被列在当前仓库的 node_modules 下，其他包则无法被 resolve 到。
+
+> 比如仓库依赖 bar@1.0.0，bar 包依赖 foo@1.0.0。这两个包会平铺在 .pnpm，当前仓库的 node_modules 只列出项目依赖的包的符号链接（注意箭头方向）。
+
+#### [依赖地狱问题](https://devrant.com/rants/1558252/can-someone-explain-the-node-modules-joke-to-me-please-ive-seen-it-quite-a-bit-n)
+依赖会平铺在 .pnpm 目录。
+
+#### [Doppelgagers 问题](https://rushjs.io/pages/advanced/npm_doppelgangers/)
+从上图可以看清楚，.pnpm 目录下依赖 bar 的结构是：
+
+```shell
+$ tree -L 2
+.
+└── node_modules
+    ├── foo -> ../../foo@1.0.0/node_modules/foo
+    └── bar
+```
+也就是 NPM 包 bar 的依赖都在自身 node_modules 下可以 reslove 到。依赖的各影分身都只会下载一份（更快），也不会被错误 reslove。
+
+----------------------
+
+以下是更新内容：**如果是首次使用 pnpm 的话，也许会发现实际的结构和上图有些出入**，我觉得这些出入可以统称为「**面向社区生态的妥协**」。而其中主要的，和这[四个参数](https://pnpm.io/npmrc#dependency-hoisting-settings)有关。​
+
+#### 面向社区生态的妥协
+
+- [hoist](https://pnpm.io/npmrc#hoist)
+
+如果这个配置开启，你会发现 .pnpm 目录下有一个 node_modules 目录，这个目录下的包全部软链到 .pnpm 下的包。
+
+```
+$ cd node_modules/.pnpm && tree -L 3
+
+.pnpm
+    ├── bar@1.0.0
+    ├── lodash@2.0.0
+    └── node_modules
+        ├── lodash@2.0.0 -> ../lodash@2.0.0/node_modules/lodash
+        └── bar@1.0.0
+```
+这是因为 pnpm 默认情况下，这个 hoist 配置是开启的，称之为[“半严格”](https://pnpm.io/blog/2020/10/17/node-modules-configuration-options-with-pnpm#the-default-setup) 的设计：项目无法 reslove 自己没有依赖的包，但是项目的依赖可以 reslove 到其未被依赖的包。
+
+比如项目的直接依赖 bar 其实并没有依赖 lodash@2.0.0 这个包，但是仍然可以被 reslove 到，就是因为 .pnpm 下这个 node_modules 目录类似 NPM V3 平铺了所有依赖包，根据 Node 的查找算法，是可以找到这个依赖的。**这就是 pnpm 的妥协策略之一**。
+
+- [hoist-pattern](https://pnpm.io/npmrc#hoist)
+
+这个配置就比较好理解了。hoist-pattern 配置为 *，就是和 hoist 为 true 表达的含义一样。
+
+- [public-hoist-pattern](https://pnpm.io/npmrc#public-hoist-pattern)
+
+当你的项目依赖了 eslint 或 babel，使用 pnpm 安装，在项目的 node_modules 下，你会发现它们的影子。
+
+```
+tree node_modules -L 1
+
+node_modules
+  ├── @babel
+  ├── @eslint
+  ├── @types
+  ├── @typescript-eslint
+  ├── eslint
+  ├── eslint-config-ali
+  ├── eslint-import-resolver-node
+  ├── eslint-module-utils
+  ├── eslint-plugin-import
+  ├── eslint-plugin-jsx-plus
+```
+这时候，有可能就怀疑自己了。正常来说，只依赖了 eslint，不应该包含 eslint 的其他 plugin，因为我并没有直接依赖它们。但事实上，eslint 在依赖的问题上本身就 [存在 bug ](https://github.com/pnpm/pnpm/discussions/4132)的。而 pnpm 默认将其 hoist 至项目的根 node_modules 下（public-hoist-pattern 的默认配置是  ['*types*', '*eslint*', '@prettier/plugin-*', '*prettier-plugin-*']）。**这是 pnpm 的第二个妥协策略**。
+
+- [shamefully-hoist](https://pnpm.io/npmrc#shamefully-hoist)
+
+**第三个妥协策略**就是 shamefully-hoist，设置为 true 时，就把依赖的依赖，以及依赖都提升至项目根目录 node_modules 下，类似 NPM V3 的结构。
