@@ -1,0 +1,220 @@
+---
+title: How load ES module micro application in icestark
+published: true
+listed: true
+date: '04/21/2022'
+lastUpdateDate: '04/26/2022'
+tags: technical icestark,promotion
+description: This post show how you can load Vite application in icestark
+language: Chinese
+---
+
+## 前言
+
+自 2018 年 5 月 [Firefox 60](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/60) 发布后，所有主浏览器均默认支持 ES modules。借助 ES modules 的能力，代码可以实现无需构建直接运行。
+
+随着 [Vite](https://vitejs.dev/) 和 [Snowpack](https://www.snowpack.dev/) 等基于 ES modules 的构建工具的产生，前端随即掀起了 ES modules 新一轮热潮。
+
+![](https://img.alicdn.com/imgextra/i4/O1CN01Rlr8TZ27fRWkK4d7f_!!6000000007824-0-tps-596-152.jpg)
+
+## 问题背景
+
+> 天下武功，无招不破，唯快不破  - 李小龙
+
+Vite、Snowpack 等基于 ES modules 的构建工具带来了开发的极致体验，相比传统的构建工具，这些新型的构建工具或多或少地带来了以下优势：
+
++ **由于无需打包的特性，服务器冷启动时间超快**
+
+借助 ES modules 的能力，模块化交给浏览器处理（虽然目前的阶段存在一个预编译的过程）。传统构建器需要打包依赖和源码，才能构建整个应用，并提供服务。
+
++ **项目大小不再成为限制项目热更新速度的因素**
+
+传统构建器在代码更改时，需要重新构建并载入页面，这样带来的的结果是：随着项目体积增长，构建耗时越长。基于 ES modules 的构建器只进行单文件编译，单文件更新，时间复杂度保持 O(1).
+
+Vite 得益于原生 ES modules 的能力，大幅提升了开发时体验。相信未来，随着社区生态（CDN 服务、Deno）、ESM 相关标准（import-maps、import.meta）的逐步完善，以及越来越多的技术方案解决 ES modules 在浏览器端的相关难题（依赖瀑布，资源碎片化），前端会开启一个无构建的新篇章。
+
+同时在微前端领域，脚本资源的打包规范向来是百花齐放（比如 singleSPA 默认支持 SystemJs 规范，[icestark](https://github.com/ice-lab/icestark) 默认支持 UMD 规范）。未来脚本资源的打包规范必定是趋于统一的 ES modules 规范。正是基于这两个原因，微前端支持 ES modules 应用的加载就成了用户强诉求。
+
+## 微前端加载 Vite 应用
+
+### 加载 ES modules 微应用
+Vite 会默认打包出符合标准的 ES modules 的脚本资源。ES modules 资源的[加载方式](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules#applying_the_module_to_your_html)如下：
+
+```html
+<script src="index.js" type="module"></script>
+```
+
+然而，在 [icestark](https://github.com/ice-lab/icestark) 中需要依赖微应用导出 [生命周期函数](https://micro-frontends.ice.work/docs/guide/concept/child#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F) 来渲染微应用。使用 `<script >` 标签加载 ES modules 脚本的一个难题在于无法获取微应用导出的生命周期函数。基于这个考虑，实际实现中是通过 [Dynamic Import](https://github.com/tc39/proposal-dynamic-import) 来加载脚本：
+
+```js
+const { mount, unmount } = await import(url);
+```
+
+Dynamic Import 的浏览器兼容性如下：
+
+![Dynamic Import 的浏览器兼容性](https://img.alicdn.com/imgextra/i2/O1CN01dVVaSI1mNU4NDvxSo_!!6000000004942-2-tps-1379-323.png) 
+
+可以认为，支持 ES modules 的浏览器版本，对 Dynamic Import 的支持也非常良好。同时，为了兼容旧版浏览器，通过 `new Function()` 将其包裹：
+
+```js
+const dynamicImport = new Function('url', 'return import(url)');
+
+const { mount, unmount } = await dynamicImport(url);
+```
+
+至此，除了能支持 IIFE / UMD 规范的微应用之外，[icestark](https://github.com/ice-lab/icestark) 支持了 ES modules 规范的应用加载，并通过 [import](https://micro-frontends.ice.work/docs/api/ice-stark#loadscriptmode) 类型标识。[icestark](https://github.com/ice-lab/icestark) 整体加载流程图如下：
+
+![undefined](https://img.alicdn.com/imgextra/i3/O1CN01NPm5oz27VMohEuBcc_!!6000000007802-2-tps-3576-2664.png) 
+
+### Vite 应用的改造
+
+对于微应用而言，需要导出 [生命周期函数](https://micro-frontends.ice.work/docs/guide/concept/child#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F)，并选择合适的加载方式即可。
+
+生命周期函数的接入非常简单，在 Vite 应用的入口文件（Vue 项目通常是 `main.t|js`，React 应用通常是 `app.t|jsx`）声明函数（以 Vue 应用为例）：
+
+```diff
+import { createApp } from 'vue'
++ import type { App as Root} from 'vue';
+import App from './App.vue'
++ import isInIcestark from '@ice/stark-app/lib/isInIcestark';
+- createApp(App).mount('#app');
+
++ let vue: Root<Element> | null = null;
+
++ if (!isInIcestark()) {
++ 	createApp(App).mount('#app');
++ }
++ // 导出 mount 生命周期函数
++ export function mount({ container }: { container: Element}) {
++ 	vue = createApp(App);
++  	vue.mount(container);
++ }
++ // 导出 unmount 生命周期函数
++ export function unmount() {
++  	if (vue) {
++ 		vue.unmount();
++  	}
+}
+```
+
+然而，在实际构建过程中，我们发现声明的函数并没有在脚本资源中导出。这是个非常疑惑的点，让我们深入到 Vite 的源码，并在内置的 [vite:build-html](https://github.com/vitejs/vite/blob/main/packages/vite/src/node/plugins/html.ts) 找寻到一些蛛丝马迹：
+
+```js
+...
+if (isModule) {
+  inlineModuleIndex++
+  if (url && !isExcludedUrl(url)) {
+	// <script type="module" src="..."/>
+	// add it as an import
+	js += `\nimport ${JSON.stringify(url)}`
+	shouldRemove = true
+  } else if (node.children.length) {
+	// <script type="module">...</script>
+	js += `\nimport "${id}?html-proxy&index=${inlineModuleIndex}.js"`
+	shouldRemove = true
+  }
+}
+...
+```
+
+Vite 默认使用 `index.html` 作为入口，在解析 `index.html` 的过程中，会生成一个虚拟的入口文件，将脚本资源通过 `import` 注入进来，也就是最终的入口文件实际上类似于下面的代码：
+
+```js
+import './src/main.ts';
+import 'polyfill';
+```
+
+面对这个场景，我们想到了两种解决方案：
+
++ 借助 Vite [Lib 模式](https://vitejs.dev/guide/build.html#library-mode)，修改应用入口：
+
+```diff
+// vite.config.ts
+export default defineConfig({
+	...
++  build: {
++    lib: {
++      entry: './src/main.ts',
++      formats: ['es'],
++      fileName: 'index'
++    },
++    rollupOptions: {
++      preserveEntrySignatures: 'exports-only'
++    }
++  },
+})
+```
+
+这种方式有个明显的问题是：Vite 以 Lib 模式构建出的应用，其产物并不是一个完整的前端应用（缺少 index.html），无法满足独立运行的条件。
+
++ 通过插件修改 Vite 的这一默认行为
+
+通过 [vite-plugin-index-html](https://www.npmjs.com/package/vite-plugin-index-html) 插件，结合 Vite 的解析能力，将入口修改为静态资源的入口。
+
+```diff
++ import htmlPlugin from 'vite-plugin-index-html';
+
+// vite.config.ts
+export default defineConfig({
++	plugins: [vue(), htmlPlugin({
++		input: './src/main.ts'
++	})]
+})
+```
+
+### ice.js Vite 模式
+
+同时，icestark 也支持 ice.js [Vite 模式](https://ice.work/docs/guide/basic/vite)快速接入。安装或升级 `build-plugin-icestark` 插件，在微应用 `build.json` 中配置：
+
+```diff
+{
++  "vite": true,
+  "plugins": [
+    ["build-plugin-icestark", {
+    	"type": "child",
+    }]
+  ]
+}
+```
+
+即可得到正确导出生命周期函数的微应用。详细用法可参见 [使用 ice.js Vite 模式](https://ice.work/docs/guide/advanced/icestark#%E4%BD%BF%E7%94%A8-vite-%E6%A8%A1%E5%BC%8F)。
+
+### 最终效果
+
+![](https://gw.alicdn.com/imgextra/i1/O1CN01bqgdni1tVufO7I8qT_!!6000000005908-1-tps-1280-720.gif)
+
+## 你将得到什么
+
+### 渐进升级
+
+为了[解决时间上，长尾应用升级带来的效率问题](https://yuque.antfin-inc.com/qiangqiang.mqq/xbgynr/pgayym#knb4Y)，微前端通常是大型架构升级所选择的中间态（或终态）方案。因此在设计加载 ES modules 方案时，需要保持这一基准原则。
+
+框架应用可以保持现有的构建方式不变（仍然可以使用 webpack 等非原生 ES modules 构建工具），亦无需对框架应用做任何构建上的改造。
+
+因此，基本可以无痛尝试 Vite 所带来的快感，脚踏实地地，一点点地靠近远方。
+
+### 二次加载的极致体验
+
+通过对 [ES modules](https://hacks.mozilla.org/2018/03/es-modules-a-cartoon-deep-dive/) 原理的探寻，可以知道 ES modules 只[执行一次](https://dmitripavlutin.com/javascript-module-import-twice/)。换成实际例子，也就是说当第二次执行相同的加载脚本时：
+
+```js
+// icestark 第二次执行加载脚本
+const { mount, unmout } = import(esModule);
+```
+
+浏览器不会重复执行 Construction -> Instantiation -> Evaluation 的流程，而是直接返回上次模块执行的结果。这会导致一些副作用的操作（比如在 Module Conext  下插入样式资源，脚本资源的行为，这给我们的微应用二次加载带来了额外的问题），同时也带来了极快的二次加载效果。
+
+![二次加载对比](https://img.alicdn.com/imgextra/i1/O1CN01gg8iYO1G1thAmG908_!!6000000000563-1-tps-1920-1080.gif) 
+
+
+## 写在最后
+
+建立在原生 ES modules 规范下的应用不会在短时间内快速铺开，很多 To C，To 商户的业务对浏览器的版本仍有限制。但是，icestark 在 2.x 快一年多的发展以来，仍希望覆盖到多样的开发场景，提供便捷、快速地业务升级。在支持传统 JS bundle、UMD 规范，本文分享了 icestark 在接入 ES modules 规范微应用的一些尝试，希望能给开发者带来一些新的选择和启发。
+
+## Further reading
+
+- [icestark - 面向大型系统的微前端解决方案](https://github.com/ice-lab/icestark)
+- [proposal-dynamic-import](https://github.com/tc39/proposal-dynamic-import)
+- [Vite - Next Generation Frontend Tooling](https://vitejs.dev/)
+- [ES modules: A cartoon deep-dive](https://hacks.mozilla.org/2018/03/es-modules-a-cartoon-deep-dive/)
+- [What Happens When a Module Is Imported Twice?](https://dmitripavlutin.com/javascript-module-import-twice/)

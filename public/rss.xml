@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>nazha's blog</title>
+        <link>https://nazha.vercel.app/</link>
+        <description>You can find me talking about topics related to JavaScript, TypeScript, React, Web development and technical/coding interviews</description>
+        <lastBuildDate>Sun, 01 May 2022 02:42:29 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
+        <copyright>All rights reserved 2022, nazha</copyright>
+        <item>
+            <title><![CDATA[How load ES module micro application in icestark]]></title>
+            <link>https://nazha.vercel.app//posts/load-esmodule</link>
+            <guid>https://nazha.vercel.app//posts/load-esmodule</guid>
+            <pubDate>Wed, 20 Apr 2022 16:00:00 GMT</pubDate>
+            <description><![CDATA[This post show how you can load Vite application in icestark]]></description>
+            <content:encoded><![CDATA[This post show how you can load Vite application in icestark]]></content:encoded>
+            <author>maoxiaoke@outlook.com (nazha)</author>
+            <category>technical icestark</category>
+            <category>promotion</category>
+        </item>
+    </channel>
+</rss>
