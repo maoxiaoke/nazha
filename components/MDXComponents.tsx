@@ -9,7 +9,14 @@ export const components = {
   a: ({ href = '', ...props }) => {
     if (href.match(/http|https|mailto/)) {
       return (
-        <a href={href} style={{ color: '#0070F3' }} className="hover:underline hover:opacity-80" target="_blank" rel="noopener noreferrer" {...props} />
+        <a
+          href={href}
+          style={{ color: '#0070F3' }}
+          className="hover:underline hover:opacity-80"
+          target="_blank"
+          rel="noopener noreferrer"
+          {...props}
+        />
       );
     }
     return (
