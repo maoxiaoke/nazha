@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -6,9 +9,7 @@ import { RSSIcon } from './RssIcon';
 import { useTags } from './tags/TagsContext';
 import ThemeSwitch from './ThemeSwitch';
 
-const routes = [
-  { route: '/about', title: 'About Me' }
-];
+const routes = [{ route: '/about', title: 'About Me' }];
 
 const Nav: React.FC = () => {
   const router = useRouter();
