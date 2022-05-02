@@ -4,7 +4,7 @@
         <title>nazha's blog</title>
         <link>https://nazha.vercel.app/</link>
         <description>You can find me talking about topics related to JavaScript, TypeScript, React, Web development and technical/coding interviews</description>
-        <lastBuildDate>Sun, 01 May 2022 08:59:52 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 02 May 2022 06:52:39 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -25,6 +25,8 @@
             <link>https://nazha.vercel.app//posts/what-pnpm-reslove</link>
             <guid>https://nazha.vercel.app//posts/what-pnpm-reslove</guid>
             <pubDate>Mon, 21 Feb 2022 16:00:00 GMT</pubDate>
+            <description><![CDATA[Pnpm may be alternative of npm、yarn and lerna. But do you know how pnpm works?]]></description>
+            <content:encoded><![CDATA[Pnpm may be alternative of npm、yarn and lerna. But do you know how pnpm works?]]></content:encoded>
             <author>maoxiaoke@outlook.com (nazha)</author>
             <category>technical pnpm</category>
             <category>promotion</category>
