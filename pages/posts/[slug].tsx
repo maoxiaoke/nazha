@@ -13,7 +13,7 @@ import { getTweets } from '@/utils/twitter';
 const generateRSSFeed = (posts: PostMeta[]) => {
   const date = new Date();
 
-  const baseUrl = 'https://nazha.vercel.app/';
+  const baseUrl = 'https://www.nazha.co/';
   const author = {
     name: 'nazha',
     email: 'maoxiaoke@outlook.com',

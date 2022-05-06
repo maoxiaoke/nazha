@@ -12,8 +12,8 @@ export const PostPage: React.FC<Props> = ({ meta, children }) => {
       <NextSeo
         title={meta.title}
         description={meta.description}
-        canonical={`https://nazha.vercel.app/posts/${meta.slug}`}
-        openGraph={{ url: `https://nazha.vercel.app/posts/${meta.slug}` }}
+        canonical={`https://www.nazha.co/posts/${meta.slug}`}
+        openGraph={{ url: `https://www.nazha.co/posts/${meta.slug}` }}
         additionalMetaTags={[
           { name: 'twitter:title', content: meta.title },
           { name: 'twitter:description', content: meta.description }

@@ -4,7 +4,7 @@ export const SEO: React.FC = () => {
   return (
     <DefaultSeo
       openGraph={{
-        site_name: 'https://nazha.vercel.app/'
+        site_name: 'https://www.nazha.co/'
       }}
       twitter={{
         handle: '@xiaokedada',

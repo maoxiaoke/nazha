@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 const RSSIcon = () => {
   return (
-    <Link href="https://nazha.vercel.app/rss.xml" passHref>
+    <Link href="https://www.nazha.co/rss.xml" passHref>
       <span className="cursor-pointer">
         <svg width="24" height="24" viewBox="0 0 24 24">
           <path
