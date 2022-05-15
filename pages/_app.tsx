@@ -7,7 +7,6 @@ import '@/public/styles/global.css';
 
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import Script from 'next/script';
 
 import Nav from '@/components/Nav';
 import { SEO } from '@/components/SEO';
@@ -16,9 +15,8 @@ import { TagsProvider } from '@/components/tags/TagsContext';
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <>
-      <Script async src="https://www.googletagmanager.com/gtag/js?id=G-MD6N0LS362" />
-
       <Head>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-MD6N0LS362" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <script
           dangerouslySetInnerHTML={{
