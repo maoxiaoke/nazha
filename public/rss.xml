@@ -2,25 +2,33 @@
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
         <title>nazha's blog</title>
-        <link>https://nazha.vercel.app/</link>
+        <link>https://www.nazha.co/</link>
         <description>You can find me talking about topics related to JavaScript, TypeScript, React, Web development and technical/coding interviews</description>
-        <lastBuildDate>Wed, 04 May 2022 11:51:38 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 26 May 2022 04:14:43 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <copyright>All rights reserved 2022, nazha</copyright>
         <item>
+            <title><![CDATA[My New Macbook Setup (2022)]]></title>
+            <link>https://www.nazha.co//posts/how-i-setup-a-mac</link>
+            <guid>https://www.nazha.co//posts/how-i-setup-a-mac</guid>
+            <pubDate>Wed, 25 May 2022 16:00:00 GMT</pubDate>
+            <author>maoxiaoke@outlook.com (nazha)</author>
+            <category>setup</category>
+        </item>
+        <item>
             <title><![CDATA[7 things I learned from “The Tools of Titans”]]></title>
-            <link>https://nazha.vercel.app//posts/7-things-learned-from-The-Tools-of-Titans</link>
-            <guid>https://nazha.vercel.app//posts/7-things-learned-from-The-Tools-of-Titans</guid>
+            <link>https://www.nazha.co//posts/7-things-learned-from-The-Tools-of-Titans</link>
+            <guid>https://www.nazha.co//posts/7-things-learned-from-The-Tools-of-Titans</guid>
             <pubDate>Tue, 03 May 2022 16:00:00 GMT</pubDate>
             <author>maoxiaoke@outlook.com (nazha)</author>
             <category>reading</category>
         </item>
         <item>
             <title><![CDATA[How load ES module micro application in icestark]]></title>
-            <link>https://nazha.vercel.app//posts/load-esmodule</link>
-            <guid>https://nazha.vercel.app//posts/load-esmodule</guid>
+            <link>https://www.nazha.co//posts/load-esmodule</link>
+            <guid>https://www.nazha.co//posts/load-esmodule</guid>
             <pubDate>Wed, 20 Apr 2022 16:00:00 GMT</pubDate>
             <description><![CDATA[This post show how you can load Vite application in icestark.]]></description>
             <content:encoded><![CDATA[This post show how you can load Vite application in icestark.]]></content:encoded>
@@ -30,8 +38,8 @@
         </item>
         <item>
             <title><![CDATA[A diagram to show how pnpm works]]></title>
-            <link>https://nazha.vercel.app//posts/what-pnpm-reslove</link>
-            <guid>https://nazha.vercel.app//posts/what-pnpm-reslove</guid>
+            <link>https://www.nazha.co//posts/what-pnpm-reslove</link>
+            <guid>https://www.nazha.co//posts/what-pnpm-reslove</guid>
             <pubDate>Mon, 21 Feb 2022 16:00:00 GMT</pubDate>
             <description><![CDATA[Pnpm may be alternative of npm、yarn and lerna. But do you know how pnpm works?]]></description>
             <content:encoded><![CDATA[Pnpm may be alternative of npm、yarn and lerna. But do you know how pnpm works?]]></content:encoded>
