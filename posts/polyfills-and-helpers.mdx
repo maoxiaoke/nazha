@@ -67,4 +67,83 @@ var extendsObj = _objectSpread({}, {
 
 Notice that there are some functions imported from `@babel/runtime/helpers`, which help to transpil code. They're what I refer to as "**Helpers**".
 
+## Downsides
+
+We're glad to see that our code can run on older browsers (like IE). On the other hand, polyfills and helpers may also make our application a big boat.
+
+Take a React application (within thousands of modules in node_modules) for example, we divide it to two parts to discuss:
+
++ NPM React Component in node_modules directory
++ The Application itself
+
+And our goal is clear: **load less code**.
+
+## Helpers should never be inlined
+
+When transpiling, helper functions will be added to every file that requires it. This duplication is sometimes unnecessary.
+
+In babel, this is where the [@babel/plugin-transform-runtime](https://babel.dev/docs/en/babel-plugin-transform-runtime) plugin comes in. And you should use it like this way:
+
+```json
+  "presets": [
+    ["@babel/preset-env", {
+      // Disable useBuiltIns by default
+      "useBuiltIns": false,
+    }]
+  ],
+  "plugins": [
+    [
+      "@babel/plugin-transform-runtime",
+      {
+        "absoluteRuntime": false,
+        "helpers": true, // Helpers will not be inlined
+      }
+    ]
+  ]
+```
+
+If you are using [swc](https://github.com/swc-project/swc), enable non-inlined helpers in your `.swcrc`:
+
+```json
+"jsc": {
+  "externalHelpers": true
+}
+```
+
+## Helpers version resolution
+
+If a moudle is resolved to the same path, bundlers like [webpack](https://webpack.js.org/) and [rollup](https://rollupjs.org/guide/en/) will bundle it once.
+
+Let's say you have [@swc/helpers@0.2.0](https://babel.dev/docs/en/babel-runtime) (the helpers be used by swc) installed in NPM package and `@swc/helpers@0.3.0` in your application root.
+
+They are considered as different modules for different resolved paths. Sometimes, this duplication is unnecessary.
+
+You can tackle with this by adding [resolutions](https://classic.yarnpkg.com/lang/en/docs/selective-version-resolutions/) (if you're using yarn), or `pnpm.overrides` (if you're using pnpm) field in your `package.json` file of application.
+
+```json
+"name": "react-application",
+"pnpm": {
+  "overrides": {
+    "@swc/helpers": "^0.3.0"
+  }
+}
+```
+
+There also exists a more elegant way: creating modules aliasas for helpers. For example:
+
+```js
+// webpack.config.js
+module.exports = {
+  //...
+  resolve: {
+    alias: {
+      "@swc/helpers": path.resolve(__dirname, 'node_modules'),
+    }
+  }
+}
+```
+
+## Should my NPM package polyfilled
+
+It depends.
 
