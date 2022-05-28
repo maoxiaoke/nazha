@@ -65,7 +65,7 @@ var extendsObj = _objectSpread({}, {
 });
 ```
 
-Notice that there are some functions imported from `@babel/runtime/helpers`, which help to transpil code. They're what I refer to as "**Helpers**".
+Notice that there are some functions imported from `@babel/runtime/helpers`, which helps to transpil code. They're what I refer to as "**Helpers**".
 
 ## Downsides
 
@@ -75,8 +75,6 @@ Take a React application (within thousands of modules in node_modules) for examp
 
 + NPM React Component in node_modules directory
 + The Application itself
-
-And our goal is clear: **load less code**.
 
 ## Helpers should never be inlined
 
@@ -112,7 +110,7 @@ If you are using [swc](https://github.com/swc-project/swc), enable non-inlined h
 
 ## Helpers version resolution
 
-If a moudle is resolved to the same path, bundlers like [webpack](https://webpack.js.org/) and [rollup](https://rollupjs.org/guide/en/) will bundle it once.
+If a module is resolved to the same path, bundlers like [webpack](https://webpack.js.org/) and [rollup](https://rollupjs.org/guide/en/) will bundle it once.
 
 Let's say you have [@swc/helpers@0.2.0](https://babel.dev/docs/en/babel-runtime) (the helpers be used by swc) installed in NPM package and `@swc/helpers@0.3.0` in your application root.
 
@@ -145,7 +143,7 @@ module.exports = {
 
 ## Should my NPM package polyfilled
 
-I prefer not to do this. A react application will not know all the NPM packages it depends are fully polyfilled or not. Even though all NPM packages are fully polyfilled, react applications must be fully polyfilled to prevent breakings.
+I prefer not to do this. A react application will not know whether all the NPM packages it depends are fully polyfilled or not. Even though all NPM packages are fully polyfilled, react applications must be fully polyfilled to prevent breakings.
 
 There are two ways to make it more flexible:
 
