@@ -1,6 +1,6 @@
 ---
 title: Polyfills and helpers - How to save your bundle size
-published: false
+published: true
 listed: true
 date: '05/27/2022'
 lastUpdateDate: '05/27/2022'
@@ -85,21 +85,21 @@ When transpiling, helper functions will be added to every file that requires it.
 In babel, this is where the [@babel/plugin-transform-runtime](https://babel.dev/docs/en/babel-plugin-transform-runtime) plugin comes in. And you should use it like this way:
 
 ```json
-  "presets": [
-    ["@babel/preset-env", {
-      // Disable useBuiltIns by default
-      "useBuiltIns": false,
-    }]
-  ],
-  "plugins": [
-    [
-      "@babel/plugin-transform-runtime",
-      {
-        "absoluteRuntime": false,
-        "helpers": true, // Helpers will not be inlined
-      }
-    ]
+"presets": [
+  ["@babel/preset-env", {
+    // Disable useBuiltIns by default
+    "useBuiltIns": false,
+  }]
+],
+"plugins": [
+  [
+    "@babel/plugin-transform-runtime",
+    {
+      "absoluteRuntime": false,
+      "helpers": true, // Helpers will not be inlined
+    }
   ]
+]
 ```
 
 If you are using [swc](https://github.com/swc-project/swc), enable non-inlined helpers in your `.swcrc`:
@@ -145,5 +145,56 @@ module.exports = {
 
 ## Should my NPM package polyfilled
 
-It depends.
+I prefer not to do this. A react application will not know all the NPM packages it depends are fully polyfilled or not. Even though all NPM packages are fully polyfilled, react applications must be fully polyfilled to prevent breakings.
+
+There are two ways to make it more flexible:
+
++ Pre-bundling (I will cover this in another post)
++ Polyfilled all features based on environment
+
+### Polyfilled all features
+
+If you are using babel, it's convenient to add [@babel/preset-env](https://babeljs.io/docs/en/babel-preset-env#usebuiltins). And configure your `.babelrc` file like this:
+
+```json
+"presets": [
+  ["@babel/preset-env", {
+    "target": "79",
+    "useBuiltIns": "entry",
+    "corejs": "3.8"
+  }]
+]
+```
+
+For swc users, configure your `.swrrc` file like this:
+
+```js
+{
+  "env": {
+    "targets": {
+      "chrome": "79"
+    },
+    "mode": "entry",
+    "coreJs": "3.8"
+  }
+}
+```
+
+But it is not really perfect. There exists a case that a "polyfill" is not used but polyfilled.
+
+To reduce the bundle size, you can only load these polyfills for browsers that require them, so that the majority of the web traffic globally will not download these polyfills.
+
+## Further reading
+
+- [Polyfills: everything you ever wanted to know, or maybe a bit less](https://medium.com/hackernoon/polyfills-everything-you-ever-wanted-to-know-or-maybe-a-bit-less-7c8de164e423)
+- [babel-polyfills](https://github.com/babel/babel-polyfills)
+- [tsdx issue](https://github.com/jaredpalmer/tsdx/issues/968#issuecomment-791817207)
+
+
+
+
+
+
+
+
 
