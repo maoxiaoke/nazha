@@ -6,10 +6,10 @@ import { NextSeo } from 'next-seo';
 import { ResetTagsButton, TagList } from '@/components/tags/Tag';
 import { useTags } from '@/components/tags/TagsContext';
 import { formateDatePreview, validDate } from '@/utils/formatDate';
-import { getAllPostsMeta } from '@/utils/loadMDX';
+import { getAllDocsMeta, PostPath } from '@/utils/loadMDX';
 
 export const getStaticProps = async () => {
-  const posts = await getAllPostsMeta();
+  const posts = await getAllDocsMeta(PostPath);
   return { props: { posts } };
 };
 

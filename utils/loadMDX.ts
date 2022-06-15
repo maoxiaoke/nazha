@@ -10,8 +10,9 @@ import glob from 'tiny-glob';
 
 import { autoLinkHeadingsOptions } from './rehypeAutolinkPlugin';
 
-const RootPath = process.cwd();
-const PostPath = path.join(RootPath, 'posts');
+export const RootPath = process.cwd();
+export const PostPath = path.join(RootPath, 'posts');
+export const ExercisesPath = path.join(RootPath, 'exercises');
 
 export async function loadMDX(source: string) {
   const bundle = await bundleMDX({
@@ -33,10 +34,10 @@ export async function loadMDX(source: string) {
 /**
  * Get meta data of all posts
  */
-export const getAllPostsMeta = async () => {
-  const allPostPaths = await glob(`${PostPath}/**/*.mdx`);
+export const getAllDocsMeta = async (dir: string) => {
+  const allDocsMeta = await glob(`${dir}/**/*.mdx`);
 
-  return allPostPaths
+  return allDocsMeta
     .map((postPath): PostMeta => {
       const post = fs.readFileSync(path.join(RootPath, postPath), 'utf-8');
 
@@ -54,8 +55,9 @@ const TWEET_RE = /<StaticTweet\sid="[0-9]+"\s\/>/g;
 /**
  * Get a single post content by slug
  */
-export const getPost = async (slug: string) => {
-  const source = fs.readFileSync(path.join(PostPath, `${slug}.mdx`), 'utf-8');
+
+export const getDocs = async (slug: string, dir: string) => {
+  const source = fs.readFileSync(path.join(dir, `${slug}.mdx`), 'utf-8');
 
   const { code, frontmatter, matter } = await loadMDX(source);
 

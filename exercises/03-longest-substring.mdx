@@ -1,0 +1,32 @@
+---
+title: 03 - Longest Substring Without Repeating Characters
+published: true
+listed: true
+date: '06/15/2022'
+lastUpdateDate: '06/15/2022'
+tags: exercises
+language: Chinese
+---
+
++ LeetCode 链接：https://leetcode.cn/problems/longest-substring-without-repeating-characters/
++ 考点：滑动窗口
+
+```Typescript
+const lengthOfLongestSubstring = function(s: string) {
+  let count = 0;
+  const hash = {}; // 定义一个「散列表」，存储值 和 index
+
+  for (i = 0,j = 0; i < s.length; ++i) {
+
+      if (Object.keys(hash).includes(s[i])) {
+          j = Math.max(hash[s[i]] + 1, j)
+          // 移动 j 的位置，取当前 j 和 hash[s[i]] + 1 的最大值，防止 j 向前移动
+       }
+
+      count = Math.max(count, i - j + 1); // 保存当前最大的值
+      hash[s[i]] = i; // 更新 s[i] 的位置
+  }
+
+  return count;
+};
+```
