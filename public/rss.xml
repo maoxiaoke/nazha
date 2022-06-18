@@ -4,11 +4,19 @@
         <title>nazha's blog</title>
         <link>https://www.nazha.co/</link>
         <description>You can find me talking about topics related to JavaScript, TypeScript, React, Web development and technical/coding interviews</description>
-        <lastBuildDate>Wed, 15 Jun 2022 08:07:55 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 18 Jun 2022 01:47:01 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <copyright>All rights reserved 2022, nazha</copyright>
+        <item>
+            <title><![CDATA[Why Functional Component over Class Component]]></title>
+            <link>https://www.nazha.co//posts/why-functional-over-class-component</link>
+            <guid>https://www.nazha.co//posts/why-functional-over-class-component</guid>
+            <pubDate>Fri, 17 Jun 2022 16:00:00 GMT</pubDate>
+            <author>maoxiaoke@outlook.com (nazha)</author>
+            <category>react</category>
+        </item>
         <item>
             <title><![CDATA[Polyfills and helpers - How to save your bundle size]]></title>
             <link>https://www.nazha.co//posts/polyfills-and-helpers</link>

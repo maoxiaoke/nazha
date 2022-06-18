@@ -1,0 +1,99 @@
+---
+title: Why Functional Component over Class Component
+published: true
+listed: true
+date: '06/18/2022'
+lastUpdateDate: '06/18/2022'
+tags: react
+language: Chinese
+---
+
+> React16 发布时候写的一篇文章，现在搬运过来。
+
+当 React 将 [Hooks](https://reactjs.org/docs/hooks-intro.html) 引入函数组件后，Class 组件似乎已经完成了它的历史使命。我们不禁要问，为什么是「函数组件」？即，我们要问的是「函数组件」和「Class 组件」之间有什么区别？对于 React Team 而言，「函数组件」为什么更有魅力。
+
+结论就在于「Class 组件」的 `this` 和 「函数组件」的函数**闭包**所带来的的不同心智。是的，在这里我们不考虑「函数组件」和「Class组件」的任何有关 **性能** 的讨论。想要获得两者性能有关的讨论，你可以参考 [React Hook, slower then HOC](https://medium.com/@dan_abramov/this-benchmark-is-indeed-flawed-c3d6b5b6f97f)。
+
+## 一个栗子
+
+[Dan Abramov](https://mobile.twitter.com/dan_abramov) 在 [How Are Function Components Different from Classes?](https://overreacted.io/how-are-function-components-different-from-classes/) 有一个非常棒的[栗子](https://codesandbox.io/s/pjqnl16lm7)。
+
+进行如下步骤：
+
+1.  点击 Follow 按钮；
+2.  在 3 秒之前（我们设计成 3 秒），改变选择的人；
+3.  阅读提示。
+
+你会发现，「函数组件」和「Class 组件」行为有巨大的不同。
+
+「函数组件」的行为，当关注 Dan 的时候，切换到另一个角色时，提示我们的仍然是 “关注了 Dan”，这符合我们的预期；而「Class组件」的行为有点「怪异」，当关注 Dan 的时候，切换到角色 Sophie 时，提示我们的是 “关注了 Sophie”。
+
+为什么出现了这种情况呢。
+
+## 可变和与不可变
+
+来看我们类组件的代码：
+
+```js
+class ProfilePage extends React.Component {
+  showMessage = () => {
+    alert('Followed ' + this.props.user);
+  };
+}
+```
+
+在「Class 组件」中，State 和 Props 都是 “不可变的”，不可变指的是：这个对象创建之后便不能够被改变。在「Class 组件」中，我们用 `setState` 为 State 赋新值，而非改变其内部属性。但是，`this` 是 “可变” 的。伴随着组件更新，`this` 永远指代 **当前的** 「Class 组件」。对于「Class组件」而言，没有「过去」和「未来」之分，只有「现在」。`showMessage` 中的 `this`（包括方法本身），并不会和「过去」的某一次特定的渲染绑定，也就无法捕获「某次特定渲染的 Props 或 State」。
+
+这种 **渲染不一致** 的行为，会导致很多困惑。在我们编码的过程中，需要始终留意这种不一致的行为。为了得到正确的结果，我们可以「保存现场」。
+
+```js
+class ProfilePage extends React.Component {
+  showMessage = () => {
+	const { user } = this.props
+    alert('Followed ' + user);
+  };
+}
+```
+
+
+在「函数组件」中，情况有所不同。我们所期待的，某次渲染仅处在这一次渲染所在的「上下文」中。**既不与上次（过去）渲染的上下文相关，也不与下一次（未来）渲染的上下文相关**。
+
+![](https://nazha-image-store.oss-cn-shanghai.aliyuncs.com/frontends/hooks-render.svg)
+
+看下面的代码：
+
+```js
+function ProfilePage(props) {
+  const showMessage = () => {
+    alert('Followed ' + props.user);
+  };
+
+  const handleClick = () => {
+    setTimeout(showMessage, 3000);
+  };
+
+  return (
+    <button onClick={handleClick}>Follow</button>
+  );
+}
+```
+
+**闭包** 之于函数，有如夏日之甘霖，「闭包」保存了某次特定渲染的上下文。在「函数组件」的心智中，每一次渲染都是一个新的函数（或函数组件）。过去的渲染只与过去的函数（或函数组件）有关，当前的渲染只与当前的函数（或函数组件）有关。
+
+## 函数组件的一个心智
+
+「渲染的一致性」，体现了一种函数式的编程理念「不可变性」。对于「函数组件」，每一次渲染都是一个新的函数。旧的已经过去，新的已有新欢。
+
+因此，当思维从「Class 组件」转换为「函数组件」时，要有一个有关「时间」的概念：过去即过去；现在即现在；未来即未来。
+
+## 摆脱 “渲染一致性”
+
+在某些场景下，可能需要摆脱这种「渲染的一致性」。[useRef](https://reactjs.org/docs/hooks-reference.html#useref) 是一个绝妙的途径。
+
+> useRef returns a mutable ref object whose .current property is initialized to the passed argument.
+
+不过，这同样「警示」这我们：当需要它的时候，才去想起它。首要的是，我们要将「Class组件」思维转换为「函数组件」思维。
+
+## 参阅
+
+1.  [How Are Function Components Different from Classes?](https://overreacted.io/how-are-function-components-different-from-classes/)
