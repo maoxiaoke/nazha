@@ -21,7 +21,7 @@ export const components = {
     }
     return (
       <Link href={href} passHref>
-        <a {...props} />
+        <a {...props} style={{ color: '#0070F3' }} />
       </Link>
     );
   },

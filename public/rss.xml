@@ -4,19 +4,27 @@
         <title>nazha's blog</title>
         <link>https://www.nazha.co/</link>
         <description>You can find me talking about topics related to JavaScript, TypeScript, React, Web development and technical/coding interviews</description>
-        <lastBuildDate>Thu, 07 Jul 2022 11:25:42 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 07 Jul 2022 11:51:25 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <copyright>All rights reserved 2022, nazha</copyright>
         <item>
-            <title><![CDATA[Create a Newsletter Subscription for Your Website”]]></title>
-            <link>https://www.nazha.co//posts/Create-a-newsletter-subscription</link>
-            <guid>https://www.nazha.co//posts/Create-a-newsletter-subscription</guid>
+            <title><![CDATA[Create a Newsletter Subscription for Your Website]]></title>
+            <link>https://www.nazha.co//posts/create-a-newsletter-subscription</link>
+            <guid>https://www.nazha.co//posts/create-a-newsletter-subscription</guid>
             <pubDate>Wed, 06 Jul 2022 16:00:00 GMT</pubDate>
             <author>maoxiaoke@outlook.com (nazha)</author>
             <category>technical</category>
             <category>blog</category>
+        </item>
+        <item>
+            <title><![CDATA[10 principles about sharing your work]]></title>
+            <link>https://www.nazha.co//posts/10-principles-about-sharing-your-work</link>
+            <guid>https://www.nazha.co//posts/10-principles-about-sharing-your-work</guid>
+            <pubDate>Mon, 04 Jul 2022 16:00:00 GMT</pubDate>
+            <author>maoxiaoke@outlook.com (nazha)</author>
+            <category>reading</category>
         </item>
         <item>
             <title><![CDATA[Why Functional Component over Class Component]]></title>
