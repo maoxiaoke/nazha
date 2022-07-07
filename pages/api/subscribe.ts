@@ -1,29 +1,10 @@
-import Cors from 'cors';
 import type { NextApiRequest, NextApiResponse } from 'next';
-
-// Initializing the cors middleware
-const cors = Cors({
-  methods: ['GET', 'HEAD', 'POST']
-});
-
-function runMiddleware(req: NextApiRequest, res: NextApiResponse, fn: any) {
-  return new Promise((resolve, reject) => {
-    fn(req, res, (result: any) => {
-      if (result instanceof Error) {
-        return reject(result);
-      }
-
-      return resolve(result);
-    });
-  });
-}
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { email } = req.body;
   console.log('add', email);
 
-  // Run the middleware
-  await runMiddleware(req, res, cors);
+  res.setHeader('Access-Control-Allow-Origin', '*');
 
   if (!email) {
     return res.status(400).json({

@@ -41,7 +41,7 @@ export const PostPage: React.FC<Props> = ({ meta, children }) => {
 
         {children}
 
-        <div className="w-full p-4 bg-orange-200 mt-10">
+        <div className="w-full p-4 bg-subscrible mt-10">
           <Subscribe />
         </div>
       </article>
