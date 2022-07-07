@@ -1,26 +1,21 @@
-import Cors from 'cors'
-
+import Cors from 'cors';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 // Initializing the cors middleware
 const cors = Cors({
-  methods: ['GET', 'HEAD', 'POST'],
-})
+  methods: ['GET', 'HEAD', 'POST']
+});
 
-function runMiddleware(
-  req: NextApiRequest,
-  res: NextApiResponse,
-  fn: Function
-) {
+function runMiddleware(req: NextApiRequest, res: NextApiResponse, fn: any) {
   return new Promise((resolve, reject) => {
     fn(req, res, (result: any) => {
       if (result instanceof Error) {
-        return reject(result)
+        return reject(result);
       }
 
-      return resolve(result)
-    })
-  })
+      return resolve(result);
+    });
+  });
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -28,7 +23,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   console.log('add', email);
 
   // Run the middleware
-  await runMiddleware(req, res, cors)
+  await runMiddleware(req, res, cors);
 
   if (!email) {
     return res.status(400).json({
