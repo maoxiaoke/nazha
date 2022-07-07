@@ -1,7 +1,3 @@
-if (process.env.NODE_ENV === 'development') {
-  require('preact/debug');
-}
-
 import '@/public/styles/font.css';
 import '@/public/styles/global.css';
 
