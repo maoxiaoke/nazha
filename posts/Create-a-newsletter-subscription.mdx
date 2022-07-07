@@ -1,0 +1,160 @@
+---
+title: Create a Newsletter Subscription for Your Website
+published: true
+listed: true
+date: '07/07/2022'
+lastUpdateDate: '07/07/2022'
+tags: technical,blog
+language: Chinese
+---
+
+“Share your work”这本书中介绍 email 相对于社交账号和 RSS，会更紧密地和你的用户（粉丝）保持联系，并且曝光率也更高，毕竟每个人都有邮箱。
+
+所以，本文介绍如何使用 [Revue](https://www.getrevue.co/) 这个服务来给你的个人网站添加 Newsletter 订阅。
+
+## Revue
+
+[Revue](https://www.getrevue.co/app/issues) 是一个提供 Newsletter 的服务平台，在 2021 年被 Twitter 公司收购。如果喜欢逛 Twitter 的用户，有时候可能可以看到某个用户主页会展示 Newsletter 订阅，其背后就是 Revue 提供的服务，比如[我的主页](https://twitter.com/xiaokedada)。
+
+![](https://nazha-image-store.oss-cn-shanghai.aliyuncs.com/blog/twitter-revue.png)
+
+除了 Revue 之外，类似的还有其他平台：
+
++ https://mailchimp.com/
++ https://substack.com/
+
+## 创建 Revue 账号
+
+可以直接使用 Twitter 账号注册，注册之后，由于我们需要集成到自己的页面上，因此需要根据其开发的接口来进行定制。接口的地址在：https://www.getrevue.co/api。
+
+调用接口需要申请。正常的情况下，你应该在 https://www.getrevue.co/app/integrations 这个页面的底部申请。申请通过后，你会得到如下的一串 api_key：
+
+![](https://nazha-image-store.oss-cn-shanghai.aliyuncs.com/blog/revue-api-key.png)
+
+## 处理 API KEY
+
+千万不要在开源平台[上传敏感数据](https://twitter.com/cz_binance/status/1543905416748359680?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E1543905416748359680%7Ctwgr%5E%7Ctwcon%5Es1_&ref_url=https%3A%2F%2Fwww.dw.com%2Fzh%2FE7B6B2E582B3E9BB91E5AEA2E7AB8AE8B3A3E4B8ADE59C8B10E58484E4BABAE5808BE8B387-E79BAEE5898DE5B7B2E79FA5E4BB80E9BABC%2Fa-62360819)。在 Next.js 中，为了满足本地测试，可以新建一个 `.env.local` 的[本地环境变量文件](https://nextjs.org/docs/basic-features/environment-variables)，并将其添加到 `.gitignore` 文件中。
+
+```text
+# .env.local
+REVUE_API_KEY=3nahgxxxxxxxxxxxxxxxxxxxx
+```
+
+对于生产环境需要使用 api_key，就需要在部署或运行时添加环境环境变量。比如使用 [vercel](https://vercel.com) 进行发布的时候，就可以如下配置：
+
+![](https://nazha-image-store.oss-cn-shanghai.aliyuncs.com/blog/revue-api-key2.png)
+
+## 处理 Revue 请求
+接下来，来实现 Newsletter 订阅最重要的[请求](https://www.getrevue.co/api#post-/v2/subscribers)。根据 Next.js 提供的 [API Routes](https://nextjs.org/docs/api-routes/introduction)，可以将这个请求封装成一个 api 路由：
+
+```ts
+// pages/api/subscribe.ts
+import type { NextApiRequest, NextApiResponse } from 'next';
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+	const { email } = req.body;
+    // 处理本地跨域问题
+	res.setHeader('Access-Control-Allow-Origin', '*');
+
+	if (!email) {
+		return res.status(400).json({
+			error: 'Email is required'
+		});
+	}
+	// https://www.getrevue.co/api#post-/v2/subscribers
+
+	const revRes = await fetch('https://www.getrevue.co/api/v2/subscribers', {
+		method: 'POST',
+		headers: {
+			Authorization: `Token ${process.env.REVUE_API_KEY}`,
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({ email, double_opt_in: false })
+	});
+
+	const data = await revRes.json();
+
+	if (!revRes.ok) {
+		return res.status(500).json({
+			error: data?.error?.email[0]
+		});
+	}
+	return res.status(201).json({ error: '' });
+}
+```
+
+## 实现一个 Subscribe 组件
+
+接下来，使用原生的 `form` 标签实现一个 Subscrible 组件。具体代码如下：
+
+```tsx
+import React, { FormEvent, useRef, useState } from 'react';
+
+const Subscribe = () => {
+  const inputEl = useRef<HTMLInputElement>(null);
+  const [errMsg, setErrMsg] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const subscribe = async (e: FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+
+    const res = await fetch('/api/subscribe', {
+      body: JSON.stringify({
+        email: inputEl?.current?.value
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'POST'
+    });
+
+    setLoading(false);
+    const json = await res.json();
+    const { error } = json;
+
+    if (error) {
+      setErrMsg(error);
+      return;
+    }
+
+    if (inputEl?.current?.value) {
+      inputEl.current.value = '';
+    }
+
+    setErrMsg('Success! 🎉 You are now subscribed to the newsletter.');
+  };
+
+  return (
+    <>
+      <p>Subscribe to the newsletter</p>
+      <p>
+        Get emails from me about web development, tech, and early access to new articles. I will
+        only send emails when new content is posted. No spam.
+      </p>
+      <form onSubmit={subscribe}>
+        <input
+          ref={inputEl}
+          placeholder="Your e-mail address"
+          type="email"
+          autoComplete="email"
+          required
+        />
+        {errMsg && <div>{errMsg}</div>}
+        <button
+          type="submit"
+          {loading ? 'Loading': 'Subscribe'}
+        </button>
+      </form>
+    </>
+  );
+};
+
+export default Subscribe;
+```
+
+最终获得的效果如下：
+
+![](https://nazha-image-store.oss-cn-shanghai.aliyuncs.com/blog/subscribe-preview.png)
+
+更多效果可访问我的个人网站 https://www.nazha.co/. 在这里，你可以找到[源码](https://github.com/maoxiaoke/nazha)。
