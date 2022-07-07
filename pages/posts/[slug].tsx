@@ -6,7 +6,6 @@ import { useMemo } from 'react';
 
 import { components } from '@/components/MDXComponents';
 import { PostPage } from '@/components/PostPage';
-// import Tweet from '@/components/Tweet';
 import { getAllDocsMeta, getDocs, PostPath } from '@/utils/loadMDX';
 import { getTweets } from '@/utils/twitter';
 
@@ -80,12 +79,6 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
 export const Post: React.FC<Props> = ({ meta, code }) => {
-  // const StaticTweet = ({ id }) => {
-  //   const tweet = tweets.find((tweet) => tweet.id === id);
-
-  //   return <Tweet {...tweet} />;
-  // };
-
   const Component = useMemo(() => getMDXComponent(code), [code]);
   return (
     <PostPage meta={meta}>

@@ -4,6 +4,8 @@ import { NextSeo } from 'next-seo';
 
 import { formateDateFull, validDate } from '@/utils/formatDate';
 
+import Subscribe from './Subscribe';
+
 type Props = { meta: PostMeta };
 
 export const PostPage: React.FC<Props> = ({ meta, children }) => {
@@ -36,7 +38,12 @@ export const PostPage: React.FC<Props> = ({ meta, children }) => {
 
           <p className="italic">{meta.description}</p>
         </div>
+
         {children}
+
+        <div className="w-full p-4 bg-orange-200 mt-10">
+          <Subscribe />
+        </div>
       </article>
     </>
   );

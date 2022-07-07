@@ -21,6 +21,7 @@
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc --ignore-path ./.gitignore"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "date-fns": "^2.28.0",
     "feed": "^4.2.2",
     "light-date": "^1.2.0",
@@ -30,10 +31,10 @@
     "next-seo": "^4.28.1",
     "preact": "^10.5.15",
     "preact-render-to-string": "^5.1.19",
-    "react": "npm:@preact/compat@17.0.2",
-    "react-dom": "npm:@preact/compat@17.0.2",
+    "react": "^17",
+    "react-dom": "^17",
     "react-intersection-observer": "^8.32.1",
-    "react-ssr-prepass": "npm:preact-ssr-prepass@^1.2.0",
+    "react-ssr-prepass": "^1.2.0",
     "react-toggle-dark-mode": "^1.0.4",
     "rehype": "^12.0.0",
     "rehype-autolink-headings": "^6.1.0",

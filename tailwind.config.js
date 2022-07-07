@@ -41,7 +41,8 @@ module.exports = {
         bg: 'var(--color-background)',
         nav: 'var(--color-nav-background)',
         muted: 'var(--color-muted)',
-        accent: 'var(--color-link-posts)'
+        accent: 'var(--color-link-posts)',
+        subscrible: '#ffd400'
       },
       animation: {
         gradient: 'gradient 10s ease infinite'
