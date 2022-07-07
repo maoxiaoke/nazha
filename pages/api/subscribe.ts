@@ -2,7 +2,6 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { email } = req.body;
-  console.log('add', email);
 
   res.setHeader('Access-Control-Allow-Origin', '*');
 
@@ -23,7 +22,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   });
 
   const data = await revRes.json();
-  console.log('data', data);
 
   if (!revRes.ok) {
     return res.status(500).json({
