@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { setLocalStorage } from '../utils/localStorage';
 
@@ -10,16 +10,18 @@ const DarkModeSwitch = dynamic(
 
 type ColorTheme = 'light' | 'dark';
 
-const triggerSwitchVoice = () => {
-  const audio = new Audio('/audios/switch.wav');
-
-  audio.play();
-};
-
 const ThemeSwitch: React.FC = () => {
   const COLOR_THEME = 'theme';
 
   const [theme, setTheme] = useState<ColorTheme>('dark');
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    if (!audioRef.current) {
+      const audio = new Audio('/audios/switch.wav');
+      audioRef.current = audio;
+    }
+  }, []);
 
   useEffect(() => {
     const theme = (document.body.getAttribute('class') as ColorTheme) || 'dark';
@@ -29,7 +31,7 @@ const ThemeSwitch: React.FC = () => {
   const switchTheme = () => {
     const bodyClass = document.body.classList;
 
-    triggerSwitchVoice();
+    audioRef.current?.play();
 
     if (theme === 'dark') {
       setTheme('light');
