@@ -53,7 +53,7 @@ const Subscribe = () => {
   };
 
   return (
-    <>
+    <div className="w-full p-4 bg-subscrible mt-10">
       <p className="text-xl font-bold text-gray-900 m-0">Subscribe to the newsletter</p>
       <p className="mt-1 text-gray-500 text-sm">
         Get emails from me about web development, tech, and early access to new articles. I will
@@ -75,7 +75,7 @@ const Subscribe = () => {
           {loading ? <LoadingSVG /> : 'Subscribe'}
         </button>
       </form>
-    </>
+    </div>
   );
 };
 
