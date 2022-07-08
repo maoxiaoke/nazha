@@ -10,6 +10,12 @@ const DarkModeSwitch = dynamic(
 
 type ColorTheme = 'light' | 'dark';
 
+const triggerSwitchVoice = () => {
+  const audio = new Audio('/audios/switch.wav');
+
+  audio.play();
+};
+
 const ThemeSwitch: React.FC = () => {
   const COLOR_THEME = 'theme';
 
@@ -22,6 +28,8 @@ const ThemeSwitch: React.FC = () => {
 
   const switchTheme = () => {
     const bodyClass = document.body.classList;
+
+    triggerSwitchVoice();
 
     if (theme === 'dark') {
       setTheme('light');
