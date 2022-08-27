@@ -7,7 +7,7 @@ const LoadingSVG = () => {
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 19 17"
-        className="fill-black dark:fill-white"
+        className="fill-white dark:fill-white"
         width="20"
         height="20">
         <circle className="loadingCircle" cx="2.2" cy="10" r="1.6" />
@@ -85,20 +85,20 @@ const Subscribe = ({ embed = false }: Props) => {
       <div>
         <form className="relative mt-4 border rounded" onSubmit={subscribe}>
           <input
-            className="px-4 py-2 mt-1 block w-full border-gray-300 rounded-md bg-white dark:bg-bg text-gray-900 dark:text-gray-100 pr-32 outline-none"
+            className="px-4 py-2 block w-full border-gray-300 rounded-md bg-white dark:bg-bg text-gray-900 dark:text-gray-100 pr-32 outline-none"
             ref={inputEl}
             placeholder="Your e-mail address"
             type="email"
             autoComplete="email"
             required
           />
-          {errMsg && <div className="mt-4 text-gray-500 text-sm">{errMsg}</div>}
           <button
             type="submit"
-            className="bg-gradient-to-r from-subscribleRight to-subscrible flex items-center justify-center absolute right-1 top-1 px-4 py-1 font-medium bg-subscrible text-white rounded">
+            className="bg-gradient-to-r from-subscribleRight to-subscrible flex items-center justify-center absolute right-1 top-1 px-4 py-1 font-medium bg-subscrible text-white rounded w-28 h-9">
             {loading ? <LoadingSVG /> : 'SUBSCRIBE'}
           </button>
         </form>
+        {errMsg && <div className="mt-4 text-gray-500 text-sm">{errMsg}</div>}
       </div>
     </div>
   );
