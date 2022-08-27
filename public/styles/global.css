@@ -242,3 +242,7 @@ details {
 }
 .loadingCircle:nth-child(2) { animation-delay: .1s }
 .loadingCircle:nth-child(3) { animation-delay: .2s }
+
+.fontOutfit {
+  font-family: Outfit, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New;
+}

@@ -42,7 +42,8 @@ module.exports = {
         nav: 'var(--color-nav-background)',
         muted: 'var(--color-muted)',
         accent: 'var(--color-link-posts)',
-        subscrible: '#ffd400'
+        subscrible: '#FF354D',
+        subscribleRight: '#FE6108'
       },
       animation: {
         gradient: 'gradient 10s ease infinite'

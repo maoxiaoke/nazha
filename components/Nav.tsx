@@ -9,7 +9,10 @@ import { RSSIcon } from './RssIcon';
 import { useTags } from './tags/TagsContext';
 import ThemeSwitch from './ThemeSwitch';
 
-const routes = [{ route: '/about', title: 'About Me' }];
+const routes = [
+  { route: '/about', title: 'About Me' },
+  { route: '/subscribe', title: 'Newsletter' }
+];
 
 const Nav: React.FC = () => {
   const router = useRouter();

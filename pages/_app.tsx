@@ -33,7 +33,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
       <div className="w-full h-full">
         <TagsProvider>
           <Nav />
-          <main className="w-full">
+          <main className="w-full mt-2">
             <Component {...pageProps} />
           </main>
         </TagsProvider>

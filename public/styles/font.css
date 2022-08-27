@@ -66,6 +66,42 @@
     url(/fonts/fira-code/fira-code-v9-latin-700.woff) format('woff');
 }
 
+@font-face {
+  font-family: 'Outfit';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 300;
+  src: url(/fonts/outfit/Outfit-Light.woff2) format('woff2'),
+    url(/fonts/outfit/Outfit-Light.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Outfit';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url(/fonts/outfit/Outfit-Regular.woff2) format('woff2'),
+    url(/fonts/outfit/Outfit-Regular.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Outfit';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+  src: url(/fonts/outfit/Outfit-SemiBold.woff2) format('woff2'),
+    url(/fonts/outfit/outfit-regular.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Outfit';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url(/fonts/outfit/Outfit-Bold.woff2) format('woff2'),
+    url(/fonts/outfit/outfit-Bold.woff) format('woff');
+}
+
 /* @font-face {
   font-family: 'Cormorant Garamond';
   font-style: normal;

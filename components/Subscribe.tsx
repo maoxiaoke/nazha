@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React, { FormEvent, useRef, useState } from 'react';
 
 const LoadingSVG = () => {
@@ -17,7 +18,11 @@ const LoadingSVG = () => {
   );
 };
 
-const Subscribe = () => {
+export interface Props {
+  embed?: boolean;
+}
+
+const Subscribe = ({ embed = false }: Props) => {
   const inputEl = useRef<HTMLInputElement>(null);
   const [errMsg, setErrMsg] = useState('');
   const [loading, setLoading] = useState(false);
@@ -53,28 +58,48 @@ const Subscribe = () => {
   };
 
   return (
-    <div className="w-full p-4 bg-subscrible mt-10">
-      <p className="text-xl font-bold text-gray-900 m-0">Subscribe to the newsletter</p>
-      <p className="mt-1 text-gray-500 text-sm">
-        Get emails from me about web development, tech, and early access to new articles. I will
-        only send emails when new content is posted. No spam.
-      </p>
-      <form className="relative mt-4" onSubmit={subscribe}>
-        <input
-          className="px-4 py-2 mt-1 block w-full border-gray-300 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 pr-32 outline-none"
-          ref={inputEl}
-          placeholder="Your e-mail address"
-          type="email"
-          autoComplete="email"
-          required
-        />
-        {errMsg && <div className="mt-4 text-gray-500 text-sm">{errMsg}</div>}
-        <button
-          type="submit"
-          className="flex items-center justify-center absolute right-1 top-1 px-4 pt-1 font-medium h-8 bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded w-28">
-          {loading ? <LoadingSVG /> : 'Subscribe'}
-        </button>
-      </form>
+    <div className="w-full p-4 mt-10 fontOutfit">
+      <div className="flex justify-between items-center">
+        <div>
+          <Image
+            className="w-8 h-8 rounded-full overflow-hidden"
+            src="/portrait/logo.jpg"
+            alt="portrait"
+            width="100px"
+            height="100px"
+          />
+        </div>
+
+        <div className="max-w-[55ch]">
+          <p className="font-medium text-sm">Have a weekly visit of</p>
+          <p className="font-bold text-2xl bg-gradient-to-r from-subscribleRight to-subscrible bg-clip-text text-transparent">
+            Howl&apos;s Moving Castle
+          </p>
+          <p className="font-light mt-4">
+            Get emails from me about web development, tech, and early access to new articles. I will
+            only send emails when new content is posted.
+          </p>
+          <p className="font-bold">Subscribe Now!</p>
+        </div>
+      </div>
+      <div>
+        <form className="relative mt-4 border rounded" onSubmit={subscribe}>
+          <input
+            className="px-4 py-2 mt-1 block w-full border-gray-300 rounded-md bg-white dark:bg-bg text-gray-900 dark:text-gray-100 pr-32 outline-none"
+            ref={inputEl}
+            placeholder="Your e-mail address"
+            type="email"
+            autoComplete="email"
+            required
+          />
+          {errMsg && <div className="mt-4 text-gray-500 text-sm">{errMsg}</div>}
+          <button
+            type="submit"
+            className="bg-gradient-to-r from-subscribleRight to-subscrible flex items-center justify-center absolute right-1 top-1 px-4 py-1 font-medium bg-subscrible text-white rounded">
+            {loading ? <LoadingSVG /> : 'SUBSCRIBE'}
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
