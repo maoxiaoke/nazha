@@ -13,6 +13,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   });
 
   const data = await revRes.json();
+  console.log('bbbbb---', data);
 
   if (!revRes.ok) {
     return res.status(500).json({

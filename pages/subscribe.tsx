@@ -1,8 +1,10 @@
 import Issues from '@/components/Issues';
 import Subscribe from '@/components/Subscribe';
 
-export async function getServerSideProps() {
-  const res = await fetch('/api/newletters', {
+export async function getServerSideProps({ req }) {
+  const protocol = req.headers['x-forwarded-proto'] || 'http';
+  const baseUrl = req ? `${protocol}://${req.headers.host}` : '';
+  const res = await fetch(`${baseUrl}/api/newletters`, {
     headers: {
       'Content-Type': 'application/json'
     },
