@@ -13,6 +13,11 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
     <>
       <Head>
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-MD6N0LS362" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet"></link>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <script
           dangerouslySetInnerHTML={{

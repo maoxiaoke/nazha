@@ -71,14 +71,14 @@
 
   html {
     font: 100%/1.75;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New,
+    font-family: 'Overpass Mono', SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New,
       monospace;
     font-stretch: 25% 150%;
   }
 
   @supports (font-variation-settings: normal) {
     html {
-      font: 100%/1.75 'iA Quattro', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+      font: 'Overpass Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
         Liberation Mono, Courier New, monospace;
       font-stretch: 25% 150%;
     }
