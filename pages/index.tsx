@@ -31,7 +31,7 @@ export const PostPreview: React.FC<PostMeta> = ({ slug, title, date, language })
           <p className="text-sm mr-8 min-w-[50px]">
             <time dateTime={validDate(date)}>{formateDatePreview(date)}</time>
           </p>
-          <h3 className="font-light">{title}</h3>
+          <h3 className="font-normal">{title}</h3>
           <p className="ml-2 text-xs bg-black opacity-100 text-white dark:bg-white dark:text-black pl-1 pr-1">
             {language}
           </p>
