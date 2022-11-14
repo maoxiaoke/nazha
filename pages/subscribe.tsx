@@ -1,17 +1,20 @@
 import Issues from '@/components/Issues';
 import Subscribe from '@/components/Subscribe';
 
-export async function getServerSideProps({ req }) {
-  const protocol = req.headers['x-forwarded-proto'] || 'http';
-  const baseUrl = req ? `${protocol}://${req.headers.host}` : '';
-  const res = await fetch(`${baseUrl}/api/newletters`, {
+export async function getServerSideProps() {
+  const revRes = await fetch('https://www.getrevue.co/api/v2/issues', {
+    method: 'GET',
     headers: {
+      Authorization: `Token ${process.env.REVUE_API_KEY}`,
       'Content-Type': 'application/json'
-    },
-    method: 'GET'
+    }
   });
 
-  const issues = await res.json();
+  const issues = await revRes.json();
+
+  if (!revRes.ok) {
+    return { props: { issues: [] } };
+  }
 
   return { props: { issues } };
 }
