@@ -28,7 +28,7 @@ const Nav: React.FC = () => {
         <nav className="w-full sm:max-w-[75ch] m-auto sm:grid md:flex px-5 justify-between items-center ">
           <div className="hover:bg-black hover:cursor-pointer hover:text-white px-2 py-1 flex items-center dark:hover:bg-white dark:hover:text-black">
             <Link href="/" passHref>
-              <div className="flex">
+              <div className="flex items-center">
                 <Image
                   className="w-8 h-8 rounded-full overflow-hidden"
                   src="/portrait/logo.jpg"
