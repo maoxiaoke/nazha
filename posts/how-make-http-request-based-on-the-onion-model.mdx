@@ -1,0 +1,162 @@
+---
+title: How make http request based on the Onion Model
+published: true
+listed: true
+date: '12/15/2022'
+lastUpdateDate: '12/15/2022'
+tags: javascript,technical
+language: Chinese
+---
+
+公司内部往往有很多项目，每个项目都有自己的 Http Client，这些请求库的代码大同小异，但是又有一些细微的差别。比如有的项目使用了 axios，有的项目使用了 fetch，有的项目使用了自己封装的请求库。请求库的混乱是阻碍团队协作的，随着公司前端工程的规范化、一致化，**就会产生统一请求库的诉求**。
+
+**但面临实际场景，完全统一的请求库是无法满足不同业务、不同项目的诉求的。如果强行进行统一，只会造成请求库的臃肿和难以使用**。
+
+举个实际的例子，错误的统一管控是一个常见的诉求。工程上希望对请求进行统一的错误拦截，当接口报错时，可以对用户进行提示。对于 toB 的业务，可能会采用 [antd 的 Message 组件](https://ant.design/components/message-cn) 来进行提示；而对于无线端业务，有可能会使用到 [antd-mobile 的 toast](https://mobile.ant.design/zh/components/toast)。这就是由于不同类型业务（PC 业务和无线端业务）导致请求库在处理相同问题时所带来的差异。
+
+## 自定义能力诉求
+
+在实际的开发中，对请求库的常见诉求主要有：
+
+![http-client-ability](https://nazha-image-store.oss-cn-shanghai.aliyuncs.com/blog/http-client-abilities.png)
+
+可见，大部分针对请求库的诉求，集中在实际发起 **请求前**，和 **请求结束后**。
+
+## 插件化开发 - 中间件模型
+
+为了满足不同业务、不同项目之间的微小差异，当试图设计一个灵活的请求库的时候，很容易想到插件化的动态插拔能力。
+
+那如何设计一套简单的插件系统呢？考虑到我们设计的插件需要访问请求和响应对象，一个类似 [Koa 中间件](https://koajs.com/) 的设计就呼之欲出了。
+
+![how-middleware-work](https://nazha-image-store.oss-cn-shanghai.aliyuncs.com/blog/how-middleware-work.png)
+
+### compose 函数
+
+参考 [Redux 对中间件的设计](https://github.com/reduxjs/redux/blob/master/src/compose.ts)，可以定义一个 `compose` 函数：
+
+```ts
+export const compose = (...funcs: Function[]) => {
+  if (funcs.length === 0) {
+    // infer the argument type so it is usable in inference down the line
+    return <T>(arg: T) => arg;
+  }
+
+  if (funcs.length === 1) {
+    return funcs[0];
+  }
+
+  return funcs.reduce(
+    (a, b) =>
+      (...args: any) =>
+        a(b(...args)),
+  );
+};
+```
+
+这个函数最终实现一个类似洋葱的效果：
+
+<img src="https://nazha-image-store.oss-cn-shanghai.aliyuncs.com/blog/onion-model.png" alt="onion-model" style={{ height: "300px", width: "auto" }} />
+
+接下来，就能很好地定义中间件函数了：
+
+```ts
+type Next = (request: Req) => Promise<Res>;
+
+type Middleware = (next: Next ) => Next;
+```
+
+所谓中间件函数，就是个接受下一个中间件和请求对象的柯里化函数。例如：
+
+```ts
+const doNothingHandler = () => async (req) => {
+	// 1. 处理入参
+	const response = await next(req); // 2. 交给后一个中间件处理
+	// 3. 处理 response
+	return response;
+}
+```
+
+这样，就可以通过 `compose` 函数组装、编排中间件，然后通过 [Adapter](https://github.com/axios/axios#request-config) 发起请求，以 `window.fetch` 为例：
+
+```ts
+// compose 函数同样返回一个中间件类型的函数
+const dispatch = compose(...[doNothingHandler, xxxHandler]);
+dispatch(window.fetch)({
+  url: 'https://api.github.com',
+  // other request params
+})
+```
+
+## request-core
+
+上面就是 [request-core](https://github.com/maoxiaoke/request-core#readme) 的核心代码，值得注意的是，同 [umi-request](https://github.com/umijs/umi-request) 和 [Axios](https://github.com/axios/axios) 这一类同样具有中间件能力、或拦截器能力的库来说，`request-core` 并 **不直接提供一个可用的 Http Client，而是提供一套统一的底层能力和一系列通用中间件，方便开发者开发自己的请求库**。
+
+### Axios is not enough
+
+在实际业务中能够发现，总是需要对 axios 进行二次开发或配置（配置参数或自定义拦截器），要得到一个称人心意的 Http Client，还有很长的路要走。
+
+`request-core` 是如何来解决这个问题的？
+
+- 基于中间件机制，支持不同业务、项目之间的差异
+- 依赖中间件编排，为有差异的项目和业务快速生成一套请求解决方案
+
+### 使用
+
+```ts
+import { Core, baseUrlHandler } from '@nzha/request-core';
+import type { Req } from '@nzha/request-core';
+
+interface ExtendReq extends Req {
+  // 你可以在这里扩展 Req 的类型，比如增加一些自定义参数
+  baseUrl?: string;
+}
+
+const xxxReqeust = new Core<ExtendReq>();
+
+xxxReqeust.use(baseUrlHandler);
+
+export {
+  xxxReqeust,
+}
+```
+
+### 内置中间件
+
+中间件是 `request-core` 的核心，只有蓬勃的中间件生态，才能够让开发者在开发自己的请求库的路上一骑绝尘。目前 `request-core` 内置的中间件并不多，主要有：
+
+- `baseUrlHandler`
+这个中间件可以请求时自动拼接 baseUrl。
+
+```ts
+// 使用示例
+import { baseUrlHandler, Core } from '@nzha/request-core';
+
+const myOwnRequest = new Core();
+myOwnRequest.use(baseUrlHandler('https://api.github.com'));
+```
+
+当用户调用 `myOwnRequest.get('/user')` 时，实际上会发起 `https://api.github.com/user` 的请求。
+
+- `jsonResponseHandler`
+这种中间件会自动将响应体转换为 json 对象。
+
+- `queryHandler`
+这个中间件可以在请求时自动拼接 query 参数。可以将 query 参数传递为对象或者字符串。
+
+```ts
+// 使用示例
+import { queryHandler, Core } from '@nzha/request-core';
+
+const myOwnRequest = new Core();
+myOwnRequest.use(queryHandler());
+
+// 使用
+myOwnRequest.get('/user', {
+  query: {
+    name: 'nzha',
+  },
+});
+```
+
+
+

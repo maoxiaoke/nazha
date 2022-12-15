@@ -4,11 +4,20 @@
         <title>nazha's blog</title>
         <link>https://www.nazha.co/</link>
         <description>You can find me talking about topics related to JavaScript, TypeScript, React, Web development and technical/coding interviews</description>
-        <lastBuildDate>Sun, 13 Nov 2022 10:23:29 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 15 Dec 2022 13:44:25 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <copyright>All rights reserved 2022, nazha</copyright>
+        <item>
+            <title><![CDATA[How make http request based on the Onion Model]]></title>
+            <link>https://www.nazha.co//posts/how-make-http-request-based-on-the-onion-model</link>
+            <guid>https://www.nazha.co//posts/how-make-http-request-based-on-the-onion-model</guid>
+            <pubDate>Wed, 14 Dec 2022 16:00:00 GMT</pubDate>
+            <author>maoxiaoke@outlook.com (nazha)</author>
+            <category>javascript</category>
+            <category>technical</category>
+        </item>
         <item>
             <title><![CDATA[Create a Newsletter Subscription for Your Website]]></title>
             <link>https://www.nazha.co//posts/Create-a-newsletter-subscription</link>
