@@ -4,11 +4,20 @@
         <title>nazha's blog</title>
         <link>https://www.nazha.co/</link>
         <description>You can find me talking about topics related to JavaScript, TypeScript, React, Web development and technical/coding interviews</description>
-        <lastBuildDate>Thu, 15 Dec 2022 13:44:25 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 30 Jan 2023 10:49:25 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
-        <copyright>All rights reserved 2022, nazha</copyright>
+        <copyright>All rights reserved 2023, nazha</copyright>
+        <item>
+            <title><![CDATA[Change Your Perception - How to use Effect Hook]]></title>
+            <link>https://www.nazha.co//posts/change-your-perception-How-to-use-effect-hook</link>
+            <guid>https://www.nazha.co//posts/change-your-perception-How-to-use-effect-hook</guid>
+            <pubDate>Sun, 29 Jan 2023 16:00:00 GMT</pubDate>
+            <author>maoxiaoke@outlook.com (nazha)</author>
+            <category>react</category>
+            <category> hook</category>
+        </item>
         <item>
             <title><![CDATA[How make http request based on the Onion Model]]></title>
             <link>https://www.nazha.co//posts/how-make-http-request-based-on-the-onion-model</link>

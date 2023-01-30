@@ -1,0 +1,273 @@
+---
+title: Change Your Perception - How to use Effect Hook
+published: true
+listed: true
+date: '01/30/2023'
+lastUpdateDate: '01/30/2022'
+tags: react, hook
+language: Chinese
+---
+
+相比于 Class 组件，如果不深入了解 React Hooks 的思想，写出来的代码反而会更惨不忍视，其中之一就是对 `useEffect` 的滥用。
+
+有个原因是我们总是带着 Class 组件的思维来考虑 Hooks，有众多的文章告诉你可以用 useEffect 来模拟 componentDidMount 和 componentWillUnmount，而且在代码表现上似乎能正常工作。
+
+但产生的问题是：会造成 useEffect 的滥用和性能损耗。举个例子：
+
+```tsx
+const Profile ({ userId }) {
+	const [innerUserId, setInnerUserId] = useState(userId);
+
+	useEffect(() => {
+	  setComment(userId);
+	}, [userId]);
+
+	return (
+		<>{innerUserId}</>
+	)
+}
+```
+
+在这个例子中，通过 useEffect 来同步 props 的值。在某些场景下，上面的代码可以正常 work，但是我们根本没必要使用 useEffect。但是如果我们按照「当 Profile 组件下次更新（componentWillUpdate）的时候，就把 userId 同步一下」这样的思路来写代码的话，就很容易写出上面的代码。
+
+## useEffect 关心的是如何和外部系统交互
+
+换另一种方式来思考：**useEffect 是用来同步（处理）外部状态（副作用操作）的**。那么，什么是外部状态：
+
+- 连接服务器
+- 发送埋点
+- DOM 操纵
+- 控制外部系统等等类似的事情
+
+换言之，`UI = Render(Data)` 公式中，不能通过自身手段更新 UI，而需要借助外部系统或通知外部的操作，而是副作用操作。正因为不是通过自身手段更新 UI，所以在 React 在设计中，是组件渲染后再和外部系统进行同步。
+
+再来看上面这个例子，`props` 和 `state` 是 React 的内部状态，这是 React 自身能够处理的内部逻辑，而不需要依赖外部系统。所以上述代码可以改成下面更合理的方式：
+
+```tsx
+const Profile ({ userId }) {
+	const [innerUserId, setInnerUserId] = useState(userId);
+
+    if (userId !== innerUserId) {
+	    setInnerUserId(userId);
+    }
+
+	return (
+		<>{innerUserId}</>
+	)
+}
+```
+
+> 还可以换一个更简单的理解，比如 Addon，外挂。
+
+## 依赖列表不是你选择的
+
+useEffect 有三种使用方式：
+
+- 没有第二个参数：Effect 在每次渲染后执行
+
+```tsx
+useEffect(() => {
+	// Synchronize with external systems
+});
+```
+
+- 第二个参数为空数组：Effect 没有依赖列表，在第一次 render 后执行
+
+```tsx
+useEffect(() => {
+	// Synchronize with external systems
+}, []);
+```
+
+- 第二个参数不为空数组，即存在依赖列表
+
+```tsx
+useEffect(() => {
+	// Synchronize with external systems
+}, [userId]);
+```
+
+我们在上面说，useEffect 是用来在组件渲染后和外部系统交互的，那么控制 Effects 执行的依赖列表，**就应该是会影响到渲染的 Reactive 值**。比如：
+
+- Props
+- State
+- 其他在组件内声明的数据
+
+使用 useEffect 的第二个误区就是：**随意选择 Effects 的依赖，更甚至是直接忽略 Effects 依赖的 Reactive 值**（使用 `eslint-disable-next-line react-hooks/exhaustive-deps`）。这些行为都可能会导致一些错误的行为。
+
+正确的策略是：**不是你去选择使用哪个依赖项，而是 Effects 确定的，你只是一个将 Effects 确定的依赖添加到依赖列表的工具人而已**。也就是说，如果你想要改变依赖列表的项，那么正确的做法不是直接去删除或增加依赖列表的项，而是去改 Effects 的内容。比如：
+
+```tsx
+function ChatRoom({ roomId }) {
+	const [roomId, setRoomId] = useState(1);
+
+	useEffect(() => {
+	    const connection = createConnection(roomId);
+	    connection.connect();
+	    return () => {
+	      connection.disconnect();
+	    };
+	  }, [roomId]);
+  // ...
+}
+```
+
+如果你要在依赖列表中移除 `roomId`，那么首先是修改 Effect 的代码：
+
+```tsx
+const roomId = 1;
+
+function ChatRoom({ roomId }) {
+	useEffect(() => {
+	    const connection = createConnection(roomId);
+	    connection.connect();
+	    return () => {
+	      connection.disconnect();
+	    };
+	  }, []);
+  // ...
+}
+```
+
+这样，`roomId` 不再是 Reactive 值，此时才可以将 `roomId` 从依赖列表移出去。而这时执行 Effect 的逻辑决定的，而不是你个人的选择。
+
+## 错误使用 useEffect 的 case
+
+请记得上面的讨论，useEffect 是用来和外部系统交互的，如果支持处理 React 自身的渲染逻辑（比如 Props、States 之间的转换），不需要依赖外部系统（不需要用 useEffeect）。
+
+- 应用初始化的一些数据
+比如一些应用在初始化只执行一次的数据，有可能没有必要等待组件渲染后执行。
+
+```tsx
+const App = () => {
+	useEffect(() => {
+		loadDataFromLocalStorage();
+	}, []);
+}
+```
+
+这种情况，可以考虑 `loadDataFromLocalStorage` 是否可以放在外部执行。
+
+```tsx
+loadDataFromLocalStorage();
+
+const App = () => {
+	// ...
+}
+```
+
+- Props 和 States 之间的转换
+
+比如下面这个例子，当父组件更新后，清空子组件的内部状态。
+
+```tsx
+const Comment = ({ userId }) => {
+	const [comment, setComment] = useState('');
+
+    useEffect(() => {
+	    setComment('');
+    }, [userId])
+	// ...
+}
+```
+
+这个例子想要执行的逻辑是切换用户后，清空评论。在这里，useEffect 内部没有和任何外部系统交互，显然是多余的。下面是一种更合理的方式：
+
+```tsx
+const Profile = ({ userId }) => {
+	return (
+		<Comment  key={userId} userId={userId} />
+	)
+}
+
+const Comment = ({ userId }) => {
+	const [comment, setComment] = useState('');
+	// ...
+}
+```
+
+通过 `key`，React 会重新渲染 `<Comment />`。
+
+- 保持 useEffect 的纯粹：一个 Effect 只做一件事
+
+保持 Effects 的独立是个好习惯，正如我们拆分一个复杂的函数一样。
+
+- 不要用 useEffect 来传递父子组件之间的数据
+
+```tsx
+const Toggle = ({ onChange}) => {
+  const [isOn, setIsOn] = useState(false);
+  
+  useEffect(() => {
+    onChange(isOn);
+  }, [isOn, onChange])
+
+  return (
+    <Switch onClick={() => setIsOn(o => !o)} />
+  )
+
+  // ...
+}
+```
+
+相反，Effect 的逻辑应该直接放在 Event Handler 来处理。
+
+```tsx
+const Toggle = ({ onChange}) => {
+  const [isOn, setIsOn] = useState(false);
+
+  const handleSwitch = (e) => {
+	  e.stopPropagation();
+
+	  setIsOn(o => !o)
+	  onChange(o)
+  }
+
+  return (
+    <Switch onClick={handleSwitch} />
+  )
+
+  // ...
+}
+```
+
+## 非 Reactive 的值有哪些
+
+在 React 中是使用 [Object.is](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) 来比对依赖列表前后两次渲染的值。所以，全局和可变变量不能成为依赖列表项，而这些值也不是 Reactive 的。比如：
+
+- `ref.current` 是可变的
+- useState 返回的 set 函数，每次渲染都返回同一个引用值
+- 定义在组件外的变量
+
+```tsx
+const roomId = '1';
+
+const App = () => {
+  const [serverUrl, setServerUrl] = useState('https://localhost:8080');
+  const playingRef = useRef(null);
+
+  useEffect(() => {
+	if (playingRef.current) {
+	  // Do something relates to userId and roomId
+	}
+  }, [serverUrl, room, playingRef]);
+  // ...
+}
+```
+
+在这个例子中，`serverUrl`、`roomId` 和 `playingRef` 都不是 Reactive 值，不必包含在依赖列表中。
+
+```tsx
+const roomId = '1';
+
+const App = () => {
+  const [serverUrl, setServerUrl] = useState('https://localhost:8080');
+  const playingRef = useRef(null);
+
+  useEffect(() => {
+	if (playingRef.current) {
+	  // Do something relates to userId and roomId
+	}
+  }, []);
+  // ...
+```
