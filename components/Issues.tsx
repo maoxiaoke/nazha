@@ -4,12 +4,10 @@ import { formateDatePreview } from '@/utils/formatDate';
 
 interface RevueIssue {
   id: string;
-  title: string;
-  html: string;
-  sent_at: string;
-  description: string;
-  url: string;
-  active: boolean;
+  send_time: string;
+  settings: {
+    title: string;
+  };
 }
 
 export interface NewsLettersProps {
@@ -25,9 +23,9 @@ const NewsLetters = ({ className, issues }: NewsLettersProps) => {
       <ul>
         {issues.map((issue, idx) => (
           <li key={issue.id} className="grid grid-cols-[1fr_4fr_1fr] p-2 border-b last:border-none">
-            <div>{formateDatePreview(issue.sent_at)}</div>
+            <div>{formateDatePreview(issue.send_time)}</div>
             <div className="text-subscrible">
-              <Link href={issue.url}>{issue.title}</Link>
+              <Link href={`/newsletter/${issue.id}`}>{issue?.settings?.title}</Link>
             </div>
             <div className="text-right opacity-60">#{issueLen - idx}</div>
           </li>

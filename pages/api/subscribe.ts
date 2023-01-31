@@ -11,23 +11,32 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     });
   }
 
-  // https://www.getrevue.co/api#post-/v2/subscribers
-  const revRes = await fetch('https://www.getrevue.co/api/v2/subscribers', {
-    method: 'POST',
-    headers: {
-      Authorization: `Token ${process.env.REVUE_API_KEY}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ email, double_opt_in: false })
-  });
+  // https://mailchimp.com/developer/marketing/api/list-members/
+  const revRes = await fetch(
+    `https://${process.env.MAILCHIMP_API_DC}.api.mailchimp.com/3.0/lists/${process.env.MAILCHIMP_API_LIST_ID}/members`,
+    {
+      method: 'POST',
+      headers: {
+        Authorization: `anystring ${process.env.MAILCHIMP_API_KEY}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email_address: email,
+        status: 'subscribed',
+        tags: ['blog']
+      })
+    }
+  );
 
   const data = await revRes.json();
 
-  if (!revRes.ok) {
+  console.log('data', data);
+
+  if (data.status >= 400) {
     return res.status(500).json({
-      error: data?.error?.email[0]
+      error: data?.detail ?? 'Something went wrong'
     });
   }
 
-  return res.status(201).json({ error: '' });
+  return res.status(200).json({ error: '' });
 }

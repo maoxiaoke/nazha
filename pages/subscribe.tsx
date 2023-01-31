@@ -2,21 +2,24 @@ import Issues from '@/components/Issues';
 import Subscribe from '@/components/Subscribe';
 
 export async function getServerSideProps() {
-  const revRes = await fetch('https://www.getrevue.co/api/v2/issues', {
-    method: 'GET',
-    headers: {
-      Authorization: `Token ${process.env.REVUE_API_KEY}`,
-      'Content-Type': 'application/json'
+  const revRes = await fetch(
+    `https://${process.env.MAILCHIMP_API_DC}.api.mailchimp.com/3.0/campaigns?count=1000`,
+    {
+      method: 'GET',
+      headers: {
+        Authorization: `anystring ${process.env.MAILCHIMP_API_KEY}`,
+        'Content-Type': 'application/json'
+      }
     }
-  });
+  );
 
-  const issues = await revRes.json();
+  const resObj = await revRes.json();
 
-  if (!revRes.ok) {
+  if (resObj.status >= 400) {
     return { props: { issues: [] } };
   }
 
-  return { props: { issues } };
+  return { props: { issues: resObj?.campaigns } };
 }
 
 const Subscription = ({ issues }) => {
