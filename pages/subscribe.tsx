@@ -3,7 +3,7 @@ import Subscribe from '@/components/Subscribe';
 
 export async function getServerSideProps() {
   const revRes = await fetch(
-    `https://${process.env.MAILCHIMP_API_DC}.api.mailchimp.com/3.0/campaigns?count=1000`,
+    `https://${process.env.MAILCHIMP_API_DC}.api.mailchimp.com/3.0/campaigns?count=1000&status=sent&exclude_fields=_links`,
     {
       method: 'GET',
       headers: {
