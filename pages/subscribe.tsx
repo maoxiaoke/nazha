@@ -15,6 +15,8 @@ export async function getServerSideProps() {
 
   const resObj = await revRes.json();
 
+  console.log('adfsdf', resObj);
+
   if (resObj.status >= 400) {
     return { props: { issues: [] } };
   }

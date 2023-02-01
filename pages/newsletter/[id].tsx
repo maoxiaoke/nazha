@@ -13,8 +13,6 @@ export async function getServerSideProps({ params }) {
 
   const resObj = await revRes.json();
 
-  console.log('resObj', resObj);
-
   if (resObj.status >= 400) {
     return { props: { issueContent: {} } };
   }
