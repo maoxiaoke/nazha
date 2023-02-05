@@ -21,7 +21,11 @@ export async function getServerSideProps({ params }) {
 }
 
 export const Newsletter = ({ issueContent }) => {
-  return <div dangerouslySetInnerHTML={{ __html: issueContent?.html }} />;
+  return (
+    <div className="max-w-[75ch] mx-auto pt-12 pb-28 px-5">
+      <newsletter-content content={issueContent?.html}></newsletter-content>
+    </div>
+  );
 };
 
 export default Newsletter;

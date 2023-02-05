@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+
 import Issues from '@/components/Issues';
 import Subscribe from '@/components/Subscribe';
 
@@ -15,8 +17,6 @@ export async function getServerSideProps() {
 
   const resObj = await revRes.json();
 
-  console.log('adfsdf', resObj);
-
   if (resObj.status >= 400) {
     return { props: { issues: [] } };
   }
@@ -24,7 +24,15 @@ export async function getServerSideProps() {
   return { props: { issues: resObj?.campaigns } };
 }
 
-const Subscription = ({ issues }) => {
+const Subscription = () => {
+  const [issues, setIssues] = useState([]);
+  useEffect(() => {
+    fetch('/api/newsletters')
+      .then((res) => res.json())
+      .then((data) => {
+        setIssues(data?.issues);
+      });
+  }, []);
   return (
     <div className="max-w-[85ch] mx-auto flex justify-center items-center mt-[20ch] flex-col">
       <Subscribe />

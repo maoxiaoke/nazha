@@ -30,8 +30,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   const data = await revRes.json();
 
-  console.log('data', data);
-
   if (data.status >= 400) {
     return res.status(500).json({
       error: data?.detail ?? 'Something went wrong'
