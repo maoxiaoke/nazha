@@ -23,6 +23,7 @@ export async function getServerSideProps({ params }) {
 export const Newsletter = ({ issueContent }) => {
   return (
     <div className="max-w-[75ch] mx-auto pt-12 pb-28 px-5">
+      {/* @ts-ignore ignore to warn web component */}
       <newsletter-content content={issueContent?.html}></newsletter-content>
     </div>
   );

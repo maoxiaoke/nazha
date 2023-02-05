@@ -30,6 +30,7 @@ module.exports = {
     'plugin:prettier/recommended'
   ],
   rules: {
+    '@typescript-eslint/ban-ts-comment': 'off',
     'prettier/prettier': ['error', {}, { usePrettierrc: true }],
     'react/react-in-jsx-scope': 'off',
     'react/display-name': 'off',
