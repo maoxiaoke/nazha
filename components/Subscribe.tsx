@@ -18,11 +18,7 @@ const LoadingSVG = () => {
   );
 };
 
-export interface Props {
-  embed?: boolean;
-}
-
-const Subscribe = ({ embed = false }: Props) => {
+const Subscribe = () => {
   const inputEl = useRef<HTMLInputElement>(null);
   const [errMsg, setErrMsg] = useState('');
   const [loading, setLoading] = useState(false);

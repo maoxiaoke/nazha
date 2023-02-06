@@ -13,7 +13,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   // https://mailchimp.com/developer/marketing/api/list-members/
   const revRes = await fetch(
-    `https://${process.env.MAILCHIMP_API_DC}.api.mailchimp.com/3.0/lists/${process.env.MAILCHIMP_API_LIST_ID}/members`,
+    `https://${process.env.MAILCHIMP_API_DC}.api.mailchimp.com/3.0/lists/${process.env.MAILCHIMP_API_AUDIENCE_ID}/members`,
     {
       method: 'POST',
       headers: {
