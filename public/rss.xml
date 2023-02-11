@@ -4,16 +4,25 @@
         <title>nazha's blog</title>
         <link>https://www.nazha.co/</link>
         <description>You can find me talking about topics related to JavaScript, TypeScript, React, Web development and technical/coding interviews</description>
-        <lastBuildDate>Tue, 31 Jan 2023 15:32:39 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 11 Feb 2023 12:48:56 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <copyright>All rights reserved 2023, nazha</copyright>
         <item>
-            <title><![CDATA[Change Your Perception - How to use Effect Hook]]></title>
-            <link>https://www.nazha.co//posts/change-your-perception-How-to-use-effect-hook</link>
-            <guid>https://www.nazha.co//posts/change-your-perception-How-to-use-effect-hook</guid>
-            <pubDate>Sun, 29 Jan 2023 16:00:00 GMT</pubDate>
+            <title><![CDATA[Revue alternative for your personal blog - MailChimp]]></title>
+            <link>https://www.nazha.co//posts/revue-alternative</link>
+            <guid>https://www.nazha.co//posts/revue-alternative</guid>
+            <pubDate>Fri, 10 Feb 2023 16:00:00 GMT</pubDate>
+            <author>maoxiaoke@outlook.com (nazha)</author>
+            <category>revue</category>
+            <category> nextjs</category>
+        </item>
+        <item>
+            <title><![CDATA[How to use Effect Hook]]></title>
+            <link>https://www.nazha.co//posts/how-to-use-effect-hook</link>
+            <guid>https://www.nazha.co//posts/how-to-use-effect-hook</guid>
+            <pubDate>Fri, 03 Feb 2023 16:00:00 GMT</pubDate>
             <author>maoxiaoke@outlook.com (nazha)</author>
             <category>react</category>
             <category> hook</category>
@@ -29,8 +38,8 @@
         </item>
         <item>
             <title><![CDATA[Create a Newsletter Subscription for Your Website]]></title>
-            <link>https://www.nazha.co//posts/Create-a-newsletter-subscription</link>
-            <guid>https://www.nazha.co//posts/Create-a-newsletter-subscription</guid>
+            <link>https://www.nazha.co//posts/create-a-newsletter-subscription</link>
+            <guid>https://www.nazha.co//posts/create-a-newsletter-subscription</guid>
             <pubDate>Wed, 06 Jul 2022 16:00:00 GMT</pubDate>
             <author>maoxiaoke@outlook.com (nazha)</author>
             <category>technical</category>

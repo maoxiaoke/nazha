@@ -1,0 +1,207 @@
+---
+title: Revue alternative for your personal blog - MailChimp
+published: true
+listed: true
+date: '02/11/2023'
+lastUpdateDate: '02/11/2022'
+tags: revue, nextjs
+language: English
+---
+
+Last year, I wrote an article (in Chinese) about how to  [create a newsletter with Next.js and Revue](https://www.nazha.co/posts/Create-a-newsletter-subscription). But unfortunately, [Revue](http://help.getrevue.co/en/articles/6819675-we-ve-made-the-difficult-decision-to-shut-down-revue) was shut down by Elon Musk in this early year. 
+
+After  trying [Substck](https://substack.com/)、[ConvertKit](https://convertkit.com/)、[mailerlite](https://www.mailerlite.com/) and [MailChimp](https://mailchimp.com/), MailChimp won for me because:
+
+- The free plan, which is appropriate for a personal startup, allows up to 500 contacts and 2,500 monthly sends.
+- Even if you're on the free plan, **it offers APIs**. If you already have a personal website, you won't need another one to store your newsletters.
+
+## Setting up MailChimp
+
+After [creating a free account](https://login.mailchimp.com/signup/?plan=free_monthly_plan_v0)，you'll need to fetch your [API key](https://mailchimp.com/help/about-api-keys/#find+or+generate+your+api+key)。And other values you'll need to grab:
+
+- **The API server region**. Log into your Mailchimp account and look at the URL in your browser. You'll see something like `https://us19.admin.mailchimp.com/`; the `us19` part is the server region. 
+![](https://nazha-image-store.oss-cn-shanghai.aliyuncs.com/blog/mailchimp-api-region.png)
+- The [Audience ID](https://mailchimp.com/help/find-audience-id/) for the mailing list.
+![](https://nazha-image-store.oss-cn-shanghai.aliyuncs.com/blog/mailchimp-api-audience-id.png)
+
+## Add Secrets to Environment Variables
+
+Let's keep your secrets in environment variables without hardcoding them and revealing them in the public. If you are using [Next.js](https://nextjs.org/) and deploying with [Vercel](https://vercel.com/dashboard)，you can:
+
+- set up [some environment variables in Vercel](https://vercel.com/docs/concepts/projects/environment-variables).
+- create  `.env.local` to testing locally.
+
+```shell
+MAILCHIMP_API_DC=usxx
+MAILCHIMP_API_KEY=dbxxxxxxxxxxxxxxxxxxx-usxx
+MAILCHIMP_API_AUDIENCE_ID=30xxxxxx
+```
+
+Don't forget to add `.env.local` to your `.gitignore`. We don't want to commit our secrets.
+
+## Creating The Request for Subscription
+
+We can [create an API route](https://leerob.io/blog/mailchimp-next-js) at `pages/api/subscribe.js` to add a member to our list.
+
+```ts
+import type { NextApiRequest, NextApiResponse } from 'next';
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const { email } = req.body;
+
+  res.setHeader('Access-Control-Allow-Origin', '*');
+
+  if (!email) {
+    return res.status(400).json({
+      error: 'Email is required'
+    });
+  }
+
+  // https://mailchimp.com/developer/marketing/api/list-members/
+  const revRes = await fetch(
+    `https://${process.env.MAILCHIMP_API_DC}.api.mailchimp.com/3.0/lists/${process.env.MAILCHIMP_API_AUDIENCE_ID}/members`,
+    {
+      method: 'POST',
+      headers: {
+        Authorization: `anystring ${process.env.MAILCHIMP_API_KEY}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email_address: email,
+        status: 'subscribed',
+        tags: ['xxx'] // If you wanna add some tags
+      })
+    }
+  );
+
+  const data = await revRes.json();
+
+  if (data.status >= 400) {
+    return res.status(500).json({
+      error: data?.detail ?? 'Something went wrong'
+    });
+  }
+
+  return res.status(200).json({ error: '' });
+}
+```
+
+## Creating A  Subscribe Component
+
+We need a component to send a request to our API, for gathering user's email.
+
+```ts
+import Image from 'next/image';
+import React, { FormEvent, useRef, useState } from 'react';
+
+const LoadingSVG = () => {
+  return (
+    <div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 19 17"
+        className="fill-white dark:fill-white"
+        width="20"
+        height="20">
+        <circle className="loadingCircle" cx="2.2" cy="10" r="1.6" />
+        <circle className="loadingCircle" cx="9.5" cy="10" r="1.6" />
+        <circle className="loadingCircle" cx="16.8" cy="10" r="1.6" />
+      </svg>
+    </div>
+  );
+};
+
+const Subscribe = () => {
+  const inputEl = useRef<HTMLInputElement>(null);
+  const [errMsg, setErrMsg] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const subscribe = async (e: FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+
+    const res = await fetch('/api/subscribe', {
+      body: JSON.stringify({
+        email: inputEl?.current?.value
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'POST'
+    });
+
+    setLoading(false);
+    const json = await res.json();
+    const { error } = json;
+
+    if (error) {
+      setErrMsg(error);
+      return;
+    }
+
+    if (inputEl?.current?.value) {
+      inputEl.current.value = '';
+    }
+
+    setErrMsg('Success! 🎉 You are now subscribed to the newsletter.');
+  };
+
+  return (
+    <div className="w-full p-4 mt-10 fontOutfit">
+      <div className="flex justify-between items-center">
+        <div>
+          <Image
+            className="w-8 h-8 rounded-full overflow-hidden"
+            src="/portrait/logo.jpg"
+            alt="portrait"
+            width="100px"
+            height="100px"
+          />
+        </div>
+
+        <div className="max-w-[55ch]">
+          <p className="font-medium text-sm">Have a weekly visit of</p>
+          <p className="font-bold text-2xl bg-gradient-to-r from-subscribleRight to-subscrible bg-clip-text text-transparent">
+            Howl&apos;s Moving Castle
+          </p>
+          <p className="font-light mt-4">
+            Get emails from me about web development, tech, and early access to new articles. I will
+            only send emails when new content is posted.
+          </p>
+          <p className="font-bold">Subscribe Now!</p>
+        </div>
+      </div>
+      <div>
+        <form className="relative mt-4 border rounded" onSubmit={subscribe}>
+          <input
+            className="px-4 py-2 block w-full border-gray-300 rounded-md bg-white dark:bg-bg text-gray-900 dark:text-gray-100 pr-32 outline-none"
+            ref={inputEl}
+            placeholder="Your e-mail address"
+            type="email"
+            autoComplete="email"
+            required
+          />
+          <button
+            type="submit"
+            className="bg-gradient-to-r from-subscribleRight to-subscrible flex items-center justify-center absolute right-1 top-1 px-4 py-1 font-medium bg-subscrible text-white rounded w-28 h-9">
+            {loading ? <LoadingSVG /> : 'SUBSCRIBE'}
+          </button>
+        </form>
+        {errMsg && <div className="mt-4 text-gray-500 text-sm">{errMsg}</div>}
+      </div>
+    </div>
+  );
+};
+
+export default Subscribe;
+```
+
+We end up with a scene that like the one below:
+![](https://nazha-image-store.oss-cn-shanghai.aliyuncs.com/blog/mailChimp-api-example.png)
+
+## Cheese 🧀
+
+We can embed Mailchimp's [campaigns](https://mailchimp.com/help/getting-started-with-campaigns/) into our  individual websites. Dive into the entire souce code for my blog is [open source](https://github.com/maoxiaoke/nazha).
+
+![](https://nazha-image-store.oss-cn-shanghai.aliyuncs.com/blog/mailchimp-newsletter-preview.gif)
+
