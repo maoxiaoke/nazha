@@ -43,7 +43,7 @@ export const PostPage: React.FC<Props> = ({ meta, children }) => {
 
         {/*  FIXME： empty div is needed. why? */}
         <div>
-          <Subscribe embed />
+          <Subscribe />
         </div>
       </article>
     </>
