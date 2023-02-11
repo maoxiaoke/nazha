@@ -5,7 +5,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   // https://mailchimp.com/developer/marketing/api/list-members/
   const revRes = await fetch(
-    `https://${process.env.MAILCHIMP_API_DC}.api.mailchimp.com/3.0/campaigns?count=1000&status=sent&exclude_fields=_links`,
+    `https://${process.env.MAILCHIMP_API_DC}.api.mailchimp.com/3.0/campaigns?count=1000&status=sent&exclude_fields=_links&sort_dir=DESC&sort_field=send_time`,
     {
       method: 'GET',
       headers: {

@@ -26,6 +26,7 @@ export async function getServerSideProps() {
 
 const Subscription = () => {
   const [issues, setIssues] = useState([]);
+
   useEffect(() => {
     fetch('/api/newsletters')
       .then((res) => res.json())
