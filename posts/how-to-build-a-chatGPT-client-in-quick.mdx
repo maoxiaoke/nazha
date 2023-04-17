@@ -1,0 +1,67 @@
+---
+title: 如何快速搭建一个 chatGPT 客户端
+published: true
+listed: true
+date: '04/17/2023'
+lastUpdateDate: '04/17/2023'
+tags: 'chatGPT, Next.js, Radix, Tailwindcss, Lottie, Pake, Vercel Analytics, fathom'
+language: Chinese
+---
+
+几周前，有尝试写一个 chatGPT 客户端的想法，经历了 chatGPT key 被 Ban，意外之喜是收到了 [Anthropic](https://www.anthropic.com/) 这家公司研发的 AI 助理 [Claude](https://www.anthropic.com/product) 的内测邀请。
+
+> Anthropic 和 Cluade 的介绍
+> ![cluade intro](https://nazha-image-store.oss-cn-shanghai.aliyuncs.com/blog/cluade.png)
+
+所以快速利用了两个周末的（两天 + 两个晚上）开发和优化了页面。在这个开发过程中，如何更快地完成产品开发，如何进行技术决策，提供给大家参考。
+
+## 框架
+
+这个不用特别多的对比，[Next.js](https://nextjs.org/) 是开发首选，首先是庞大的技术社区，另外就是 Vercel 的支持特别好（毕竟是一家的），基本不用太多考虑部署的问题。另外，[Remix](https://remix.run/) 也可能是我会选择的一个框架。
+
+## 组件和样式
+
+这一点我要展开讲一讲。在开发自己的产品时，不太可能自己写太多的组件，还是需要借助社区的。但是类似 [Material UI](https://mui.com/)  和 [NextUI](https://nextui.org/) 的组件库在样式上太难侵入了，所以在本次开发中，尝试了 Headless UI 方案。选择的是：
+
+- [Radix](https://www.radix-ui.com/) 
+- [Tailwindcss](https://tailwindcss.com/)
+
+对于**业余项目**，从我目前的体感来说，这俩的结合是目前写代码**最爽**的。
+![](https://nazha-image-store.oss-cn-shanghai.aliyuncs.com/blog/radix.png)
+表现在：
+
+- 可以任意修改样式 （不需要特地去侵入样式）
+- 有些不想要的模块可以直接删掉
+
+配合 Tailwindcss 这种原子化 css 方案，写代码真可谓刷刷的。Radix 感觉深受国外喜欢，前几天我我还看到另外一个基于 Radix 的设计方案 ui.shadcn.com，也挺好看的，可以拿过来直接用。
+
+不过，Radix 这种使用方式，感觉**升级**会是一件很痛苦的事情。拭目以待。
+
+## 图标
+
+图标除了用了 Radix 官方提供的[图标](https://icons.radix-ui.com/)，还用了 [unicorn](https://unicornicons.com/)。通过 Lottie 可以放图标动起来。效果真的百倍的好。下面是为 Mobile 添加的设置按钮。
+
+![](https://nazha-image-store.oss-cn-shanghai.aliyuncs.com/blog/RPReplay_Final1681578787.gif)
+
+右上角的设置图标，就是通过 Lottie 渲染出来的。
+
+
+## cmd + k 的设计
+
+在后期的优化中，我重构成 cmd + k 这种设计。讲真，真的超中意这种设计，可以把所有的设置收敛起来，保持界面的简洁，不影响用户注意力。
+![](https://nazha-image-store.oss-cn-shanghai.aliyuncs.com/blog/cmd%2Bk.png)
+cmd + k 用的是 [kbar](https://github.com/timc1/kbar)，使用起来，也是个非常棒的产品。
+
+## 客户端
+
+easierChat.com 这个项目的 macOS 客户端打包是通过 [Pake](https://github.com/tw93/Pake) 给套了一个壳。在使用上，还是要比浏览器网页要更容易获取。
+
+## 网站分析
+
+Analytics 可以使用 Vercel 自带的 [Vercel Analytics](https://vercel.com/analytics) 或者 [fathom](https://app.usefathom.com)。个人偏向 Vercel Anyalytics，fathom 的界面是真的不太好看。
+
+----
+
+上面就是我在做 easierchat.com 这个项目的一些技术选择，奔着快速开发，但最终体验下来，整个开发过程还挺舒服。尤其是 Radix，做业余项目真的超级推荐。
+
+另外，大家可以在 https://www.easierchat.com/ 亲自体验一下。
