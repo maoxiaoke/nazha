@@ -3,10 +3,10 @@ lockfileVersion: '6.0'
 dependencies:
   '@codesandbox/sandpack-react':
     specifier: ^1.20.9
-    version: npm.urbanic-inc.com/@codesandbox/sandpack-react@1.20.9(@lezer/common@1.0.2)(react-dom@18.2.0)(react@18.2.0)
+    version: https://registry.npmjs.org/@codesandbox/sandpack-react@1.20.9(@lezer/common@1.0.2)(react-dom@18.2.0)(react@18.2.0)
   '@codesandbox/sandpack-themes':
     specifier: ^1.19.0
-    version: npm.urbanic-inc.com/@codesandbox/sandpack-themes@1.19.0
+    version: https://registry.npmjs.org/@codesandbox/sandpack-themes@1.19.0
   date-fns:
     specifier: ^2.28.0
     version: 2.29.2
@@ -15,7 +15,7 @@ dependencies:
     version: 4.2.2
   framer-motion:
     specifier: ^9.0.2
-    version: npm.urbanic-inc.com/framer-motion@9.0.2(react-dom@18.2.0)(react@18.2.0)
+    version: https://registry.npmjs.org/framer-motion@9.0.2(react-dom@18.2.0)(react@18.2.0)
   light-date:
     specifier: ^1.2.0
     version: 1.2.0
@@ -30,10 +30,10 @@ dependencies:
     version: 4.29.0(next@12.2.5)(react-dom@18.2.0)(react@18.2.0)
   react:
     specifier: ^18.2.0
-    version: npm.urbanic-inc.com/react@18.2.0
+    version: https://registry.npmjs.org/react@18.2.0
   react-dom:
     specifier: ^18.2.0
-    version: npm.urbanic-inc.com/react-dom@18.2.0(react@18.2.0)
+    version: https://registry.npmjs.org/react-dom@18.2.0(react@18.2.0)
   react-intersection-observer:
     specifier: ^8.32.1
     version: 8.34.0(react@18.2.0)
@@ -405,7 +405,7 @@ packages:
     dependencies:
       '@babel/helper-validator-identifier': 7.18.6
       chalk: 2.4.2
-      js-tokens: npm.urbanic-inc.com/js-tokens@4.0.0
+      js-tokens: https://registry.npmjs.org/js-tokens@4.0.0
     dev: true
 
   /@babel/highlight@7.22.5:
@@ -1588,7 +1588,7 @@ packages:
     resolution: {integrity: sha512-u5WtneEAr5IDG2Wv65yhunPSMLIpuKsbuOktRojfrEiEvRyC85LgPMZI63cr7NUqT8ZIGdSVg8ZKGxIug4lXcA==}
     requiresBuild: true
     dependencies:
-      '@emotion/memoize': npm.urbanic-inc.com/@emotion/memoize@0.7.4
+      '@emotion/memoize': https://registry.npmjs.org/@emotion/memoize@0.7.4
     dev: false
     optional: true
 
@@ -2147,7 +2147,7 @@ packages:
     dependencies:
       '@react-spring/shared': 9.5.2(react@18.2.0)
       '@react-spring/types': 9.5.2
-      react: npm.urbanic-inc.com/react@18.2.0
+      react: https://registry.npmjs.org/react@18.2.0
     dev: false
 
   /@react-spring/core@9.5.2(react@18.2.0):
@@ -2159,7 +2159,7 @@ packages:
       '@react-spring/rafz': 9.5.2
       '@react-spring/shared': 9.5.2(react@18.2.0)
       '@react-spring/types': 9.5.2
-      react: npm.urbanic-inc.com/react@18.2.0
+      react: https://registry.npmjs.org/react@18.2.0
     dev: false
 
   /@react-spring/konva@9.5.2(konva@9.2.0)(react-konva@16.8.6)(react@18.2.0):
@@ -2174,7 +2174,7 @@ packages:
       '@react-spring/shared': 9.5.2(react@18.2.0)
       '@react-spring/types': 9.5.2
       konva: 9.2.0
-      react: npm.urbanic-inc.com/react@18.2.0
+      react: https://registry.npmjs.org/react@18.2.0
       react-konva: 16.8.6(konva@9.2.0)(react-dom@18.2.0)(react@18.2.0)
     dev: false
 
@@ -2188,7 +2188,7 @@ packages:
       '@react-spring/core': 9.5.2(react@18.2.0)
       '@react-spring/shared': 9.5.2(react@18.2.0)
       '@react-spring/types': 9.5.2
-      react: npm.urbanic-inc.com/react@18.2.0
+      react: https://registry.npmjs.org/react@18.2.0
       react-native: 0.72.3(@babel/core@7.22.9)(@babel/preset-env@7.22.9)(react@18.2.0)
     dev: false
 
@@ -2203,7 +2203,7 @@ packages:
     dependencies:
       '@react-spring/rafz': 9.5.2
       '@react-spring/types': 9.5.2
-      react: npm.urbanic-inc.com/react@18.2.0
+      react: https://registry.npmjs.org/react@18.2.0
     dev: false
 
   /@react-spring/three@9.5.2(@react-three/fiber@8.13.5)(react@18.2.0)(three@0.154.0):
@@ -2218,7 +2218,7 @@ packages:
       '@react-spring/shared': 9.5.2(react@18.2.0)
       '@react-spring/types': 9.5.2
       '@react-three/fiber': 8.13.5(react-dom@18.2.0)(react-native@0.72.3)(react@18.2.0)(three@0.154.0)
-      react: npm.urbanic-inc.com/react@18.2.0
+      react: https://registry.npmjs.org/react@18.2.0
       three: 0.154.0
     dev: false
 
@@ -2236,8 +2236,8 @@ packages:
       '@react-spring/core': 9.5.2(react@18.2.0)
       '@react-spring/shared': 9.5.2(react@18.2.0)
       '@react-spring/types': 9.5.2
-      react: npm.urbanic-inc.com/react@18.2.0
-      react-dom: npm.urbanic-inc.com/react-dom@18.2.0(react@18.2.0)
+      react: https://registry.npmjs.org/react@18.2.0
+      react-dom: https://registry.npmjs.org/react-dom@18.2.0(react@18.2.0)
     dev: false
 
   /@react-spring/zdog@9.5.2(react-dom@18.2.0)(react-zdog@1.1.1)(react@18.2.0)(zdog@1.1.3):
@@ -2252,8 +2252,8 @@ packages:
       '@react-spring/core': 9.5.2(react@18.2.0)
       '@react-spring/shared': 9.5.2(react@18.2.0)
       '@react-spring/types': 9.5.2
-      react: npm.urbanic-inc.com/react@18.2.0
-      react-dom: npm.urbanic-inc.com/react-dom@18.2.0(react@18.2.0)
+      react: https://registry.npmjs.org/react@18.2.0
+      react-dom: https://registry.npmjs.org/react-dom@18.2.0(react@18.2.0)
       react-zdog: 1.1.1(react-dom@18.2.0)(react@18.2.0)(zdog@1.1.3)
       zdog: 1.1.3
     dev: false
@@ -2283,8 +2283,8 @@ packages:
       '@babel/runtime': 7.18.9
       '@types/react-reconciler': 0.26.7
       its-fine: 1.1.1(react@18.2.0)
-      react: npm.urbanic-inc.com/react@18.2.0
-      react-dom: npm.urbanic-inc.com/react-dom@18.2.0(react@18.2.0)
+      react: https://registry.npmjs.org/react@18.2.0
+      react-dom: https://registry.npmjs.org/react-dom@18.2.0(react@18.2.0)
       react-native: 0.72.3(@babel/core@7.22.9)(@babel/preset-env@7.22.9)(react@18.2.0)
       react-reconciler: 0.27.0(react@18.2.0)
       react-use-measure: 2.1.1(react-dom@18.2.0)(react@18.2.0)
@@ -5214,9 +5214,9 @@ packages:
     resolution: {integrity: sha512-TS+hoFl8Z5FAFMK38nhBkdLt44CclNRgDHWeMgsV8ko3nDlr/9UI2Sf839sW7enijf8oKsZYXRvM8g0it9Zmcw==}
     engines: {node: '>=0.12'}
     dependencies:
-      binaryextensions: npm.urbanic-inc.com/binaryextensions@2.3.0
-      editions: npm.urbanic-inc.com/editions@1.3.4
-      textextensions: npm.urbanic-inc.com/textextensions@2.6.0
+      binaryextensions: https://registry.npmjs.org/binaryextensions@2.3.0
+      editions: https://registry.npmjs.org/editions@1.3.4
+      textextensions: https://registry.npmjs.org/textextensions@2.6.0
     dev: false
 
   /its-fine@1.1.1(react@18.2.0):
@@ -5225,7 +5225,7 @@ packages:
       react: '>=18.0'
     dependencies:
       '@types/react-reconciler': 0.28.2
-      react: npm.urbanic-inc.com/react@18.2.0
+      react: https://registry.npmjs.org/react@18.2.0
     dev: false
 
   /jest-environment-node@29.6.1:
@@ -6642,8 +6642,8 @@ packages:
       react-dom: '>=16.0.0'
     dependencies:
       next: 12.2.5(@babel/core@7.22.9)(react-dom@18.2.0)(react@18.2.0)
-      react: npm.urbanic-inc.com/react@18.2.0
-      react-dom: npm.urbanic-inc.com/react-dom@18.2.0(react@18.2.0)
+      react: https://registry.npmjs.org/react@18.2.0
+      react-dom: https://registry.npmjs.org/react-dom@18.2.0(react@18.2.0)
     dev: false
 
   /next-sitemap@1.9.12(next@12.2.5):
@@ -6680,8 +6680,8 @@ packages:
       '@swc/helpers': 0.4.3
       caniuse-lite: 1.0.30001383
       postcss: 8.4.14
-      react: npm.urbanic-inc.com/react@18.2.0
-      react-dom: npm.urbanic-inc.com/react-dom@18.2.0(react@18.2.0)
+      react: https://registry.npmjs.org/react@18.2.0
+      react-dom: https://registry.npmjs.org/react-dom@18.2.0(react@18.2.0)
       styled-jsx: 5.0.4(@babel/core@7.22.9)(react@18.2.0)
       use-sync-external-store: 1.2.0(react@18.2.0)
     optionalDependencies:
@@ -7305,7 +7305,7 @@ packages:
     peerDependencies:
       react: ^15.0.0 || ^16.0.0 || ^17.0.0|| ^18.0.0
     dependencies:
-      react: npm.urbanic-inc.com/react@18.2.0
+      react: https://registry.npmjs.org/react@18.2.0
     dev: false
 
   /react-is@16.13.1:
@@ -7327,8 +7327,8 @@ packages:
       react-dom: 16.8.x
     dependencies:
       konva: 9.2.0
-      react: npm.urbanic-inc.com/react@18.2.0
-      react-dom: npm.urbanic-inc.com/react-dom@18.2.0(react@18.2.0)
+      react: https://registry.npmjs.org/react@18.2.0
+      react-dom: https://registry.npmjs.org/react-dom@18.2.0(react@18.2.0)
       react-reconciler: 0.20.4(react@18.2.0)
       scheduler: 0.13.6
     dev: false
@@ -7366,7 +7366,7 @@ packages:
       nullthrows: 1.1.1
       pretty-format: 26.6.2
       promise: 8.3.0
-      react: npm.urbanic-inc.com/react@18.2.0
+      react: https://registry.npmjs.org/react@18.2.0
       react-devtools-core: 4.28.0
       react-refresh: 0.4.3
       react-shallow-renderer: 16.15.0(react@18.2.0)
@@ -7395,7 +7395,7 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
       prop-types: 15.8.1
-      react: npm.urbanic-inc.com/react@18.2.0
+      react: https://registry.npmjs.org/react@18.2.0
       scheduler: 0.13.6
     dev: false
 
@@ -7406,7 +7406,7 @@ packages:
       react: ^18.0.0
     dependencies:
       loose-envify: 1.4.0
-      react: npm.urbanic-inc.com/react@18.2.0
+      react: https://registry.npmjs.org/react@18.2.0
       scheduler: 0.21.0
     dev: false
 
@@ -7421,7 +7421,7 @@ packages:
       react: ^16.0.0 || ^17.0.0 || ^18.0.0
     dependencies:
       object-assign: 4.1.1
-      react: npm.urbanic-inc.com/react@18.2.0
+      react: https://registry.npmjs.org/react@18.2.0
       react-is: 17.0.2
     dev: false
 
@@ -7451,7 +7451,7 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
-      react: npm.urbanic-inc.com/react@18.2.0
+      react: https://registry.npmjs.org/react@18.2.0
     dev: false
 
   /react-toggle-dark-mode@1.1.0(@react-three/fiber@8.13.5)(konva@9.2.0)(react-dom@18.2.0)(react-konva@16.8.6)(react-native@0.72.3)(react-zdog@1.1.1)(react@18.2.0)(three@0.154.0)(zdog@1.1.3):
@@ -7460,7 +7460,7 @@ packages:
     peerDependencies:
       react: '>=16'
     dependencies:
-      react: npm.urbanic-inc.com/react@18.2.0
+      react: https://registry.npmjs.org/react@18.2.0
       react-spring: 9.5.2(@react-three/fiber@8.13.5)(konva@9.2.0)(react-dom@18.2.0)(react-konva@16.8.6)(react-native@0.72.3)(react-zdog@1.1.1)(react@18.2.0)(three@0.154.0)(zdog@1.1.3)
     transitivePeerDependencies:
       - '@react-three/fiber'
@@ -7480,8 +7480,8 @@ packages:
       react-dom: '>=16.13'
     dependencies:
       debounce: 1.2.1
-      react: npm.urbanic-inc.com/react@18.2.0
-      react-dom: npm.urbanic-inc.com/react-dom@18.2.0(react@18.2.0)
+      react: https://registry.npmjs.org/react@18.2.0
+      react-dom: https://registry.npmjs.org/react-dom@18.2.0(react@18.2.0)
     dev: false
 
   /react-zdog@1.1.1(react-dom@18.2.0)(react@18.2.0)(zdog@1.1.3):
@@ -7494,8 +7494,8 @@ packages:
       '@babel/runtime': 7.18.9
       lodash-es: 4.17.21
       pointer-events-polyfill: 0.4.4-pre
-      react: npm.urbanic-inc.com/react@18.2.0
-      react-dom: npm.urbanic-inc.com/react-dom@18.2.0(react@18.2.0)
+      react: https://registry.npmjs.org/react@18.2.0
+      react-dom: https://registry.npmjs.org/react-dom@18.2.0(react@18.2.0)
       react-reconciler: 0.20.4(react@18.2.0)
       resize-observer-polyfill: 1.5.1
       scheduler: 0.13.3
@@ -8194,7 +8194,7 @@ packages:
         optional: true
     dependencies:
       '@babel/core': 7.22.9
-      react: npm.urbanic-inc.com/react@18.2.0
+      react: https://registry.npmjs.org/react@18.2.0
 
   /sudo-prompt@9.2.1:
     resolution: {integrity: sha512-Mu7R0g4ig9TUuGSxJavny5Rv0egCEtpZRNMrZaYS1vxkiIxGiGUwoezU3LazIQ+KE04hTrTfNPgxU5gzi7F5Pw==}
@@ -8227,7 +8227,7 @@ packages:
     peerDependencies:
       react: '>=17.0'
     dependencies:
-      react: npm.urbanic-inc.com/react@18.2.0
+      react: https://registry.npmjs.org/react@18.2.0
     dev: false
 
   /symbol-tree@3.2.4:
@@ -8602,7 +8602,7 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
-      react: npm.urbanic-inc.com/react@18.2.0
+      react: https://registry.npmjs.org/react@18.2.0
 
   /util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
@@ -8952,27 +8952,27 @@ packages:
       react:
         optional: true
     dependencies:
-      react: npm.urbanic-inc.com/react@18.2.0
+      react: https://registry.npmjs.org/react@18.2.0
     dev: false
 
   /zwitch@2.0.2:
     resolution: {integrity: sha512-JZxotl7SxAJH0j7dN4pxsTV6ZLXoLdGME+PsjkL/DaBrVryK9kTGq06GfKrwcSOqypP+fdXGoCHE36b99fWVoA==}
     dev: false
 
-  npm.urbanic-inc.com/@code-hike/classer@0.0.0-e48fa74(react@18.2.0):
-    resolution: {integrity: sha512-CyPYvfl4K5Hp9uyhLhUemul56eiGOF0FNXh5ALzzK9VNhRmRmj1O0mKtLDpoccI8W90r9kQES/nW2FC8jVVieg==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/@code-hike%2fclasser/-/classer-0.0.0-e48fa74.tgz}
-    id: npm.urbanic-inc.com/@code-hike/classer/0.0.0-e48fa74
+  https://registry.npmjs.org/@code-hike/classer@0.0.0-e48fa74(react@18.2.0):
+    resolution: {integrity: sha512-CyPYvfl4K5Hp9uyhLhUemul56eiGOF0FNXh5ALzzK9VNhRmRmj1O0mKtLDpoccI8W90r9kQES/nW2FC8jVVieg==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/@code-hike%2fclasser/-/classer-0.0.0-e48fa74.tgz}
+    id: https://registry.npmjs.org/@code-hike/classer/0.0.0-e48fa74
     name: '@code-hike/classer'
     version: 0.0.0-e48fa74
     peerDependencies:
       react: '>=16.8'
     dependencies:
-      react: npm.urbanic-inc.com/react@18.2.0
+      react: https://registry.npmjs.org/react@18.2.0
     dev: false
 
-  npm.urbanic-inc.com/@codemirror/autocomplete@6.4.0(@codemirror/language@6.5.0)(@codemirror/state@6.2.0)(@codemirror/view@6.8.1)(@lezer/common@1.0.2):
-    resolution: {integrity: sha512-HLF2PnZAm1s4kGs30EiqKMgD7XsYaQ0XJnMR0rofEWQ5t5D60SfqpDIkIh1ze5tiEbyUWm8+VJ6W1/erVvBMIA==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/@codemirror%2fautocomplete/-/autocomplete-6.4.0.tgz}
-    id: npm.urbanic-inc.com/@codemirror/autocomplete/6.4.0
+  https://registry.npmjs.org/@codemirror/autocomplete@6.4.0(@codemirror/language@6.5.0)(@codemirror/state@6.2.0)(@codemirror/view@6.8.1)(@lezer/common@1.0.2):
+    resolution: {integrity: sha512-HLF2PnZAm1s4kGs30EiqKMgD7XsYaQ0XJnMR0rofEWQ5t5D60SfqpDIkIh1ze5tiEbyUWm8+VJ6W1/erVvBMIA==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/@codemirror%2fautocomplete/-/autocomplete-6.4.0.tgz}
+    id: https://registry.npmjs.org/@codemirror/autocomplete/6.4.0
     name: '@codemirror/autocomplete'
     version: 6.4.0
     peerDependencies:
@@ -8981,534 +8981,534 @@ packages:
       '@codemirror/view': ^6.0.0
       '@lezer/common': ^1.0.0
     dependencies:
-      '@codemirror/language': npm.urbanic-inc.com/@codemirror/language@6.5.0
-      '@codemirror/state': npm.urbanic-inc.com/@codemirror/state@6.2.0
-      '@codemirror/view': npm.urbanic-inc.com/@codemirror/view@6.8.1
+      '@codemirror/language': https://registry.npmjs.org/@codemirror/language@6.5.0
+      '@codemirror/state': https://registry.npmjs.org/@codemirror/state@6.2.0
+      '@codemirror/view': https://registry.npmjs.org/@codemirror/view@6.8.1
       '@lezer/common': 1.0.2
     dev: false
 
-  npm.urbanic-inc.com/@codemirror/commands@6.2.0:
-    resolution: {integrity: sha512-+00smmZBradoGFEkRjliN7BjqPh/Hx0KCHWOEibUmflUqZz2RwBTU0MrVovEEHozhx3AUSGcO/rl3/5f9e9Biw==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/@codemirror%2fcommands/-/commands-6.2.0.tgz}
+  https://registry.npmjs.org/@codemirror/commands@6.2.0:
+    resolution: {integrity: sha512-+00smmZBradoGFEkRjliN7BjqPh/Hx0KCHWOEibUmflUqZz2RwBTU0MrVovEEHozhx3AUSGcO/rl3/5f9e9Biw==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/@codemirror%2fcommands/-/commands-6.2.0.tgz}
     name: '@codemirror/commands'
     version: 6.2.0
     dependencies:
-      '@codemirror/language': npm.urbanic-inc.com/@codemirror/language@6.5.0
-      '@codemirror/state': npm.urbanic-inc.com/@codemirror/state@6.2.0
-      '@codemirror/view': npm.urbanic-inc.com/@codemirror/view@6.8.1
-      '@lezer/common': npm.urbanic-inc.com/@lezer/common@1.0.2
+      '@codemirror/language': https://registry.npmjs.org/@codemirror/language@6.5.0
+      '@codemirror/state': https://registry.npmjs.org/@codemirror/state@6.2.0
+      '@codemirror/view': https://registry.npmjs.org/@codemirror/view@6.8.1
+      '@lezer/common': https://registry.npmjs.org/@lezer/common@1.0.2
     dev: false
 
-  npm.urbanic-inc.com/@codemirror/lang-css@6.0.2(@codemirror/view@6.8.1)(@lezer/common@1.0.2):
-    resolution: {integrity: sha512-4V4zmUOl2Glx0GWw0HiO1oGD4zvMlIQ3zx5hXOE6ipCjhohig2bhWRAasrZylH9pRNTcl1VMa59Lsl8lZWlTzw==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/@codemirror%2flang-css/-/lang-css-6.0.2.tgz}
-    id: npm.urbanic-inc.com/@codemirror/lang-css/6.0.2
+  https://registry.npmjs.org/@codemirror/lang-css@6.0.2(@codemirror/view@6.8.1)(@lezer/common@1.0.2):
+    resolution: {integrity: sha512-4V4zmUOl2Glx0GWw0HiO1oGD4zvMlIQ3zx5hXOE6ipCjhohig2bhWRAasrZylH9pRNTcl1VMa59Lsl8lZWlTzw==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/@codemirror%2flang-css/-/lang-css-6.0.2.tgz}
+    id: https://registry.npmjs.org/@codemirror/lang-css/6.0.2
     name: '@codemirror/lang-css'
     version: 6.0.2
     dependencies:
-      '@codemirror/autocomplete': npm.urbanic-inc.com/@codemirror/autocomplete@6.4.0(@codemirror/language@6.5.0)(@codemirror/state@6.2.0)(@codemirror/view@6.8.1)(@lezer/common@1.0.2)
-      '@codemirror/language': npm.urbanic-inc.com/@codemirror/language@6.5.0
-      '@codemirror/state': npm.urbanic-inc.com/@codemirror/state@6.2.0
-      '@lezer/css': npm.urbanic-inc.com/@lezer/css@1.1.1
+      '@codemirror/autocomplete': https://registry.npmjs.org/@codemirror/autocomplete@6.4.0(@codemirror/language@6.5.0)(@codemirror/state@6.2.0)(@codemirror/view@6.8.1)(@lezer/common@1.0.2)
+      '@codemirror/language': https://registry.npmjs.org/@codemirror/language@6.5.0
+      '@codemirror/state': https://registry.npmjs.org/@codemirror/state@6.2.0
+      '@lezer/css': https://registry.npmjs.org/@lezer/css@1.1.1
     transitivePeerDependencies:
       - '@codemirror/view'
       - '@lezer/common'
     dev: false
 
-  npm.urbanic-inc.com/@codemirror/lang-html@6.4.2:
-    resolution: {integrity: sha512-bqCBASkteKySwtIbiV/WCtGnn/khLRbbiV5TE+d9S9eQJD7BA4c5dTRm2b3bVmSpilff5EYxvB4PQaZzM/7cNw==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/@codemirror%2flang-html/-/lang-html-6.4.2.tgz}
+  https://registry.npmjs.org/@codemirror/lang-html@6.4.2:
+    resolution: {integrity: sha512-bqCBASkteKySwtIbiV/WCtGnn/khLRbbiV5TE+d9S9eQJD7BA4c5dTRm2b3bVmSpilff5EYxvB4PQaZzM/7cNw==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/@codemirror%2flang-html/-/lang-html-6.4.2.tgz}
     name: '@codemirror/lang-html'
     version: 6.4.2
     dependencies:
-      '@codemirror/autocomplete': npm.urbanic-inc.com/@codemirror/autocomplete@6.4.0(@codemirror/language@6.5.0)(@codemirror/state@6.2.0)(@codemirror/view@6.8.1)(@lezer/common@1.0.2)
-      '@codemirror/lang-css': npm.urbanic-inc.com/@codemirror/lang-css@6.0.2(@codemirror/view@6.8.1)(@lezer/common@1.0.2)
-      '@codemirror/lang-javascript': npm.urbanic-inc.com/@codemirror/lang-javascript@6.1.3
-      '@codemirror/language': npm.urbanic-inc.com/@codemirror/language@6.5.0
-      '@codemirror/state': npm.urbanic-inc.com/@codemirror/state@6.2.0
-      '@codemirror/view': npm.urbanic-inc.com/@codemirror/view@6.8.1
-      '@lezer/common': npm.urbanic-inc.com/@lezer/common@1.0.2
-      '@lezer/css': npm.urbanic-inc.com/@lezer/css@1.1.1
-      '@lezer/html': npm.urbanic-inc.com/@lezer/html@1.3.1
+      '@codemirror/autocomplete': https://registry.npmjs.org/@codemirror/autocomplete@6.4.0(@codemirror/language@6.5.0)(@codemirror/state@6.2.0)(@codemirror/view@6.8.1)(@lezer/common@1.0.2)
+      '@codemirror/lang-css': https://registry.npmjs.org/@codemirror/lang-css@6.0.2(@codemirror/view@6.8.1)(@lezer/common@1.0.2)
+      '@codemirror/lang-javascript': https://registry.npmjs.org/@codemirror/lang-javascript@6.1.3
+      '@codemirror/language': https://registry.npmjs.org/@codemirror/language@6.5.0
+      '@codemirror/state': https://registry.npmjs.org/@codemirror/state@6.2.0
+      '@codemirror/view': https://registry.npmjs.org/@codemirror/view@6.8.1
+      '@lezer/common': https://registry.npmjs.org/@lezer/common@1.0.2
+      '@lezer/css': https://registry.npmjs.org/@lezer/css@1.1.1
+      '@lezer/html': https://registry.npmjs.org/@lezer/html@1.3.1
     dev: false
 
-  npm.urbanic-inc.com/@codemirror/lang-javascript@6.1.3:
-    resolution: {integrity: sha512-u3JgK9AwfNpyGwRhtzIVxVfH9yOK5ZNswmaN6W+XFuUXzW9o8CGgnSBEcaUgZ0hdLvHQHyM+3+22HKgbItki/w==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/@codemirror%2flang-javascript/-/lang-javascript-6.1.3.tgz}
+  https://registry.npmjs.org/@codemirror/lang-javascript@6.1.3:
+    resolution: {integrity: sha512-u3JgK9AwfNpyGwRhtzIVxVfH9yOK5ZNswmaN6W+XFuUXzW9o8CGgnSBEcaUgZ0hdLvHQHyM+3+22HKgbItki/w==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/@codemirror%2flang-javascript/-/lang-javascript-6.1.3.tgz}
     name: '@codemirror/lang-javascript'
     version: 6.1.3
     dependencies:
-      '@codemirror/autocomplete': npm.urbanic-inc.com/@codemirror/autocomplete@6.4.0(@codemirror/language@6.5.0)(@codemirror/state@6.2.0)(@codemirror/view@6.8.1)(@lezer/common@1.0.2)
-      '@codemirror/language': npm.urbanic-inc.com/@codemirror/language@6.5.0
-      '@codemirror/lint': npm.urbanic-inc.com/@codemirror/lint@6.1.0
-      '@codemirror/state': npm.urbanic-inc.com/@codemirror/state@6.2.0
-      '@codemirror/view': npm.urbanic-inc.com/@codemirror/view@6.8.1
-      '@lezer/common': npm.urbanic-inc.com/@lezer/common@1.0.2
-      '@lezer/javascript': npm.urbanic-inc.com/@lezer/javascript@1.4.1
+      '@codemirror/autocomplete': https://registry.npmjs.org/@codemirror/autocomplete@6.4.0(@codemirror/language@6.5.0)(@codemirror/state@6.2.0)(@codemirror/view@6.8.1)(@lezer/common@1.0.2)
+      '@codemirror/language': https://registry.npmjs.org/@codemirror/language@6.5.0
+      '@codemirror/lint': https://registry.npmjs.org/@codemirror/lint@6.1.0
+      '@codemirror/state': https://registry.npmjs.org/@codemirror/state@6.2.0
+      '@codemirror/view': https://registry.npmjs.org/@codemirror/view@6.8.1
+      '@lezer/common': https://registry.npmjs.org/@lezer/common@1.0.2
+      '@lezer/javascript': https://registry.npmjs.org/@lezer/javascript@1.4.1
     dev: false
 
-  npm.urbanic-inc.com/@codemirror/language@6.5.0:
-    resolution: {integrity: sha512-dI+dV/u2klIt0Y9kE3TH9vuBidAB3xuuDPofwzvnW8ZKqJnKTbT3EjyV7DeKcmrRgXMhlPTL7AdH1V5KOCYuHQ==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/@codemirror%2flanguage/-/language-6.5.0.tgz}
+  https://registry.npmjs.org/@codemirror/language@6.5.0:
+    resolution: {integrity: sha512-dI+dV/u2klIt0Y9kE3TH9vuBidAB3xuuDPofwzvnW8ZKqJnKTbT3EjyV7DeKcmrRgXMhlPTL7AdH1V5KOCYuHQ==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/@codemirror%2flanguage/-/language-6.5.0.tgz}
     name: '@codemirror/language'
     version: 6.5.0
     dependencies:
-      '@codemirror/state': npm.urbanic-inc.com/@codemirror/state@6.2.0
-      '@codemirror/view': npm.urbanic-inc.com/@codemirror/view@6.8.1
-      '@lezer/common': npm.urbanic-inc.com/@lezer/common@1.0.2
-      '@lezer/highlight': npm.urbanic-inc.com/@lezer/highlight@1.1.3
-      '@lezer/lr': npm.urbanic-inc.com/@lezer/lr@1.3.3
-      style-mod: npm.urbanic-inc.com/style-mod@4.0.0
+      '@codemirror/state': https://registry.npmjs.org/@codemirror/state@6.2.0
+      '@codemirror/view': https://registry.npmjs.org/@codemirror/view@6.8.1
+      '@lezer/common': https://registry.npmjs.org/@lezer/common@1.0.2
+      '@lezer/highlight': https://registry.npmjs.org/@lezer/highlight@1.1.3
+      '@lezer/lr': https://registry.npmjs.org/@lezer/lr@1.3.3
+      style-mod: https://registry.npmjs.org/style-mod@4.0.0
     dev: false
 
-  npm.urbanic-inc.com/@codemirror/lint@6.1.0:
-    resolution: {integrity: sha512-mdvDQrjRmYPvQ3WrzF6Ewaao+NWERYtpthJvoQ3tK3t/44Ynhk8ZGjTSL9jMEv8CgSMogmt75X8ceOZRDSXHtQ==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/@codemirror%2flint/-/lint-6.1.0.tgz}
+  https://registry.npmjs.org/@codemirror/lint@6.1.0:
+    resolution: {integrity: sha512-mdvDQrjRmYPvQ3WrzF6Ewaao+NWERYtpthJvoQ3tK3t/44Ynhk8ZGjTSL9jMEv8CgSMogmt75X8ceOZRDSXHtQ==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/@codemirror%2flint/-/lint-6.1.0.tgz}
     name: '@codemirror/lint'
     version: 6.1.0
     dependencies:
-      '@codemirror/state': npm.urbanic-inc.com/@codemirror/state@6.2.0
-      '@codemirror/view': npm.urbanic-inc.com/@codemirror/view@6.8.1
-      crelt: npm.urbanic-inc.com/crelt@1.0.5
+      '@codemirror/state': https://registry.npmjs.org/@codemirror/state@6.2.0
+      '@codemirror/view': https://registry.npmjs.org/@codemirror/view@6.8.1
+      crelt: https://registry.npmjs.org/crelt@1.0.5
     dev: false
 
-  npm.urbanic-inc.com/@codemirror/state@6.2.0:
-    resolution: {integrity: sha512-69QXtcrsc3RYtOtd+GsvczJ319udtBf1PTrr2KbLWM/e2CXUPnh0Nz9AUo8WfhSQ7GeL8dPVNUmhQVgpmuaNGA==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/@codemirror%2fstate/-/state-6.2.0.tgz}
+  https://registry.npmjs.org/@codemirror/state@6.2.0:
+    resolution: {integrity: sha512-69QXtcrsc3RYtOtd+GsvczJ319udtBf1PTrr2KbLWM/e2CXUPnh0Nz9AUo8WfhSQ7GeL8dPVNUmhQVgpmuaNGA==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/@codemirror%2fstate/-/state-6.2.0.tgz}
     name: '@codemirror/state'
     version: 6.2.0
     dev: false
 
-  npm.urbanic-inc.com/@codemirror/view@6.8.1:
-    resolution: {integrity: sha512-bXWs42i1mnBexaktPABaEpYbt4FbJMnlesObDLF0GE8poRiNaRgm7H/2NfXfD5Swas1ULdFgONLLs4ncwHuz8g==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/@codemirror%2fview/-/view-6.8.1.tgz}
+  https://registry.npmjs.org/@codemirror/view@6.8.1:
+    resolution: {integrity: sha512-bXWs42i1mnBexaktPABaEpYbt4FbJMnlesObDLF0GE8poRiNaRgm7H/2NfXfD5Swas1ULdFgONLLs4ncwHuz8g==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/@codemirror%2fview/-/view-6.8.1.tgz}
     name: '@codemirror/view'
     version: 6.8.1
     dependencies:
-      '@codemirror/state': npm.urbanic-inc.com/@codemirror/state@6.2.0
-      style-mod: npm.urbanic-inc.com/style-mod@4.0.0
-      w3c-keyname: npm.urbanic-inc.com/w3c-keyname@2.2.6
+      '@codemirror/state': https://registry.npmjs.org/@codemirror/state@6.2.0
+      style-mod: https://registry.npmjs.org/style-mod@4.0.0
+      w3c-keyname: https://registry.npmjs.org/w3c-keyname@2.2.6
     dev: false
 
-  npm.urbanic-inc.com/@codesandbox/sandpack-client@1.20.9:
-    resolution: {integrity: sha512-Z/SXVRFzO8BOagLg6+6WQfBpAio3AZNjeposYPyoI7fxT8L9urS+G5uG/oG4vV/YkK5nmIuT7pKdTL66wMUsxA==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/@codesandbox%2fsandpack-client/-/sandpack-client-1.20.9.tgz}
+  https://registry.npmjs.org/@codesandbox/sandpack-client@1.20.9:
+    resolution: {integrity: sha512-Z/SXVRFzO8BOagLg6+6WQfBpAio3AZNjeposYPyoI7fxT8L9urS+G5uG/oG4vV/YkK5nmIuT7pKdTL66wMUsxA==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/@codesandbox%2fsandpack-client/-/sandpack-client-1.20.9.tgz}
     name: '@codesandbox/sandpack-client'
     version: 1.20.9
     dependencies:
-      codesandbox-import-utils: npm.urbanic-inc.com/codesandbox-import-utils@1.3.8
-      lodash.isequal: npm.urbanic-inc.com/lodash.isequal@4.5.0
+      codesandbox-import-utils: https://registry.npmjs.org/codesandbox-import-utils@1.3.8
+      lodash.isequal: https://registry.npmjs.org/lodash.isequal@4.5.0
     dev: false
 
-  npm.urbanic-inc.com/@codesandbox/sandpack-react@1.20.9(@lezer/common@1.0.2)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-bUfp+JjKBEwY6RDMnhjQ0qbSj2V6P+3n5Avk7AJ7eJ0uYV1ZS2v8Q8PDQw2d9RX27xgyQQ6OklY+XXrlnQZfjw==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/@codesandbox%2fsandpack-react/-/sandpack-react-1.20.9.tgz}
-    id: npm.urbanic-inc.com/@codesandbox/sandpack-react/1.20.9
+  https://registry.npmjs.org/@codesandbox/sandpack-react@1.20.9(@lezer/common@1.0.2)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-bUfp+JjKBEwY6RDMnhjQ0qbSj2V6P+3n5Avk7AJ7eJ0uYV1ZS2v8Q8PDQw2d9RX27xgyQQ6OklY+XXrlnQZfjw==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/@codesandbox%2fsandpack-react/-/sandpack-react-1.20.9.tgz}
+    id: https://registry.npmjs.org/@codesandbox/sandpack-react/1.20.9
     name: '@codesandbox/sandpack-react'
     version: 1.20.9
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18
       react-dom: ^16.8.0 || ^17 || ^18
     dependencies:
-      '@code-hike/classer': npm.urbanic-inc.com/@code-hike/classer@0.0.0-e48fa74(react@18.2.0)
-      '@codemirror/autocomplete': npm.urbanic-inc.com/@codemirror/autocomplete@6.4.0(@codemirror/language@6.5.0)(@codemirror/state@6.2.0)(@codemirror/view@6.8.1)(@lezer/common@1.0.2)
-      '@codemirror/commands': npm.urbanic-inc.com/@codemirror/commands@6.2.0
-      '@codemirror/lang-css': npm.urbanic-inc.com/@codemirror/lang-css@6.0.2(@codemirror/view@6.8.1)(@lezer/common@1.0.2)
-      '@codemirror/lang-html': npm.urbanic-inc.com/@codemirror/lang-html@6.4.2
-      '@codemirror/lang-javascript': npm.urbanic-inc.com/@codemirror/lang-javascript@6.1.3
-      '@codemirror/language': npm.urbanic-inc.com/@codemirror/language@6.5.0
-      '@codemirror/state': npm.urbanic-inc.com/@codemirror/state@6.2.0
-      '@codemirror/view': npm.urbanic-inc.com/@codemirror/view@6.8.1
-      '@codesandbox/sandpack-client': npm.urbanic-inc.com/@codesandbox/sandpack-client@1.20.9
-      '@lezer/highlight': npm.urbanic-inc.com/@lezer/highlight@1.1.3
-      '@react-hook/intersection-observer': npm.urbanic-inc.com/@react-hook/intersection-observer@3.1.1(react@18.2.0)
-      '@stitches/core': npm.urbanic-inc.com/@stitches/core@1.2.8
-      clean-set: npm.urbanic-inc.com/clean-set@1.1.2
-      codesandbox-import-util-types: npm.urbanic-inc.com/codesandbox-import-util-types@2.2.3
-      lodash.isequal: npm.urbanic-inc.com/lodash.isequal@4.5.0
-      lz-string: npm.urbanic-inc.com/lz-string@1.4.4
-      react: npm.urbanic-inc.com/react@18.2.0
-      react-devtools-inline: npm.urbanic-inc.com/react-devtools-inline@4.4.0
-      react-dom: npm.urbanic-inc.com/react-dom@18.2.0(react@18.2.0)
-      react-is: npm.urbanic-inc.com/react-is@17.0.2
+      '@code-hike/classer': https://registry.npmjs.org/@code-hike/classer@0.0.0-e48fa74(react@18.2.0)
+      '@codemirror/autocomplete': https://registry.npmjs.org/@codemirror/autocomplete@6.4.0(@codemirror/language@6.5.0)(@codemirror/state@6.2.0)(@codemirror/view@6.8.1)(@lezer/common@1.0.2)
+      '@codemirror/commands': https://registry.npmjs.org/@codemirror/commands@6.2.0
+      '@codemirror/lang-css': https://registry.npmjs.org/@codemirror/lang-css@6.0.2(@codemirror/view@6.8.1)(@lezer/common@1.0.2)
+      '@codemirror/lang-html': https://registry.npmjs.org/@codemirror/lang-html@6.4.2
+      '@codemirror/lang-javascript': https://registry.npmjs.org/@codemirror/lang-javascript@6.1.3
+      '@codemirror/language': https://registry.npmjs.org/@codemirror/language@6.5.0
+      '@codemirror/state': https://registry.npmjs.org/@codemirror/state@6.2.0
+      '@codemirror/view': https://registry.npmjs.org/@codemirror/view@6.8.1
+      '@codesandbox/sandpack-client': https://registry.npmjs.org/@codesandbox/sandpack-client@1.20.9
+      '@lezer/highlight': https://registry.npmjs.org/@lezer/highlight@1.1.3
+      '@react-hook/intersection-observer': https://registry.npmjs.org/@react-hook/intersection-observer@3.1.1(react@18.2.0)
+      '@stitches/core': https://registry.npmjs.org/@stitches/core@1.2.8
+      clean-set: https://registry.npmjs.org/clean-set@1.1.2
+      codesandbox-import-util-types: https://registry.npmjs.org/codesandbox-import-util-types@2.2.3
+      lodash.isequal: https://registry.npmjs.org/lodash.isequal@4.5.0
+      lz-string: https://registry.npmjs.org/lz-string@1.4.4
+      react: https://registry.npmjs.org/react@18.2.0
+      react-devtools-inline: https://registry.npmjs.org/react-devtools-inline@4.4.0
+      react-dom: https://registry.npmjs.org/react-dom@18.2.0(react@18.2.0)
+      react-is: https://registry.npmjs.org/react-is@17.0.2
     transitivePeerDependencies:
       - '@lezer/common'
     dev: false
 
-  npm.urbanic-inc.com/@codesandbox/sandpack-themes@1.19.0:
-    resolution: {integrity: sha512-IbFnx3CmldOpwh+lJoRps4vRA41mSn4ZqU4sNxoIt6HrAVuOZodTBe52hDn58N/l0RRaEh/hMw0UFB4Bmp7wqw==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/@codesandbox%2fsandpack-themes/-/sandpack-themes-1.19.0.tgz}
+  https://registry.npmjs.org/@codesandbox/sandpack-themes@1.19.0:
+    resolution: {integrity: sha512-IbFnx3CmldOpwh+lJoRps4vRA41mSn4ZqU4sNxoIt6HrAVuOZodTBe52hDn58N/l0RRaEh/hMw0UFB4Bmp7wqw==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/@codesandbox%2fsandpack-themes/-/sandpack-themes-1.19.0.tgz}
     name: '@codesandbox/sandpack-themes'
     version: 1.19.0
     dev: false
 
-  npm.urbanic-inc.com/@emotion/memoize@0.7.4:
-    resolution: {integrity: sha512-Ja/Vfqe3HpuzRsG1oBtWTHk2PGZ7GR+2Vz5iYGelAw8dx32K0y7PjVuxK6z1nMpZOqAFsRUPCkK1YjJ56qJlgw==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/@emotion%2fmemoize/-/memoize-0.7.4.tgz}
+  https://registry.npmjs.org/@emotion/memoize@0.7.4:
+    resolution: {integrity: sha512-Ja/Vfqe3HpuzRsG1oBtWTHk2PGZ7GR+2Vz5iYGelAw8dx32K0y7PjVuxK6z1nMpZOqAFsRUPCkK1YjJ56qJlgw==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/@emotion%2fmemoize/-/memoize-0.7.4.tgz}
     name: '@emotion/memoize'
     version: 0.7.4
     dev: false
     optional: true
 
-  npm.urbanic-inc.com/@lezer/common@1.0.2:
-    resolution: {integrity: sha512-SVgiGtMnMnW3ActR8SXgsDhw7a0w0ChHSYAyAUxxrOiJ1OqYWEKk/xJd84tTSPo1mo6DXLObAJALNnd0Hrv7Ng==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/@lezer%2fcommon/-/common-1.0.2.tgz}
+  https://registry.npmjs.org/@lezer/common@1.0.2:
+    resolution: {integrity: sha512-SVgiGtMnMnW3ActR8SXgsDhw7a0w0ChHSYAyAUxxrOiJ1OqYWEKk/xJd84tTSPo1mo6DXLObAJALNnd0Hrv7Ng==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/@lezer%2fcommon/-/common-1.0.2.tgz}
     name: '@lezer/common'
     version: 1.0.2
     dev: false
 
-  npm.urbanic-inc.com/@lezer/css@1.1.1:
-    resolution: {integrity: sha512-mSjx+unLLapEqdOYDejnGBokB5+AiJKZVclmud0MKQOKx3DLJ5b5VTCstgDDknR6iIV4gVrN6euzsCnj0A2gQA==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/@lezer%2fcss/-/css-1.1.1.tgz}
+  https://registry.npmjs.org/@lezer/css@1.1.1:
+    resolution: {integrity: sha512-mSjx+unLLapEqdOYDejnGBokB5+AiJKZVclmud0MKQOKx3DLJ5b5VTCstgDDknR6iIV4gVrN6euzsCnj0A2gQA==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/@lezer%2fcss/-/css-1.1.1.tgz}
     name: '@lezer/css'
     version: 1.1.1
     dependencies:
-      '@lezer/highlight': npm.urbanic-inc.com/@lezer/highlight@1.1.3
-      '@lezer/lr': npm.urbanic-inc.com/@lezer/lr@1.3.3
+      '@lezer/highlight': https://registry.npmjs.org/@lezer/highlight@1.1.3
+      '@lezer/lr': https://registry.npmjs.org/@lezer/lr@1.3.3
     dev: false
 
-  npm.urbanic-inc.com/@lezer/highlight@1.1.3:
-    resolution: {integrity: sha512-3vLKLPThO4td43lYRBygmMY18JN3CPh9w+XS2j8WC30vR4yZeFG4z1iFe4jXE43NtGqe//zHW5q8ENLlHvz9gw==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/@lezer%2fhighlight/-/highlight-1.1.3.tgz}
+  https://registry.npmjs.org/@lezer/highlight@1.1.3:
+    resolution: {integrity: sha512-3vLKLPThO4td43lYRBygmMY18JN3CPh9w+XS2j8WC30vR4yZeFG4z1iFe4jXE43NtGqe//zHW5q8ENLlHvz9gw==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/@lezer%2fhighlight/-/highlight-1.1.3.tgz}
     name: '@lezer/highlight'
     version: 1.1.3
     dependencies:
-      '@lezer/common': npm.urbanic-inc.com/@lezer/common@1.0.2
+      '@lezer/common': https://registry.npmjs.org/@lezer/common@1.0.2
     dev: false
 
-  npm.urbanic-inc.com/@lezer/html@1.3.1:
-    resolution: {integrity: sha512-mxmArW0psdJ3Vd3bZvCbrFpd7gNJgTjqTLhFZfTPo3jsw0STaQ68EWVWBQInv9W8j94XKaL2sbO3qixicFMnYw==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/@lezer%2fhtml/-/html-1.3.1.tgz}
+  https://registry.npmjs.org/@lezer/html@1.3.1:
+    resolution: {integrity: sha512-mxmArW0psdJ3Vd3bZvCbrFpd7gNJgTjqTLhFZfTPo3jsw0STaQ68EWVWBQInv9W8j94XKaL2sbO3qixicFMnYw==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/@lezer%2fhtml/-/html-1.3.1.tgz}
     name: '@lezer/html'
     version: 1.3.1
     dependencies:
-      '@lezer/common': npm.urbanic-inc.com/@lezer/common@1.0.2
-      '@lezer/highlight': npm.urbanic-inc.com/@lezer/highlight@1.1.3
-      '@lezer/lr': npm.urbanic-inc.com/@lezer/lr@1.3.3
+      '@lezer/common': https://registry.npmjs.org/@lezer/common@1.0.2
+      '@lezer/highlight': https://registry.npmjs.org/@lezer/highlight@1.1.3
+      '@lezer/lr': https://registry.npmjs.org/@lezer/lr@1.3.3
     dev: false
 
-  npm.urbanic-inc.com/@lezer/javascript@1.4.1:
-    resolution: {integrity: sha512-Hqx36DJeYhKtdpc7wBYPR0XF56ZzIp0IkMO/zNNj80xcaFOV4Oj/P7TQc/8k2TxNhzl7tV5tXS8ZOCPbT4L3nA==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/@lezer%2fjavascript/-/javascript-1.4.1.tgz}
+  https://registry.npmjs.org/@lezer/javascript@1.4.1:
+    resolution: {integrity: sha512-Hqx36DJeYhKtdpc7wBYPR0XF56ZzIp0IkMO/zNNj80xcaFOV4Oj/P7TQc/8k2TxNhzl7tV5tXS8ZOCPbT4L3nA==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/@lezer%2fjavascript/-/javascript-1.4.1.tgz}
     name: '@lezer/javascript'
     version: 1.4.1
     dependencies:
-      '@lezer/highlight': npm.urbanic-inc.com/@lezer/highlight@1.1.3
-      '@lezer/lr': npm.urbanic-inc.com/@lezer/lr@1.3.3
+      '@lezer/highlight': https://registry.npmjs.org/@lezer/highlight@1.1.3
+      '@lezer/lr': https://registry.npmjs.org/@lezer/lr@1.3.3
     dev: false
 
-  npm.urbanic-inc.com/@lezer/lr@1.3.3:
-    resolution: {integrity: sha512-JPQe3mwJlzEVqy67iQiiGozhcngbO8QBgpqZM6oL1Wj/dXckrEexpBLeFkq0edtW5IqnPRFxA24BHJni8Js69w==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/@lezer%2flr/-/lr-1.3.3.tgz}
+  https://registry.npmjs.org/@lezer/lr@1.3.3:
+    resolution: {integrity: sha512-JPQe3mwJlzEVqy67iQiiGozhcngbO8QBgpqZM6oL1Wj/dXckrEexpBLeFkq0edtW5IqnPRFxA24BHJni8Js69w==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/@lezer%2flr/-/lr-1.3.3.tgz}
     name: '@lezer/lr'
     version: 1.3.3
     dependencies:
-      '@lezer/common': npm.urbanic-inc.com/@lezer/common@1.0.2
+      '@lezer/common': https://registry.npmjs.org/@lezer/common@1.0.2
     dev: false
 
-  npm.urbanic-inc.com/@motionone/animation@10.15.1:
-    resolution: {integrity: sha512-mZcJxLjHor+bhcPuIFErMDNyrdb2vJur8lSfMCsuCB4UyV8ILZLvK+t+pg56erv8ud9xQGK/1OGPt10agPrCyQ==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/@motionone%2fanimation/-/animation-10.15.1.tgz}
+  https://registry.npmjs.org/@motionone/animation@10.15.1:
+    resolution: {integrity: sha512-mZcJxLjHor+bhcPuIFErMDNyrdb2vJur8lSfMCsuCB4UyV8ILZLvK+t+pg56erv8ud9xQGK/1OGPt10agPrCyQ==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/@motionone%2fanimation/-/animation-10.15.1.tgz}
     name: '@motionone/animation'
     version: 10.15.1
     dependencies:
-      '@motionone/easing': npm.urbanic-inc.com/@motionone/easing@10.15.1
-      '@motionone/types': npm.urbanic-inc.com/@motionone/types@10.15.1
-      '@motionone/utils': npm.urbanic-inc.com/@motionone/utils@10.15.1
-      tslib: npm.urbanic-inc.com/tslib@2.4.0
+      '@motionone/easing': https://registry.npmjs.org/@motionone/easing@10.15.1
+      '@motionone/types': https://registry.npmjs.org/@motionone/types@10.15.1
+      '@motionone/utils': https://registry.npmjs.org/@motionone/utils@10.15.1
+      tslib: https://registry.npmjs.org/tslib@2.4.0
     dev: false
 
-  npm.urbanic-inc.com/@motionone/dom@10.15.5:
-    resolution: {integrity: sha512-Xc5avlgyh3xukU9tydh9+8mB8+2zAq+WlLsC3eEIp7Ax7DnXgY7Bj/iv0a4X2R9z9ZFZiaXK3BO0xMYHKbAAdA==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/@motionone%2fdom/-/dom-10.15.5.tgz}
+  https://registry.npmjs.org/@motionone/dom@10.15.5:
+    resolution: {integrity: sha512-Xc5avlgyh3xukU9tydh9+8mB8+2zAq+WlLsC3eEIp7Ax7DnXgY7Bj/iv0a4X2R9z9ZFZiaXK3BO0xMYHKbAAdA==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/@motionone%2fdom/-/dom-10.15.5.tgz}
     name: '@motionone/dom'
     version: 10.15.5
     dependencies:
-      '@motionone/animation': npm.urbanic-inc.com/@motionone/animation@10.15.1
-      '@motionone/generators': npm.urbanic-inc.com/@motionone/generators@10.15.1
-      '@motionone/types': npm.urbanic-inc.com/@motionone/types@10.15.1
-      '@motionone/utils': npm.urbanic-inc.com/@motionone/utils@10.15.1
-      hey-listen: npm.urbanic-inc.com/hey-listen@1.0.8
-      tslib: npm.urbanic-inc.com/tslib@2.4.0
+      '@motionone/animation': https://registry.npmjs.org/@motionone/animation@10.15.1
+      '@motionone/generators': https://registry.npmjs.org/@motionone/generators@10.15.1
+      '@motionone/types': https://registry.npmjs.org/@motionone/types@10.15.1
+      '@motionone/utils': https://registry.npmjs.org/@motionone/utils@10.15.1
+      hey-listen: https://registry.npmjs.org/hey-listen@1.0.8
+      tslib: https://registry.npmjs.org/tslib@2.4.0
     dev: false
 
-  npm.urbanic-inc.com/@motionone/easing@10.15.1:
-    resolution: {integrity: sha512-6hIHBSV+ZVehf9dcKZLT7p5PEKHGhDwky2k8RKkmOvUoYP3S+dXsKupyZpqx5apjd9f+php4vXk4LuS+ADsrWw==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/@motionone%2feasing/-/easing-10.15.1.tgz}
+  https://registry.npmjs.org/@motionone/easing@10.15.1:
+    resolution: {integrity: sha512-6hIHBSV+ZVehf9dcKZLT7p5PEKHGhDwky2k8RKkmOvUoYP3S+dXsKupyZpqx5apjd9f+php4vXk4LuS+ADsrWw==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/@motionone%2feasing/-/easing-10.15.1.tgz}
     name: '@motionone/easing'
     version: 10.15.1
     dependencies:
-      '@motionone/utils': npm.urbanic-inc.com/@motionone/utils@10.15.1
-      tslib: npm.urbanic-inc.com/tslib@2.4.0
+      '@motionone/utils': https://registry.npmjs.org/@motionone/utils@10.15.1
+      tslib: https://registry.npmjs.org/tslib@2.4.0
     dev: false
 
-  npm.urbanic-inc.com/@motionone/generators@10.15.1:
-    resolution: {integrity: sha512-67HLsvHJbw6cIbLA/o+gsm7h+6D4Sn7AUrB/GPxvujse1cGZ38F5H7DzoH7PhX+sjvtDnt2IhFYF2Zp1QTMKWQ==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/@motionone%2fgenerators/-/generators-10.15.1.tgz}
+  https://registry.npmjs.org/@motionone/generators@10.15.1:
+    resolution: {integrity: sha512-67HLsvHJbw6cIbLA/o+gsm7h+6D4Sn7AUrB/GPxvujse1cGZ38F5H7DzoH7PhX+sjvtDnt2IhFYF2Zp1QTMKWQ==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/@motionone%2fgenerators/-/generators-10.15.1.tgz}
     name: '@motionone/generators'
     version: 10.15.1
     dependencies:
-      '@motionone/types': npm.urbanic-inc.com/@motionone/types@10.15.1
-      '@motionone/utils': npm.urbanic-inc.com/@motionone/utils@10.15.1
-      tslib: npm.urbanic-inc.com/tslib@2.4.0
+      '@motionone/types': https://registry.npmjs.org/@motionone/types@10.15.1
+      '@motionone/utils': https://registry.npmjs.org/@motionone/utils@10.15.1
+      tslib: https://registry.npmjs.org/tslib@2.4.0
     dev: false
 
-  npm.urbanic-inc.com/@motionone/types@10.15.1:
-    resolution: {integrity: sha512-iIUd/EgUsRZGrvW0jqdst8st7zKTzS9EsKkP+6c6n4MPZoQHwiHuVtTQLD6Kp0bsBLhNzKIBlHXponn/SDT4hA==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/@motionone%2ftypes/-/types-10.15.1.tgz}
+  https://registry.npmjs.org/@motionone/types@10.15.1:
+    resolution: {integrity: sha512-iIUd/EgUsRZGrvW0jqdst8st7zKTzS9EsKkP+6c6n4MPZoQHwiHuVtTQLD6Kp0bsBLhNzKIBlHXponn/SDT4hA==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/@motionone%2ftypes/-/types-10.15.1.tgz}
     name: '@motionone/types'
     version: 10.15.1
     dev: false
 
-  npm.urbanic-inc.com/@motionone/utils@10.15.1:
-    resolution: {integrity: sha512-p0YncgU+iklvYr/Dq4NobTRdAPv9PveRDUXabPEeOjBLSO/1FNB2phNTZxOxpi1/GZwYpAoECEa0Wam+nsmhSw==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/@motionone%2futils/-/utils-10.15.1.tgz}
+  https://registry.npmjs.org/@motionone/utils@10.15.1:
+    resolution: {integrity: sha512-p0YncgU+iklvYr/Dq4NobTRdAPv9PveRDUXabPEeOjBLSO/1FNB2phNTZxOxpi1/GZwYpAoECEa0Wam+nsmhSw==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/@motionone%2futils/-/utils-10.15.1.tgz}
     name: '@motionone/utils'
     version: 10.15.1
     dependencies:
-      '@motionone/types': npm.urbanic-inc.com/@motionone/types@10.15.1
-      hey-listen: npm.urbanic-inc.com/hey-listen@1.0.8
-      tslib: npm.urbanic-inc.com/tslib@2.4.0
+      '@motionone/types': https://registry.npmjs.org/@motionone/types@10.15.1
+      hey-listen: https://registry.npmjs.org/hey-listen@1.0.8
+      tslib: https://registry.npmjs.org/tslib@2.4.0
     dev: false
 
-  npm.urbanic-inc.com/@react-hook/intersection-observer@3.1.1(react@18.2.0):
-    resolution: {integrity: sha512-OTDx8/wFaRvzFtKl1dEUEXSOqK2zVJHporiTTdC2xO++0e9FEx9wIrPis5q3lqtXeZH9zYGLbk+aB75qNFbbuw==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/@react-hook%2fintersection-observer/-/intersection-observer-3.1.1.tgz}
-    id: npm.urbanic-inc.com/@react-hook/intersection-observer/3.1.1
+  https://registry.npmjs.org/@react-hook/intersection-observer@3.1.1(react@18.2.0):
+    resolution: {integrity: sha512-OTDx8/wFaRvzFtKl1dEUEXSOqK2zVJHporiTTdC2xO++0e9FEx9wIrPis5q3lqtXeZH9zYGLbk+aB75qNFbbuw==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/@react-hook%2fintersection-observer/-/intersection-observer-3.1.1.tgz}
+    id: https://registry.npmjs.org/@react-hook/intersection-observer/3.1.1
     name: '@react-hook/intersection-observer'
     version: 3.1.1
     peerDependencies:
       react: '>=16.8'
     dependencies:
-      '@react-hook/passive-layout-effect': npm.urbanic-inc.com/@react-hook/passive-layout-effect@1.2.1(react@18.2.0)
-      intersection-observer: npm.urbanic-inc.com/intersection-observer@0.10.0
-      react: npm.urbanic-inc.com/react@18.2.0
+      '@react-hook/passive-layout-effect': https://registry.npmjs.org/@react-hook/passive-layout-effect@1.2.1(react@18.2.0)
+      intersection-observer: https://registry.npmjs.org/intersection-observer@0.10.0
+      react: https://registry.npmjs.org/react@18.2.0
     dev: false
 
-  npm.urbanic-inc.com/@react-hook/passive-layout-effect@1.2.1(react@18.2.0):
-    resolution: {integrity: sha512-IwEphTD75liO8g+6taS+4oqz+nnroocNfWVHWz7j+N+ZO2vYrc6PV1q7GQhuahL0IOR7JccFTsFKQ/mb6iZWAg==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/@react-hook%2fpassive-layout-effect/-/passive-layout-effect-1.2.1.tgz}
-    id: npm.urbanic-inc.com/@react-hook/passive-layout-effect/1.2.1
+  https://registry.npmjs.org/@react-hook/passive-layout-effect@1.2.1(react@18.2.0):
+    resolution: {integrity: sha512-IwEphTD75liO8g+6taS+4oqz+nnroocNfWVHWz7j+N+ZO2vYrc6PV1q7GQhuahL0IOR7JccFTsFKQ/mb6iZWAg==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/@react-hook%2fpassive-layout-effect/-/passive-layout-effect-1.2.1.tgz}
+    id: https://registry.npmjs.org/@react-hook/passive-layout-effect/1.2.1
     name: '@react-hook/passive-layout-effect'
     version: 1.2.1
     peerDependencies:
       react: '>=16.8'
     dependencies:
-      react: npm.urbanic-inc.com/react@18.2.0
+      react: https://registry.npmjs.org/react@18.2.0
     dev: false
 
-  npm.urbanic-inc.com/@stitches/core@1.2.8:
-    resolution: {integrity: sha512-Gfkvwk9o9kE9r9XNBmJRfV8zONvXThnm1tcuojL04Uy5uRyqg93DC83lDebl0rocZCfKSjUv+fWYtMQmEDJldg==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/@stitches%2fcore/-/core-1.2.8.tgz}
+  https://registry.npmjs.org/@stitches/core@1.2.8:
+    resolution: {integrity: sha512-Gfkvwk9o9kE9r9XNBmJRfV8zONvXThnm1tcuojL04Uy5uRyqg93DC83lDebl0rocZCfKSjUv+fWYtMQmEDJldg==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/@stitches%2fcore/-/core-1.2.8.tgz}
     name: '@stitches/core'
     version: 1.2.8
     dev: false
 
-  npm.urbanic-inc.com/binaryextensions@2.3.0:
-    resolution: {integrity: sha512-nAihlQsYGyc5Bwq6+EsubvANYGExeJKHDO3RjnvwU042fawQTQfM3Kxn7IHUXQOz4bzfwsGYYHGSvXyW4zOGLg==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/binaryextensions/-/binaryextensions-2.3.0.tgz}
+  https://registry.npmjs.org/binaryextensions@2.3.0:
+    resolution: {integrity: sha512-nAihlQsYGyc5Bwq6+EsubvANYGExeJKHDO3RjnvwU042fawQTQfM3Kxn7IHUXQOz4bzfwsGYYHGSvXyW4zOGLg==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/binaryextensions/-/binaryextensions-2.3.0.tgz}
     name: binaryextensions
     version: 2.3.0
     engines: {node: '>=0.8'}
     dev: false
 
-  npm.urbanic-inc.com/clean-set@1.1.2:
-    resolution: {integrity: sha512-cA8uCj0qSoG9e0kevyOWXwPaELRPVg5Pxp6WskLMwerx257Zfnh8Nl0JBH59d7wQzij2CK7qEfJQK3RjuKKIug==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/clean-set/-/clean-set-1.1.2.tgz}
+  https://registry.npmjs.org/clean-set@1.1.2:
+    resolution: {integrity: sha512-cA8uCj0qSoG9e0kevyOWXwPaELRPVg5Pxp6WskLMwerx257Zfnh8Nl0JBH59d7wQzij2CK7qEfJQK3RjuKKIug==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/clean-set/-/clean-set-1.1.2.tgz}
     name: clean-set
     version: 1.1.2
     dev: false
 
-  npm.urbanic-inc.com/codesandbox-import-util-types@1.3.7:
-    resolution: {integrity: sha512-8oP3emA0jyEuVOM2FBTpo/AF4C9vxHn14saVWZf2CQ/QhMtonBlNPE98ElrHkW+PFNXiO7Ad52Qr73b03n8qlA==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/codesandbox-import-util-types/-/codesandbox-import-util-types-1.3.7.tgz}
+  https://registry.npmjs.org/codesandbox-import-util-types@1.3.7:
+    resolution: {integrity: sha512-8oP3emA0jyEuVOM2FBTpo/AF4C9vxHn14saVWZf2CQ/QhMtonBlNPE98ElrHkW+PFNXiO7Ad52Qr73b03n8qlA==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/codesandbox-import-util-types/-/codesandbox-import-util-types-1.3.7.tgz}
     name: codesandbox-import-util-types
     version: 1.3.7
     dev: false
 
-  npm.urbanic-inc.com/codesandbox-import-util-types@2.2.3:
-    resolution: {integrity: sha512-Qj00p60oNExthP2oR3vvXmUGjukij+rxJGuiaKM6tyUmSyimdZsqHI/TUvFFClAffk9s7hxGnQgWQ8KCce27qQ==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/codesandbox-import-util-types/-/codesandbox-import-util-types-2.2.3.tgz}
+  https://registry.npmjs.org/codesandbox-import-util-types@2.2.3:
+    resolution: {integrity: sha512-Qj00p60oNExthP2oR3vvXmUGjukij+rxJGuiaKM6tyUmSyimdZsqHI/TUvFFClAffk9s7hxGnQgWQ8KCce27qQ==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/codesandbox-import-util-types/-/codesandbox-import-util-types-2.2.3.tgz}
     name: codesandbox-import-util-types
     version: 2.2.3
     dev: false
 
-  npm.urbanic-inc.com/codesandbox-import-utils@1.3.8:
-    resolution: {integrity: sha512-S12zO49QEkldoYLGh5KbkHRLOacg5BCNTue2vlyZXSpuK3oQdArwC/G1hCLKryV460bW3Ecn5xdkpfkUcFeOwQ==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/codesandbox-import-utils/-/codesandbox-import-utils-1.3.8.tgz}
+  https://registry.npmjs.org/codesandbox-import-utils@1.3.8:
+    resolution: {integrity: sha512-S12zO49QEkldoYLGh5KbkHRLOacg5BCNTue2vlyZXSpuK3oQdArwC/G1hCLKryV460bW3Ecn5xdkpfkUcFeOwQ==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/codesandbox-import-utils/-/codesandbox-import-utils-1.3.8.tgz}
     name: codesandbox-import-utils
     version: 1.3.8
     dependencies:
-      codesandbox-import-util-types: npm.urbanic-inc.com/codesandbox-import-util-types@1.3.7
+      codesandbox-import-util-types: https://registry.npmjs.org/codesandbox-import-util-types@1.3.7
       istextorbinary: 2.2.1
-      lz-string: npm.urbanic-inc.com/lz-string@1.4.4
+      lz-string: https://registry.npmjs.org/lz-string@1.4.4
     dev: false
 
-  npm.urbanic-inc.com/crelt@1.0.5:
-    resolution: {integrity: sha512-+BO9wPPi+DWTDcNYhr/W90myha8ptzftZT+LwcmUbbok0rcP/fequmFYCw8NMoH7pkAZQzU78b3kYrlua5a9eA==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/crelt/-/crelt-1.0.5.tgz}
+  https://registry.npmjs.org/crelt@1.0.5:
+    resolution: {integrity: sha512-+BO9wPPi+DWTDcNYhr/W90myha8ptzftZT+LwcmUbbok0rcP/fequmFYCw8NMoH7pkAZQzU78b3kYrlua5a9eA==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/crelt/-/crelt-1.0.5.tgz}
     name: crelt
     version: 1.0.5
     dev: false
 
-  npm.urbanic-inc.com/d@1.0.1:
-    resolution: {integrity: sha512-m62ShEObQ39CfralilEQRjH6oAMtNCV1xJyEx5LpRYUVN+EviphDgUc/F3hnYbADmkiNs67Y+3ylmlG7Lnu+FA==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/d/-/d-1.0.1.tgz}
+  https://registry.npmjs.org/d@1.0.1:
+    resolution: {integrity: sha512-m62ShEObQ39CfralilEQRjH6oAMtNCV1xJyEx5LpRYUVN+EviphDgUc/F3hnYbADmkiNs67Y+3ylmlG7Lnu+FA==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/d/-/d-1.0.1.tgz}
     name: d
     version: 1.0.1
     dependencies:
-      es5-ext: npm.urbanic-inc.com/es5-ext@0.10.62
-      type: npm.urbanic-inc.com/type@1.2.0
+      es5-ext: https://registry.npmjs.org/es5-ext@0.10.62
+      type: https://registry.npmjs.org/type@1.2.0
     dev: false
 
-  npm.urbanic-inc.com/editions@1.3.4:
-    resolution: {integrity: sha512-gzao+mxnYDzIysXKMQi/+M1mjy/rjestjg6OPoYTtI+3Izp23oiGZitsl9lPDPiTGXbcSIk1iJWhliSaglxnUg==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/editions/-/editions-1.3.4.tgz}
+  https://registry.npmjs.org/editions@1.3.4:
+    resolution: {integrity: sha512-gzao+mxnYDzIysXKMQi/+M1mjy/rjestjg6OPoYTtI+3Izp23oiGZitsl9lPDPiTGXbcSIk1iJWhliSaglxnUg==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/editions/-/editions-1.3.4.tgz}
     name: editions
     version: 1.3.4
     engines: {node: '>=0.8'}
     dev: false
 
-  npm.urbanic-inc.com/es5-ext@0.10.62:
-    resolution: {integrity: sha512-BHLqn0klhEpnOKSrzn/Xsz2UIW8j+cGmo9JLzr8BiUapV8hPL9+FliFqjwr9ngW7jWdnxv6eO+/LqyhJVqgrjA==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/es5-ext/-/es5-ext-0.10.62.tgz}
+  https://registry.npmjs.org/es5-ext@0.10.62:
+    resolution: {integrity: sha512-BHLqn0klhEpnOKSrzn/Xsz2UIW8j+cGmo9JLzr8BiUapV8hPL9+FliFqjwr9ngW7jWdnxv6eO+/LqyhJVqgrjA==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/es5-ext/-/es5-ext-0.10.62.tgz}
     name: es5-ext
     version: 0.10.62
     engines: {node: '>=0.10'}
     requiresBuild: true
     dependencies:
-      es6-iterator: npm.urbanic-inc.com/es6-iterator@2.0.3
-      es6-symbol: npm.urbanic-inc.com/es6-symbol@3.1.3
-      next-tick: npm.urbanic-inc.com/next-tick@1.1.0
+      es6-iterator: https://registry.npmjs.org/es6-iterator@2.0.3
+      es6-symbol: https://registry.npmjs.org/es6-symbol@3.1.3
+      next-tick: https://registry.npmjs.org/next-tick@1.1.0
     dev: false
 
-  npm.urbanic-inc.com/es6-iterator@2.0.3:
-    resolution: {integrity: sha512-zw4SRzoUkd+cl+ZoE15A9o1oQd920Bb0iOJMQkQhl3jNc03YqVjAhG7scf9C5KWRU/R13Orf588uCC6525o02g==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/es6-iterator/-/es6-iterator-2.0.3.tgz}
+  https://registry.npmjs.org/es6-iterator@2.0.3:
+    resolution: {integrity: sha512-zw4SRzoUkd+cl+ZoE15A9o1oQd920Bb0iOJMQkQhl3jNc03YqVjAhG7scf9C5KWRU/R13Orf588uCC6525o02g==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/es6-iterator/-/es6-iterator-2.0.3.tgz}
     name: es6-iterator
     version: 2.0.3
     dependencies:
-      d: npm.urbanic-inc.com/d@1.0.1
-      es5-ext: npm.urbanic-inc.com/es5-ext@0.10.62
-      es6-symbol: npm.urbanic-inc.com/es6-symbol@3.1.3
+      d: https://registry.npmjs.org/d@1.0.1
+      es5-ext: https://registry.npmjs.org/es5-ext@0.10.62
+      es6-symbol: https://registry.npmjs.org/es6-symbol@3.1.3
     dev: false
 
-  npm.urbanic-inc.com/es6-symbol@3.1.3:
-    resolution: {integrity: sha512-NJ6Yn3FuDinBaBRWl/q5X/s4koRHBrgKAu+yGI6JCBeiu3qrcbJhwT2GeR/EXVfylRk8dpQVJoLEFhK+Mu31NA==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/es6-symbol/-/es6-symbol-3.1.3.tgz}
+  https://registry.npmjs.org/es6-symbol@3.1.3:
+    resolution: {integrity: sha512-NJ6Yn3FuDinBaBRWl/q5X/s4koRHBrgKAu+yGI6JCBeiu3qrcbJhwT2GeR/EXVfylRk8dpQVJoLEFhK+Mu31NA==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/es6-symbol/-/es6-symbol-3.1.3.tgz}
     name: es6-symbol
     version: 3.1.3
     dependencies:
-      d: npm.urbanic-inc.com/d@1.0.1
-      ext: npm.urbanic-inc.com/ext@1.7.0
+      d: https://registry.npmjs.org/d@1.0.1
+      ext: https://registry.npmjs.org/ext@1.7.0
     dev: false
 
-  npm.urbanic-inc.com/ext@1.7.0:
-    resolution: {integrity: sha512-6hxeJYaL110a9b5TEJSj0gojyHQAmA2ch5Os+ySCiA1QGdS697XWY1pzsrSjqA9LDEEgdB/KypIlR59RcLuHYw==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/ext/-/ext-1.7.0.tgz}
+  https://registry.npmjs.org/ext@1.7.0:
+    resolution: {integrity: sha512-6hxeJYaL110a9b5TEJSj0gojyHQAmA2ch5Os+ySCiA1QGdS697XWY1pzsrSjqA9LDEEgdB/KypIlR59RcLuHYw==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/ext/-/ext-1.7.0.tgz}
     name: ext
     version: 1.7.0
     dependencies:
-      type: npm.urbanic-inc.com/type@2.7.2
+      type: https://registry.npmjs.org/type@2.7.2
     dev: false
 
-  npm.urbanic-inc.com/framer-motion@9.0.2(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-n7ZdIUBrT1xklowQNRQ6/h54+3ysmz422CP0rrhjE1X2tshiJy0WWQ7tv6y/fcOSQd23htNA9vvbUFLYMQ5lEQ==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/framer-motion/-/framer-motion-9.0.2.tgz}
-    id: npm.urbanic-inc.com/framer-motion/9.0.2
+  https://registry.npmjs.org/framer-motion@9.0.2(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-n7ZdIUBrT1xklowQNRQ6/h54+3ysmz422CP0rrhjE1X2tshiJy0WWQ7tv6y/fcOSQd23htNA9vvbUFLYMQ5lEQ==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/framer-motion/-/framer-motion-9.0.2.tgz}
+    id: https://registry.npmjs.org/framer-motion/9.0.2
     name: framer-motion
     version: 9.0.2
     peerDependencies:
       react: ^18.0.0
       react-dom: ^18.0.0
     dependencies:
-      '@motionone/dom': npm.urbanic-inc.com/@motionone/dom@10.15.5
-      hey-listen: npm.urbanic-inc.com/hey-listen@1.0.8
-      react: npm.urbanic-inc.com/react@18.2.0
-      react-dom: npm.urbanic-inc.com/react-dom@18.2.0(react@18.2.0)
-      tslib: npm.urbanic-inc.com/tslib@2.4.0
+      '@motionone/dom': https://registry.npmjs.org/@motionone/dom@10.15.5
+      hey-listen: https://registry.npmjs.org/hey-listen@1.0.8
+      react: https://registry.npmjs.org/react@18.2.0
+      react-dom: https://registry.npmjs.org/react-dom@18.2.0(react@18.2.0)
+      tslib: https://registry.npmjs.org/tslib@2.4.0
     optionalDependencies:
       '@emotion/is-prop-valid': 0.8.8
     dev: false
 
-  npm.urbanic-inc.com/hey-listen@1.0.8:
-    resolution: {integrity: sha512-COpmrF2NOg4TBWUJ5UVyaCU2A88wEMkUPK4hNqyCkqHbxT92BbvfjoSozkAIIm6XhicGlJHhFdullInrdhwU8Q==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/hey-listen/-/hey-listen-1.0.8.tgz}
+  https://registry.npmjs.org/hey-listen@1.0.8:
+    resolution: {integrity: sha512-COpmrF2NOg4TBWUJ5UVyaCU2A88wEMkUPK4hNqyCkqHbxT92BbvfjoSozkAIIm6XhicGlJHhFdullInrdhwU8Q==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/hey-listen/-/hey-listen-1.0.8.tgz}
     name: hey-listen
     version: 1.0.8
     dev: false
 
-  npm.urbanic-inc.com/intersection-observer@0.10.0:
-    resolution: {integrity: sha512-fn4bQ0Xq8FTej09YC/jqKZwtijpvARlRp6wxL5WTA6yPe2YWSJ5RJh7Nm79rK2qB0wr6iDQzH60XGq5V/7u8YQ==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/intersection-observer/-/intersection-observer-0.10.0.tgz}
+  https://registry.npmjs.org/intersection-observer@0.10.0:
+    resolution: {integrity: sha512-fn4bQ0Xq8FTej09YC/jqKZwtijpvARlRp6wxL5WTA6yPe2YWSJ5RJh7Nm79rK2qB0wr6iDQzH60XGq5V/7u8YQ==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/intersection-observer/-/intersection-observer-0.10.0.tgz}
     name: intersection-observer
     version: 0.10.0
     dev: false
 
-  npm.urbanic-inc.com/js-tokens@4.0.0:
-    resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/js-tokens/-/js-tokens-4.0.0.tgz}
+  https://registry.npmjs.org/js-tokens@4.0.0:
+    resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/js-tokens/-/js-tokens-4.0.0.tgz}
     name: js-tokens
     version: 4.0.0
 
-  npm.urbanic-inc.com/lodash.isequal@4.5.0:
-    resolution: {integrity: sha512-pDo3lu8Jhfjqls6GkMgpahsF9kCyayhgykjyLMNFTKWrpVdAQtYyB4muAMWozBB4ig/dtWAmsMxLEI8wuz+DYQ==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz}
+  https://registry.npmjs.org/lodash.isequal@4.5.0:
+    resolution: {integrity: sha512-pDo3lu8Jhfjqls6GkMgpahsF9kCyayhgykjyLMNFTKWrpVdAQtYyB4muAMWozBB4ig/dtWAmsMxLEI8wuz+DYQ==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/lodash.isequal/-/lodash.isequal-4.5.0.tgz}
     name: lodash.isequal
     version: 4.5.0
     dev: false
 
-  npm.urbanic-inc.com/loose-envify@1.4.0:
-    resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/loose-envify/-/loose-envify-1.4.0.tgz}
+  https://registry.npmjs.org/loose-envify@1.4.0:
+    resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/loose-envify/-/loose-envify-1.4.0.tgz}
     name: loose-envify
     version: 1.4.0
     hasBin: true
     dependencies:
-      js-tokens: npm.urbanic-inc.com/js-tokens@4.0.0
+      js-tokens: https://registry.npmjs.org/js-tokens@4.0.0
 
-  npm.urbanic-inc.com/lz-string@1.4.4:
-    resolution: {integrity: sha512-0ckx7ZHRPqb0oUm8zNr+90mtf9DQB60H1wMCjBtfi62Kl3a7JbHob6gA2bC+xRvZoOL+1hzUK8jeuEIQE8svEQ==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/lz-string/-/lz-string-1.4.4.tgz}
+  https://registry.npmjs.org/lz-string@1.4.4:
+    resolution: {integrity: sha512-0ckx7ZHRPqb0oUm8zNr+90mtf9DQB60H1wMCjBtfi62Kl3a7JbHob6gA2bC+xRvZoOL+1hzUK8jeuEIQE8svEQ==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/lz-string/-/lz-string-1.4.4.tgz}
     name: lz-string
     version: 1.4.4
     hasBin: true
     dev: false
 
-  npm.urbanic-inc.com/next-tick@1.1.0:
-    resolution: {integrity: sha512-CXdUiJembsNjuToQvxayPZF9Vqht7hewsvy2sOWafLvi2awflj9mOC6bHIg50orX8IJvWKY9wYQ/zB2kogPslQ==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/next-tick/-/next-tick-1.1.0.tgz}
+  https://registry.npmjs.org/next-tick@1.1.0:
+    resolution: {integrity: sha512-CXdUiJembsNjuToQvxayPZF9Vqht7hewsvy2sOWafLvi2awflj9mOC6bHIg50orX8IJvWKY9wYQ/zB2kogPslQ==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/next-tick/-/next-tick-1.1.0.tgz}
     name: next-tick
     version: 1.1.0
     dev: false
 
-  npm.urbanic-inc.com/react-devtools-inline@4.4.0:
-    resolution: {integrity: sha512-ES0GolSrKO8wsKbsEkVeiR/ZAaHQTY4zDh1UW8DImVmm8oaGLl3ijJDvSGe+qDRKPZdPRnDtWWnSvvrgxXdThQ==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/react-devtools-inline/-/react-devtools-inline-4.4.0.tgz}
+  https://registry.npmjs.org/react-devtools-inline@4.4.0:
+    resolution: {integrity: sha512-ES0GolSrKO8wsKbsEkVeiR/ZAaHQTY4zDh1UW8DImVmm8oaGLl3ijJDvSGe+qDRKPZdPRnDtWWnSvvrgxXdThQ==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/react-devtools-inline/-/react-devtools-inline-4.4.0.tgz}
     name: react-devtools-inline
     version: 4.4.0
     dependencies:
-      es6-symbol: npm.urbanic-inc.com/es6-symbol@3.1.3
+      es6-symbol: https://registry.npmjs.org/es6-symbol@3.1.3
     dev: false
 
-  npm.urbanic-inc.com/react-dom@18.2.0(react@18.2.0):
-    resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/react-dom/-/react-dom-18.2.0.tgz}
-    id: npm.urbanic-inc.com/react-dom/18.2.0
+  https://registry.npmjs.org/react-dom@18.2.0(react@18.2.0):
+    resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/react-dom/-/react-dom-18.2.0.tgz}
+    id: https://registry.npmjs.org/react-dom/18.2.0
     name: react-dom
     version: 18.2.0
     peerDependencies:
       react: ^18.2.0
     dependencies:
-      loose-envify: npm.urbanic-inc.com/loose-envify@1.4.0
-      react: npm.urbanic-inc.com/react@18.2.0
-      scheduler: npm.urbanic-inc.com/scheduler@0.23.0
+      loose-envify: https://registry.npmjs.org/loose-envify@1.4.0
+      react: https://registry.npmjs.org/react@18.2.0
+      scheduler: https://registry.npmjs.org/scheduler@0.23.0
 
-  npm.urbanic-inc.com/react-is@17.0.2:
-    resolution: {integrity: sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/react-is/-/react-is-17.0.2.tgz}
+  https://registry.npmjs.org/react-is@17.0.2:
+    resolution: {integrity: sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/react-is/-/react-is-17.0.2.tgz}
     name: react-is
     version: 17.0.2
     dev: false
 
-  npm.urbanic-inc.com/react@18.2.0:
-    resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/react/-/react-18.2.0.tgz}
+  https://registry.npmjs.org/react@18.2.0:
+    resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/react/-/react-18.2.0.tgz}
     name: react
     version: 18.2.0
     engines: {node: '>=0.10.0'}
     dependencies:
-      loose-envify: npm.urbanic-inc.com/loose-envify@1.4.0
+      loose-envify: https://registry.npmjs.org/loose-envify@1.4.0
 
-  npm.urbanic-inc.com/scheduler@0.23.0:
-    resolution: {integrity: sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/scheduler/-/scheduler-0.23.0.tgz}
+  https://registry.npmjs.org/scheduler@0.23.0:
+    resolution: {integrity: sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/scheduler/-/scheduler-0.23.0.tgz}
     name: scheduler
     version: 0.23.0
     dependencies:
-      loose-envify: npm.urbanic-inc.com/loose-envify@1.4.0
+      loose-envify: https://registry.npmjs.org/loose-envify@1.4.0
 
-  npm.urbanic-inc.com/style-mod@4.0.0:
-    resolution: {integrity: sha512-OPhtyEjyyN9x3nhPsu76f52yUGXiZcgvsrFVtvTkyGRQJ0XK+GPc6ov1z+lRpbeabka+MYEQxOYRnt5nF30aMw==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/style-mod/-/style-mod-4.0.0.tgz}
+  https://registry.npmjs.org/style-mod@4.0.0:
+    resolution: {integrity: sha512-OPhtyEjyyN9x3nhPsu76f52yUGXiZcgvsrFVtvTkyGRQJ0XK+GPc6ov1z+lRpbeabka+MYEQxOYRnt5nF30aMw==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/style-mod/-/style-mod-4.0.0.tgz}
     name: style-mod
     version: 4.0.0
     dev: false
 
-  npm.urbanic-inc.com/textextensions@2.6.0:
-    resolution: {integrity: sha512-49WtAWS+tcsy93dRt6P0P3AMD2m5PvXRhuEA0kaXos5ZLlujtYmpmFsB+QvWUSxE1ZsstmYXfQ7L40+EcQgpAQ==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/textextensions/-/textextensions-2.6.0.tgz}
+  https://registry.npmjs.org/textextensions@2.6.0:
+    resolution: {integrity: sha512-49WtAWS+tcsy93dRt6P0P3AMD2m5PvXRhuEA0kaXos5ZLlujtYmpmFsB+QvWUSxE1ZsstmYXfQ7L40+EcQgpAQ==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/textextensions/-/textextensions-2.6.0.tgz}
     name: textextensions
     version: 2.6.0
     engines: {node: '>=0.8'}
     dev: false
 
-  npm.urbanic-inc.com/tslib@2.4.0:
-    resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/tslib/-/tslib-2.4.0.tgz}
+  https://registry.npmjs.org/tslib@2.4.0:
+    resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/tslib/-/tslib-2.4.0.tgz}
     name: tslib
     version: 2.4.0
     dev: false
 
-  npm.urbanic-inc.com/type@1.2.0:
-    resolution: {integrity: sha512-+5nt5AAniqsCnu2cEQQdpzCAh33kVx8n0VoFidKpB1dVVLAN/F+bgVOqOJqOnEnrhp222clB5p3vUlD+1QAnfg==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/type/-/type-1.2.0.tgz}
+  https://registry.npmjs.org/type@1.2.0:
+    resolution: {integrity: sha512-+5nt5AAniqsCnu2cEQQdpzCAh33kVx8n0VoFidKpB1dVVLAN/F+bgVOqOJqOnEnrhp222clB5p3vUlD+1QAnfg==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/type/-/type-1.2.0.tgz}
     name: type
     version: 1.2.0
     dev: false
 
-  npm.urbanic-inc.com/type@2.7.2:
-    resolution: {integrity: sha512-dzlvlNlt6AXU7EBSfpAscydQ7gXB+pPGsPnfJnZpiNJBDj7IaJzQlBZYGdEi4R9HmPdBv2XmWJ6YUtoTa7lmCw==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/type/-/type-2.7.2.tgz}
+  https://registry.npmjs.org/type@2.7.2:
+    resolution: {integrity: sha512-dzlvlNlt6AXU7EBSfpAscydQ7gXB+pPGsPnfJnZpiNJBDj7IaJzQlBZYGdEi4R9HmPdBv2XmWJ6YUtoTa7lmCw==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/type/-/type-2.7.2.tgz}
     name: type
     version: 2.7.2
     dev: false
 
-  npm.urbanic-inc.com/w3c-keyname@2.2.6:
-    resolution: {integrity: sha512-f+fciywl1SJEniZHD6H+kUO8gOnwIr7f4ijKA6+ZvJFjeGi1r4PDLl53Ayud9O/rk64RqgoQine0feoeOU0kXg==, registry: https://registry.npmjs.org/, tarball: https://npm.urbanic-inc.com/w3c-keyname/-/w3c-keyname-2.2.6.tgz}
+  https://registry.npmjs.org/w3c-keyname@2.2.6:
+    resolution: {integrity: sha512-f+fciywl1SJEniZHD6H+kUO8gOnwIr7f4ijKA6+ZvJFjeGi1r4PDLl53Ayud9O/rk64RqgoQine0feoeOU0kXg==, registry: https://registry.npmjs.org/, tarball: https://https://registry.npmjs.org/w3c-keyname/-/w3c-keyname-2.2.6.tgz}
     name: w3c-keyname
     version: 2.2.6
     dev: false
