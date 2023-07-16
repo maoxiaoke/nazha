@@ -4,11 +4,35 @@
         <title>nazha's blog</title>
         <link>https://www.nazha.co/</link>
         <description>You can find me talking about topics related to JavaScript, TypeScript, React, Web development and technical/coding interviews</description>
-        <lastBuildDate>Sun, 12 Feb 2023 08:37:07 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 16 Jul 2023 14:50:06 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <copyright>All rights reserved 2023, nazha</copyright>
+        <item>
+            <title><![CDATA[Deep Learning Guide For Web Developer, The First Part]]></title>
+            <link>https://www.nazha.co//posts/deep-learning-guide-for-web-developer-the-first-part</link>
+            <guid>https://www.nazha.co//posts/deep-learning-guide-for-web-developer-the-first-part</guid>
+            <pubDate>Sat, 15 Jul 2023 16:00:00 GMT</pubDate>
+            <author>maoxiaoke@outlook.com (nazha)</author>
+            <category>ml</category>
+            <category> setup</category>
+        </item>
+        <item>
+            <title><![CDATA[如何快速开发一个 Web 产品]]></title>
+            <link>https://www.nazha.co//posts/how-to-build-a-web-client-in-quick</link>
+            <guid>https://www.nazha.co//posts/how-to-build-a-web-client-in-quick</guid>
+            <pubDate>Sun, 16 Apr 2023 16:00:00 GMT</pubDate>
+            <author>maoxiaoke@outlook.com (nazha)</author>
+            <category>chatGPT</category>
+            <category> Next.js</category>
+            <category> Radix</category>
+            <category> Tailwindcss</category>
+            <category> Lottie</category>
+            <category> Pake</category>
+            <category> Vercel Analytics</category>
+            <category> fathom</category>
+        </item>
         <item>
             <title><![CDATA[Revue alternative for your personal blog - MailChimp]]></title>
             <link>https://www.nazha.co//posts/revue-alternative</link>

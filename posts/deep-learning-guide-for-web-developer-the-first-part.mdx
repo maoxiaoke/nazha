@@ -1,0 +1,106 @@
+---
+title: Deep Learning Guide For Web Developer, The First Part
+published: true
+listed: true
+date: '07/16/2023'
+lastUpdateDate: '07/16/2023'
+tags: ml, setup
+language: Chinese
+---
+
+**Deep Learning Guide For Web Developer, The First Part - Development Environment Setup**
+
+在 AI 爆发的当下，我曾经有一个论断，便是未来 5 - 10 年，AI 会逐步改变当下社会的职业生态。初级程序员会是首先面临冲击的一个职业，UI 开发者尤为突出。UI 开发者的出路在哪里，在我的认知里，技能层面需要拥抱：
+
+- UI 开发能力
+- 设计、视觉能力
+- AI 能力
+
+在频繁使用 chatGPT、Claude、Midjourney 这些产品之后，打算深入了解一下 AI。所以在网上找到了开源的 [Practical Deep Learning for Coders](https://course.fast.ai/Resources/book.html) 这个课程。教授这门课程的老师是 [Jeremy Howard](https://jeremy.fast.ai/)，在 Deep Learning 领域非常有影响力。他教授的这门课程不从非常底层的原理出发，而是直接教授如何使用现有、开源的神经网络算法进行数据训练、如何发布模型、如何使用模型。简单来说，就是自顶而下，先整体后局部。
+
+所以这门课程比较适合我，这篇文章也是对课程前两课的部分内容，关于如何在本地训练和部署模型（由于时间关系，所以学得有点慢），以及自己的一些探索。
+
+## 训练和部署的方式有哪些
+
+模型的训练有一些硬件配置要求，但是一般的机器都可以。模型训练有：
+
+- 云上
+- 本地
+
+云上主要是使用 [Kaggle](https://www.kaggle.com/)、[Colab](https://colab.google/) 这些支持  [Jupyter Notebook ](https://jupyter.org/)的平台。这些平台不需要使用本机的硬件资源，就可以来进行模型训练。但缺点是没有本地训练模型来得方便。
+
+所以，以下的内容是我在自己电脑在完成实际训的开发环境配置。下面是我电脑的硬件信息：
+
+- **Chip**: Apple M1 Pro
+- **Memory**: 16GB
+- **macOS**: 13.2.1
+
+## 1. 安装 [Mamba](https://mamba.readthedocs.io/en/latest/)
+
+Mamba 是 Python 的包管理、环境管理工具。在 macOS 中使用 Python 的一个很好的建议是：「千万不要使用系统的 Python」。
+
+一个默认 Mamba 环境通常会安装最新版本的 python。Mamba 底层还是 [conda](https://docs.conda.io/en/latest/)。对于 Mamba 和 Conda 的区别，对我这个门外汉来说我是这么理解的：Mamba 就是 CNPM，淘宝源就是快。
+
+安装步骤：
+
+- 下载 https://github.com/fastai/fastsetup/blob/master/setup-conda.sh
+- 在终端执行
+
+```shell
+sh setup-conda.sh
+````
+- 重启终端即可
+
+## 2. 创建项目
+
+到 [HuggingFace](https://huggingface.co/) 这个平台上创建一个项目，HuggingFace 可以托管仓库、发布模型、分享数据集、部署前端应用。简单来理解，可以把它当作是 AI 界的 Github。
+
+创建一个 HuggingFace Space：
+
+<img src="https://nazha-image-store.oss-cn-shanghai.aliyuncs.com/blog/huggingface-space-setup.png" />
+
+然后按照 Guideline 克隆，下载，创建第一次提交。
+
+接下来你会踩坑，由于 HuggingFace 需要使用 [git-lfs](https://git-lfs.com/) 来上传 `> 5M` 的文件，以及一些二进制文件（不如图片之类的）。但是如果没有进行提前设置，就进行 git commit 之后，那么提交记录就一直在，你就一直无法把 `> 5M`  的模型文件上传上去。
+
+![[Pasted image 20230716211943.png]]
+
+所以，**在你做任何提交之前**，先设置 git-lfs。
+
+```shell
+brew install git-lfs
+```
+
+安装成功之后，配置：
+
+```shell
+git lfs install  
+git lfs track *.jpg *.pkl
+```
+
+## 3. Python  VSCode 环境配置 
+
+按照 [Getting Started with Python in VS Code](https://code.visualstudio.com/docs/python/python-tutorial) 介绍来配置 VSCode，可以跳过 [Install a Python interpreter](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter) 这一节，因为我们已经安装了 Mamba。
+
+这里最主要的就是学会**选择或创建** Conda 环境。在 VSCode 中的常规操作，`ctrl + P` 唤起指令面板，输入 `> Python：Select Interpter`。
+
+## 4. 安装 Jupyter
+
+Jupyter 是真的好用。安装流程：
+
+```shell
+mamba install jupyter
+
+# 启动 Jupyter 服务器
+jupyter notebook
+```
+
+好了，可以在本地 Jupyter 上开心地玩耍了。
+
+
+## 结尾
+
+1. https://huggingface.co/spaces/nazha-567/panda-recognizer 这个 Panda Recognizer 是我这两个周末学习的成果。数据集使用的 Kaggle 开源的 [Panda or Bear Image Classification](https://www.kaggle.com/datasets/mattop/panda-or-bear-image-classification) 数据集。
+2. **相伴学习是最有效的**，我建了一个 [Telegram 群](https://t.me/+m3vKoZMPtoE5NDc1)，欢迎初学者一起进群学习讨论。如果大家习惯用 Discord，可以加入[这个](https://discord.gg/M6yEmGFg)。
+3. 因为我是个初学者，所以上面的内容难免会有差错，差错之处，请辛苦指正。
+
