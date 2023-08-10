@@ -11,12 +11,13 @@
         <copyright>All rights reserved 2023, nazha</copyright>
         <item>
             <title><![CDATA[Deep Learning Guide For Web Developer, The First Part]]></title>
-            <link>https://www.nazha.co//posts/deep-learning-guide-for-web-developer-the-first-part</link>
-            <guid>https://www.nazha.co//posts/deep-learning-guide-for-web-developer-the-first-part</guid>
+            <link>https://www.nazha.co/posts/deep-learning-guide-for-web-developer-the-first-part</link>
+            <guid>https://www.nazha.co/posts/deep-learning-guide-for-web-developer-the-first-part</guid>
             <pubDate>Sat, 15 Jul 2023 16:00:00 GMT</pubDate>
             <author>maoxiaoke@outlook.com (nazha)</author>
             <category>ml</category>
             <category> setup</category>
+            <description><![CDATA[This is a brief description of the blog post.]]></description>
         </item>
         <item>
             <title><![CDATA[如何快速开发一个 Web 产品]]></title>

@@ -15,20 +15,25 @@ export const PostPath = path.join(RootPath, 'posts');
 export const ExercisesPath = path.join(RootPath, 'exercises');
 
 export async function loadMDX(source: string) {
-  const bundle = await bundleMDX({
-    source,
-    xdmOptions(options) {
-      options.remarkPlugins = [...(options?.remarkPlugins ?? []), remarkGfm, remarkPrism];
-      options.rehypePlugins = [
-        ...(options?.rehypePlugins ?? []),
-        rehypeSlug,
-        [rehypeAutolink, autoLinkHeadingsOptions]
-      ];
-      return options;
-    }
-  });
+  try {
+    const bundle = await bundleMDX({
+      source,
+      xdmOptions(options) {
+        options.remarkPlugins = [...(options?.remarkPlugins ?? []), remarkGfm, remarkPrism];
+        options.rehypePlugins = [
+          ...(options?.rehypePlugins ?? []),
+          rehypeSlug,
+          [rehypeAutolink, autoLinkHeadingsOptions]
+        ];
+        return options;
+      }
+    });
 
-  return bundle;
+    return bundle;
+  } catch (error) {
+    console.error(`Error while bundling MDX file: ${error.message}`);
+    throw error;
+  }
 }
 
 /**
