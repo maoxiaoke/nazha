@@ -24,6 +24,12 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {
+      fontFamily: {
+        gothamsm: ['var(--font-gothamsm)'],
+        catamaran: ['var(--font-catamaran)'],
+        montserrat: ['var(--font-montserrat)'],
+      },
+
       colors: {
         ...colors,
         purple: '#3f3cbb',

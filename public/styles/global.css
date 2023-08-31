@@ -71,15 +71,15 @@
 
   html {
     font: 100%/1.75;
-    font-family: 'Overpass Mono', SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New,
-      monospace;
     font-stretch: 25% 150%;
+  }
+
+  main {
+    font-family: var(--font-overpass);
   }
 
   @supports (font-variation-settings: normal) {
     html {
-      font: 'Overpass Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-        Liberation Mono, Courier New, monospace;
       font-stretch: 25% 150%;
     }
   }
@@ -114,7 +114,7 @@
   }
 
   *::selection {
-    @apply bg-unhovered text-warmGray-800;
+    @apply bg-black text-white;
   }
 
   .shadow_line {
@@ -151,6 +151,11 @@
   article :is(h1, h2, h3, h4, h5, h6) {
     @apply flex mt-8 mb-5 font-semibold text-warmGray-800 dark:text-warmGray-200;
     scroll-margin-top: 5rem;
+  }
+
+  article :is(h1) {
+    font-family: var(--font-montserrat);
+    font-weight: 500;
   }
 
   h2 {
@@ -195,12 +200,14 @@
   }
 
   article blockquote {
-    @apply relative py-1 pl-[2ch] pr-[1ch] my-8 italic bg-[#42828e14] dark:bg-[#2a2e31];
+    @apply relative py-1 pl-[2ch] pr-[1ch] my-8 dark:bg-[#2a2e31];
+    background-color: #fefce8;
   }
 
   article blockquote::before {
     content: '';
-    @apply absolute top-0 left-0 inline-block w-1 h-full bg-[color:var(--color-text)];
+    @apply absolute top-0 left-0 inline-block w-1 h-full;
+    background-color: #fde047;
   }
 
   article li {
@@ -245,4 +252,11 @@ details {
 
 .fontOutfit {
   font-family: Outfit, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New;
+}
+
+.hr {
+  display: block;
+  border: none;
+  height: 5px;
+  background: url(/images/wave.svg) 0 repeat-x
 }

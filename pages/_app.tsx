@@ -3,21 +3,37 @@ import '@/public/styles/global.css';
 
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-
+import localFont from 'next/font/local';
+import { Montserrat, Overpass_Mono } from 'next/font/google';
 import Nav from '@/components/Nav';
 import { SEO } from '@/components/SEO';
 import { TagsProvider } from '@/components/tags/TagsContext';
+
+const gothamsm = localFont({
+  variable: '--font-gothamsm',
+  src: './GothamSSm-Book.woff'
+});
+
+const catamaran = localFont({
+  variable: '--font-catamaran',
+  src: './Catamaran.ttf'
+});
+
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  variable: '--font-montserrat'
+});
+
+const overpass = Overpass_Mono({
+  subsets: ['latin'],
+  variable: '--font-overpass'
+});
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <>
       <Head>
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-MD6N0LS362" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet"></link>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <script src="/javascripts/newsletter-content.js" />
         <script
@@ -36,7 +52,8 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
         />
       </Head>
       <SEO />
-      <div className="w-full h-full">
+      <div
+        className={`${gothamsm.variable} ${catamaran.variable} ${montserrat.variable} ${overpass.variable} w-full h-full`}>
         <TagsProvider>
           <Nav />
           <main className="w-full mt-2">

@@ -58,11 +58,15 @@ const Subscribe = () => {
       <div className="flex justify-between items-center">
         <div>
           <Image
-            className="w-8 h-8 rounded-full overflow-hidden"
+            className="rounded-full"
             src="/portrait/logo.jpg"
             alt="portrait"
-            width="100px"
-            height="100px"
+            width={100}
+            height={100}
+            style={{
+              height: '100px',
+              width: '100px'
+            }}
           />
         </div>
 

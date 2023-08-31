@@ -28,19 +28,30 @@ export const PostPage: React.FC<Props> = ({ meta, children }) => {
         <div>
           <h1 className="mb-1 text-3xl font-black capitalize md:text-4xl">{meta.title}</h1>
           <div className="flex flex-col	pt-4 pb-8 text-sm font-thin uppercase text-warmGray-500 dark:text-warmGray-400">
-            <time dateTime={validDate(meta.date)}>Published on {formateDateFull(meta.date)}</time>
-            {meta.lastUpdateDate ? (
+            <time dateTime={validDate(meta.date)}>{formateDateFull(meta.date)}</time>
+            {/* {meta.lastUpdateDate ? (
               <time dateTime={validDate(meta.lastUpdateDate)}>
                 Last updated on {formateDateFull(meta.lastUpdateDate)}
               </time>
-            ) : null}
+            ) : null} */}
           </div>
 
-          <p className="italic">{meta.description}</p>
+          <div className="flex justify-center mb-10 sm:mb-12">
+            <div className="hr dark:hr-dark w-64"></div>
+          </div>
+
+          {meta.description ? (
+            <>
+              <p className="italic">{meta.description}</p>
+            </>
+          ) : null}
         </div>
 
         {children}
 
+        <div className="flex justify-center mt-10 sm:mb-12">
+          <div className="hr dark:hr-dark w-64"></div>
+        </div>
         {/*  FIXME： empty div is needed. why? */}
         <div>
           <Subscribe />
