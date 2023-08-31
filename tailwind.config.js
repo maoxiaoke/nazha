@@ -28,6 +28,7 @@ module.exports = {
         gothamsm: ['var(--font-gothamsm)'],
         catamaran: ['var(--font-catamaran)'],
         montserrat: ['var(--font-montserrat)'],
+        overpass: ['var(--font-overpass)'],
       },
 
       colors: {
