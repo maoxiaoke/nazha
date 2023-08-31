@@ -75,7 +75,7 @@
   }
 
   main {
-    font-family: var(--font-overpass);
+    font-family: 'iA Quattro', var(--font-overpass);
   }
 
   @supports (font-variation-settings: normal) {

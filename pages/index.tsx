@@ -28,9 +28,9 @@ export const PostPreview: React.FC<PostMeta> = ({ slug, title, date, language })
     <li className="my-1">
       <Link
         href={`${router.asPath}posts/${slug}`}
-        className="flex items-center p-1 capitalize transition-colors duration-200 rounded outline-none opacity-70 hover:opacity-100">
+        className="flex items-center p-1 capitalize transition-colors duration-200 rounded outline-none opacity-70 hover:opacity-100 hover:font-black">
         {/* <a className="flex items-center p-1 capitalize transition-colors duration-200 rounded outline-none opacity-70 hover:opacity-100"> */}
-        <p className="text-sm mr-8 min-w-[50px]">
+        <p className="text-sm mr-8 min-w-[50px] whitespace-nowrap">
           <time dateTime={validDate(date)}>{formateDatePreview(date)}</time>
         </p>
         <h3 className="font-normal">{title}</h3>
@@ -83,7 +83,7 @@ export const PostPreviewList: React.FC<{ posts: PostMeta[] }> = ({ posts }) => {
           return (
             <div key={year} className="w-full">
               <h2 className={`pl-1 text-lg font-catamaran ${idx !== 0 ? 'mt-4' : ''}`}>{year}</h2>
-              <ul>
+              <ul className="font-overpass font-medium opacity-90">
                 {posts.map((post) => {
                   return <PostPreview key={post.slug} {...post} />;
                 })}
