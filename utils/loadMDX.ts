@@ -17,7 +17,7 @@ export const ExercisesPath = path.join(RootPath, 'exercises');
 export async function loadMDX(source: string) {
   const bundle = await bundleMDX({
     source,
-    xdmOptions(options) {
+    xdmOptions: (options) => {
       options.remarkPlugins = [...(options?.remarkPlugins ?? []), remarkGfm, remarkPrism];
       options.rehypePlugins = [
         ...(options?.rehypePlugins ?? []),

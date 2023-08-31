@@ -20,8 +20,8 @@ export const components = {
       );
     }
     return (
-      <Link href={href} passHref>
-        <a {...props} style={{ color: '#0070F3' }} />
+      <Link href={href} passHref {...props} style={{ color: '#0070F3' }}>
+        {/* <a {...props} style={{ color: '#0070F3' }} /> */}
       </Link>
     );
   },
