@@ -2,17 +2,28 @@ import Link from 'next/link';
 
 import { formateDatePreview } from '@/utils/formatDate';
 
-interface RevueIssue {
+interface QuinkIssue {
   id: string;
-  send_time: string;
-  settings: {
-    title: string;
-  };
+  cover_image_url: string;
+  title: string;
+  summary: string;
+  tags: string;
+  pinned: 0 | 1;
+  first_published_at: string;
+  published_at: string;
+  page_view_count: number;
+  page_read_count: number;
+  outline: Array<{
+    level: 1 | 2 | 3 | 4;
+    text: string;
+  }>;
+  score: number;
+  is_paid_content: boolean;
 }
 
 export interface NewsLettersProps {
   className?: string;
-  issues: RevueIssue[];
+  issues: QuinkIssue[];
 }
 
 const NewsLetters = ({ className, issues }: NewsLettersProps) => {
@@ -23,9 +34,9 @@ const NewsLetters = ({ className, issues }: NewsLettersProps) => {
       <ul>
         {issues.map((issue, idx) => (
           <li key={issue.id} className="grid grid-cols-[1fr_4fr_1fr] p-2 border-b last:border-none">
-            <div>{formateDatePreview(issue.send_time)}</div>
+            <div>{formateDatePreview(issue.published_at)}</div>
             <div className="text-subscrible">
-              <Link href={`/newsletter/${issue.id}`}>{issue?.settings?.title}</Link>
+              <Link href={`/newsletter/${issue.id}`}>{issue?.title}</Link>
             </div>
             <div className="text-right opacity-60">#{issueLen - idx}</div>
           </li>

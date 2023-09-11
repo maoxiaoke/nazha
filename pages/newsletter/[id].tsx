@@ -1,12 +1,21 @@
+import { useMemo } from 'react';
+import { getMDXComponent } from 'mdx-bundler/client';
+import { components } from '@/components/MDXComponents';
+
+import { PostPage } from '@/components/PostPage';
+
+import { loadMDX } from '@/utils/loadMDX';
+
 export async function getServerSideProps({ params }) {
   const { id } = params;
   const revRes = await fetch(
-    `https://${process.env.MAILCHIMP_API_DC}.api.mailchimp.com/3.0/campaigns/${id}/content`,
+    `https://api.quail.ink/lists/${process.env.QUAIL_API_LISTID}/posts/${id}`,
     {
       method: 'GET',
+      // @ts-ignore custom header
       headers: {
-        Authorization: `anystring ${process.env.MAILCHIMP_API_KEY}`,
-        'Content-Type': 'application/json'
+        Authorization: `Bearer ${process.env.QUAIL_API_TOKEN}`,
+        'X-QUAIL-Key': process.env.QUAIL_API_KEY
       }
     }
   );
@@ -14,18 +23,38 @@ export async function getServerSideProps({ params }) {
   const resObj = await revRes.json();
 
   if (resObj.status >= 400) {
-    return { props: { issueContent: {} } };
+    return { props: { issue: {} } };
   }
 
-  return { props: { issueContent: resObj } };
+  const { code } = await loadMDX(resObj?.data?.content);
+
+  return {
+    props: {
+      issue: {
+        ...resObj?.data,
+        code
+      }
+    }
+  };
 }
 
-export const Newsletter = ({ issueContent }) => {
+export const Newsletter = ({ issue }) => {
+  const Component = useMemo(() => getMDXComponent(issue?.code), [issue?.code]);
   return (
-    <div className="max-w-[75ch] mx-auto pt-12 pb-28 px-5">
-      {/* @ts-ignore ignore to warn web component */}
-      <newsletter-content content={issueContent?.html}></newsletter-content>
-    </div>
+    <PostPage
+      meta={{
+        title: issue?.title,
+        published: issue?.first_published_at,
+        listed: true,
+        date: issue?.published_at,
+        lastUpdateDate: issue?.published_at,
+        description: issue?.summary,
+        tags: issue?.tags,
+        slug: issue?.slug,
+        language: 'Chinese'
+      }}>
+      <Component components={{ ...components }} />
+    </PostPage>
   );
 };
 

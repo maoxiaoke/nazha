@@ -11,19 +11,24 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     });
   }
 
-  // https://mailchimp.com/developer/marketing/api/list-members/
   const revRes = await fetch(
-    `https://${process.env.MAILCHIMP_API_DC}.api.mailchimp.com/3.0/lists/${process.env.MAILCHIMP_API_AUDIENCE_ID}/members`,
+    `https://api.quail.ink/subscriptions/${process.env.QUAIL_API_LISTID}/add-members`,
     {
       method: 'POST',
+      // @ts-ignore custom header
       headers: {
-        Authorization: `anystring ${process.env.MAILCHIMP_API_KEY}`,
-        'Content-Type': 'application/json'
+        Authorization: `Bearer ${process.env.QUAIL_API_TOKEN}`,
+        'X-QUAIL-Key': process.env.QUAIL_API_KEY
       },
       body: JSON.stringify({
-        email_address: email,
-        status: 'subscribed',
-        tags: ['blog']
+        'challenge-action': 'subscribe',
+        'challenge-token': '',
+        members: [
+          {
+            email: email,
+            premium: 'free'
+          }
+        ]
       })
     }
   );
