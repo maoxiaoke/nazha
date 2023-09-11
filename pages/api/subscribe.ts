@@ -33,13 +33,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
   );
 
-  const data = await revRes.json();
+  try {
+    const data = await revRes.json();
 
-  if (data.status >= 400) {
+    if (data?.msg) {
+      return res.status(500).json({
+        error: data?.message ?? 'Something went wrong'
+      });
+    }
+
+    return res.status(200).json({ error: '' });
+  } catch (err) {
     return res.status(500).json({
-      error: data?.detail ?? 'Something went wrong'
+      error: 'Something went wrong'
     });
   }
-
-  return res.status(200).json({ error: '' });
 }
