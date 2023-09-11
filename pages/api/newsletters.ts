@@ -13,11 +13,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
   });
 
-  const resObj = await revRes.json();
+  try {
+    const resObj = await revRes.json();
 
-  if (resObj.status >= 400) {
-    return res.status(500).json({ error: resObj?.detail ?? 'Something went wrong' });
+    if (resObj?.msg) {
+      return res.status(500).json({
+        error: resObj?.msg ?? 'Something went wrong'
+      });
+    }
+
+    return res.status(200).json({ issues: resObj?.data?.items ?? [] });
+  } catch (err) {
+    return res.status(500).json({
+      error: 'Something went wrong'
+    });
   }
-
-  return res.status(200).json({ issues: resObj?.data?.items ?? [] });
 }
