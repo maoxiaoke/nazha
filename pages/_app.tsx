@@ -35,7 +35,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
       <Head>
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-MD6N0LS362" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <script src="/javascripts/newsletter-content.js" />
+        {/* <script src="/javascripts/newsletter-content.js" /> */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
