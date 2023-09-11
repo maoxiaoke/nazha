@@ -2,6 +2,8 @@ import { useMemo } from 'react';
 import { getMDXComponent } from 'mdx-bundler/client';
 import { components } from '@/components/MDXComponents';
 
+import { PostPage } from '@/components/PostPage';
+
 import { loadMDX } from '@/utils/loadMDX';
 
 export async function getServerSideProps({ params }) {
@@ -39,9 +41,20 @@ export async function getServerSideProps({ params }) {
 export const Newsletter = ({ issue }) => {
   const Component = useMemo(() => getMDXComponent(issue?.code), [issue?.code]);
   return (
-    <div className="max-w-[75ch] mx-auto pt-12 pb-28 px-5">
+    <PostPage
+      meta={{
+        title: issue?.title,
+        published: issue?.first_published_at,
+        listed: true,
+        date: issue?.published_at,
+        lastUpdateDate: issue?.published_at,
+        description: issue?.summary,
+        tags: issue?.tags,
+        slug: issue?.slug,
+        language: 'Chinese'
+      }}>
       <Component components={{ ...components }} />
-    </div>
+    </PostPage>
   );
 };
 
