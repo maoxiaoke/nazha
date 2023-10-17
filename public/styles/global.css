@@ -220,6 +220,14 @@
   }
 }
 
+.bg-blue-700 {
+  background-color: rgb(255,102,0);
+}
+
+.bg-gray-100 {
+  background-color: gray;
+}
+
 article .anchor {
   padding-left: 0.5rem;
   opacity: 0;

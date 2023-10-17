@@ -6,6 +6,7 @@ import Head from 'next/head';
 import localFont from 'next/font/local';
 import { Montserrat, Overpass_Mono } from 'next/font/google';
 import Nav from '@/components/Nav';
+import { useRouter } from 'next/router';
 import { SEO } from '@/components/SEO';
 import { TagsProvider } from '@/components/tags/TagsContext';
 
@@ -30,12 +31,13 @@ const overpass = Overpass_Mono({
 });
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
+  const router = useRouter();
+  const hiddenNav = router.pathname === '/hackernews-top-archive';
   return (
     <>
       <Head>
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-MD6N0LS362" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        {/* <script src="/javascripts/newsletter-content.js" /> */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -55,7 +57,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
       <div
         className={`${gothamsm.variable} ${catamaran.variable} ${montserrat.variable} ${overpass.variable} w-full h-full`}>
         <TagsProvider>
-          <Nav />
+          {hiddenNav ? <></> : <Nav />}
           <main className="w-full mt-2">
             <Component {...pageProps} />
           </main>

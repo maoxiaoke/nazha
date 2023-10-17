@@ -74,5 +74,9 @@ module.exports = {
   variants: {
     extend: {}
   },
-  plugins: [hoverPlugin]
+  plugins: [hoverPlugin, require('flowbite/plugin')],
+
+  content: [
+    "./node_modules/flowbite/**/*.js"
+  ]
 };

@@ -29,7 +29,6 @@ export const PostPreview: React.FC<PostMeta> = ({ slug, title, date, language })
       <Link
         href={`${router.asPath}posts/${slug}`}
         className="flex items-center p-1 capitalize transition-colors duration-200 rounded outline-none opacity-70 hover:opacity-100 hover:font-black">
-        {/* <a className="flex items-center p-1 capitalize transition-colors duration-200 rounded outline-none opacity-70 hover:opacity-100"> */}
         <p className="text-sm mr-8 min-w-[50px] whitespace-nowrap">
           <time dateTime={validDate(date)}>{formateDatePreview(date)}</time>
         </p>
@@ -37,7 +36,6 @@ export const PostPreview: React.FC<PostMeta> = ({ slug, title, date, language })
         <p className="ml-2 text-xs bg-black opacity-100 text-white dark:bg-white dark:text-black pl-1 pr-1">
           {language}
         </p>
-        {/* </a> */}
       </Link>
     </li>
   );
