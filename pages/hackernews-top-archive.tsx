@@ -40,6 +40,7 @@ export async function getServerSideProps() {
     startOfDay
   )},created_at_i<${getSecondFromTimeStamp(currentDate)}&advancedSyntax=true&hitsPerPage=10`;
 
+  // https://hn.algolia.com/api
   const revRes = await fetch(`http://hn.algolia.com/api/v1/search${querys}`, {
     method: 'GET'
   });
@@ -100,9 +101,8 @@ const HackNewsTopArchive = ({ hits }: { hits: Hit[] }) => {
         <link href="/styles/flowbite.css" rel="stylesheet" />
       </Head>
       <div
-        className="h-screen"
+        className="h-screen font-inter"
         onClick={() => {
-          console.log('oter click');
           if (datePickerInstance) {
             // @ts-ignore
             datePickerInstance.destroy();
@@ -180,7 +180,7 @@ const HackNewsTopArchive = ({ hits }: { hits: Hit[] }) => {
 
           <ul className=" mt-6">
             {(hits ?? []).map((hit, idx) => (
-              <li id={hit.story_id} className="flex mb-[9px] text-sm">
+              <li id={hit.story_id} className="flex mb-[10px] text-sm">
                 <HitItem hit={hit} number={idx + 1} />
               </li>
             ))}
@@ -232,7 +232,7 @@ const HitItem = ({ hit, number }: { hit: Hit; number: number }) => {
           {hit.title}
         </Link>
 
-        <div className="text-xs font-normal text-black mt-[1px]">
+        <div className="text-xs font-normal text-black mt-[2px]">
           <span className="opacity-80">{hit.points} points</span> ·{' '}
           <span className="opacity-60">{hit.num_comments} comments</span>
         </div>

@@ -4,7 +4,7 @@ import '@/public/styles/global.css';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import localFont from 'next/font/local';
-import { Montserrat, Overpass_Mono } from 'next/font/google';
+import { Montserrat, Overpass_Mono, Inter } from 'next/font/google';
 import Nav from '@/components/Nav';
 import { useRouter } from 'next/router';
 import { SEO } from '@/components/SEO';
@@ -29,6 +29,11 @@ const montserrat = Montserrat({
 const overpass = Overpass_Mono({
   subsets: ['latin'],
   variable: '--font-overpass'
+});
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter'
 });
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
@@ -56,7 +61,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
       </Head>
       <SEO />
       <div
-        className={`${gothamsm.variable} ${catamaran.variable} ${montserrat.variable} ${overpass.variable} w-full h-full`}>
+        className={`${gothamsm.variable} ${catamaran.variable} ${montserrat.variable} ${overpass.variable} ${inter.variable} w-full h-full`}>
         <TagsProvider>
           {hiddenNav ? <></> : <Nav />}
           <main className={cn('w-full', !hiddenNav && 'mt-2')}>

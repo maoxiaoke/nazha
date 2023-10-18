@@ -36,6 +36,7 @@ module.exports = {
         catamaran: ['var(--font-catamaran)'],
         montserrat: ['var(--font-montserrat)'],
         overpass: ['var(--font-overpass)'],
+        inter: ['var(--font-inter)'],
       },
 
       colors: {
