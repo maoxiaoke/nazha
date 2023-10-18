@@ -9,6 +9,7 @@ import Nav from '@/components/Nav';
 import { useRouter } from 'next/router';
 import { SEO } from '@/components/SEO';
 import { TagsProvider } from '@/components/tags/TagsContext';
+import { cn } from '@/utils/cn';
 
 const gothamsm = localFont({
   variable: '--font-gothamsm',
@@ -58,7 +59,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
         className={`${gothamsm.variable} ${catamaran.variable} ${montserrat.variable} ${overpass.variable} w-full h-full`}>
         <TagsProvider>
           {hiddenNav ? <></> : <Nav />}
-          <main className="w-full mt-2">
+          <main className={cn('w-full', !hiddenNav && 'mt-2')}>
             <Component {...pageProps} />
           </main>
         </TagsProvider>
