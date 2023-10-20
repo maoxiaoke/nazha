@@ -327,8 +327,20 @@ const HitItem = ({ hit, number }: { hit: Hit; number: number }) => {
         </Link>
 
         <div className="text-xs font-normal text-black mt-[2px]">
+          {hit.url ? (
+            <>
+              <Link href={hit.url} className="hover:underline text-blue-700">
+                {new URL(hit.url).host}
+              </Link>
+              <span> · </span>
+            </>
+          ) : null}
           <span className="opacity-80">{hit.points} points</span> ·{' '}
-          <span className="opacity-60">{hit.num_comments} comments</span>
+          <Link
+            href={`https://news.ycombinator.com/item?id=${hit.story_id}`}
+            className="hover:underline">
+            <span className="opacity-60">{hit.num_comments} comments</span>
+          </Link>
         </div>
       </div>
     </>
