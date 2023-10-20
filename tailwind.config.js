@@ -41,7 +41,7 @@ module.exports = {
 
       colors: {
         ...colors,
-        hacker: 'rgb(255,102,0)',
+        hacker: '#ff6600', // rgb(255, 102, 0)
         purple: '#3f3cbb',
         unhovered: '#d1e8f3ed',
         'unhovered-dark': '#2b4555',
