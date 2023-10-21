@@ -252,7 +252,10 @@ const HackNewsTopArchive = ({ hits }: { hits: Hit[] }) => {
 
             <ul className="mt-6">
               {(allHits ?? []).map((hit, idx) => (
-                <li id={hit.story_id} key={hit.story_id ?? idx} className="flex mb-[10px] text-sm">
+                <li
+                  id={hit.story_id}
+                  key={hit.story_id ?? hit.objectID ?? idx}
+                  className="flex mb-[10px] text-sm">
                   <HitItem hit={hit} number={idx + 1} />
                 </li>
               ))}
@@ -326,7 +329,7 @@ const HitItem = ({ hit, number }: { hit: Hit; number: number }) => {
           ) : null}
           <span className="opacity-80">{hit.points} points</span> ·{' '}
           <Link
-            href={`https://news.ycombinator.com/item?id=${hit.story_id}`}
+            href={`https://news.ycombinator.com/item?id=${hit.story_id ?? hit.objectID}`}
             className="hover:underline">
             <span className="opacity-60">{hit.num_comments} comments</span>
           </Link>
