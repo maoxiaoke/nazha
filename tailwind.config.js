@@ -54,7 +54,7 @@ module.exports = {
         'unhovered-tag-dark': '#292524',
         // primary: 'var(--color-text)',
         // secondary: 'var(--color-text-secondary)',
-        // bg: 'var(--color-background)',
+        bg: 'var(--color-background)',
         nav: 'var(--color-nav-background)',
         // muted: 'var(--color-muted)',
         // accent: 'var(--color-link-posts)',
