@@ -56,7 +56,7 @@
     "@types/react": "17.0.31",
     "@types/react-dom": "17.0.10",
     "@typescript-eslint/eslint-plugin": "5.1.0",
-    "@typescript-eslint/parser": "5.1.0",
+    "@typescript-eslint/parser": "6.8.0",
     "autoprefixer": "^10.4.16",
     "babel-plugin-import-glob-array": "^0.2.0",
     "eslint": "^8.51.0",
