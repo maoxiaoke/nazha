@@ -1,9 +1,8 @@
-import { useMemo } from 'react';
 import { getMDXComponent } from 'mdx-bundler/client';
+import { useMemo } from 'react';
+
 import { components } from '@/components/MDXComponents';
-
 import { PostPage } from '@/components/PostPage';
-
 import { loadMDX } from '@/utils/loadMDX';
 
 export async function getServerSideProps({ params }) {
