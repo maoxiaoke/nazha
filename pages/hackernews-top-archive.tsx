@@ -1,17 +1,19 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import { format, localeFormat } from 'light-date';
-import { useRef, useState, useMemo } from 'react';
 import { ChevronLeftCircle, ChevronRightCircle } from 'lucide-react';
-import { cn } from '@/utils/cn';
-import useSWRInfinite from 'swr/infinite';
-
+import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import Head from 'next/head';
+import { useMemo, useRef, useState } from 'react';
+import useSWRInfinite from 'swr/infinite';
+
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { cn } from '@/utils/cn';
 import {
+  getEndOfDateTimeByUnit,
   getSecondFromTimeStamp,
   getStartDateTimeByUnit,
-  getEndOfDateTimeByUnit,
   getTimeWalkingDateByUnit
 } from '@/utils/date';
 
@@ -109,6 +111,7 @@ const HackNewsTopArchive = ({ hits }: { hits: Hit[] }) => {
           maxDate: currentDate
         });
 
+        // @ts-ignore
         datePickerInstance.setDate(selectedDate.getTime());
 
         if (datepickerEl.current) {
@@ -131,7 +134,7 @@ const HackNewsTopArchive = ({ hits }: { hits: Hit[] }) => {
   const canTriggleRight = useMemo(() => {
     const { start: _start } = getStartAndEndTimetamp(viewType, currentDate);
     return _start > start;
-  }, [viewType, currentDate, start]);
+  }, [viewType, start]);
 
   const timewalking = (backOrForward: -1 | 1) => {
     const _date = getTimeWalkingDateByUnit(selectedDate, viewType, {
@@ -171,9 +174,9 @@ const HackNewsTopArchive = ({ hits }: { hits: Hit[] }) => {
               </span>
             </Link>
             <div className="flex items-center">
-              <a href="#" className="text-sm text-blue-600 dark:text-blue-500 hover:underline">
-                {/* Login */}
-              </a>
+              {/* <a href="#" className="text-sm text-blue-600 dark:text-blue-500 hover:underline"> */}
+              {/* Login */}
+              {/* </a> */}
             </div>
           </div>
         </nav>
