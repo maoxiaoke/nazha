@@ -2,11 +2,12 @@ import '@/public/styles/font.css';
 import '@/public/styles/global.css';
 
 import { AppProps } from 'next/app';
-import Head from 'next/head';
+import { Inter, Montserrat, Overpass_Mono } from 'next/font/google';
 import localFont from 'next/font/local';
-import { Montserrat, Overpass_Mono, Inter } from 'next/font/google';
-import Nav from '@/components/Nav';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
+
+import Nav from '@/components/Nav';
 import { SEO } from '@/components/SEO';
 import { TagsProvider } from '@/components/tags/TagsContext';
 import { cn } from '@/utils/cn';
