@@ -32,27 +32,27 @@ export interface Hit {
 const currentDate = new Date();
 let datePickerInstance = null;
 
-export async function getServerSideProps() {
-  const startOfDay = getStartDateTimeByUnit(currentDate, 'day');
+// export async function getServerSideProps() {
+//   const startOfDay = getStartDateTimeByUnit(currentDate, 'day');
 
-  const querys = `?query=&tags=story&numericFilters=created_at_i>${getSecondFromTimeStamp(
-    startOfDay
-  )},created_at_i<${getSecondFromTimeStamp(currentDate)}&advancedSyntax=true&hitsPerPage=15`;
+//   const querys = `?query=&tags=story&numericFilters=created_at_i>${getSecondFromTimeStamp(
+//     startOfDay
+//   )},created_at_i<${getSecondFromTimeStamp(currentDate)}&advancedSyntax=true&hitsPerPage=15`;
 
-  // https://hn.algolia.com/api
-  // https://www.algolia.com/doc/api-reference/search-api-parameters/
-  const revRes = await fetch(`http://hn.algolia.com/api/v1/search${querys}`, {
-    method: 'GET'
-  });
+//   // https://hn.algolia.com/api
+//   // https://www.algolia.com/doc/api-reference/search-api-parameters/
+//   const revRes = await fetch(`http://hn.algolia.com/api/v1/search${querys}`, {
+//     method: 'GET'
+//   });
 
-  const resObj = await revRes.json();
+//   const resObj = await revRes.json();
 
-  return {
-    props: {
-      hits: resObj?.hits ?? []
-    }
-  };
-}
+//   return {
+//     props: {
+//       hits: resObj?.hits ?? []
+//     }
+//   };
+// }
 
 const getStartAndEndTimetamp = (viewType: 'day' | 'month' | 'year', selectDate: Date) => {
   return {
@@ -77,7 +77,7 @@ const HackNewsTopArchive = ({ hits }: { hits: Hit[] }) => {
   /**
    * request
    */
-  const { data, isLoading, size, setSize, mutate } = useSWRInfinite(
+  const { data, isLoading, size, setSize } = useSWRInfinite(
     (index, previousPageData) => {
       return `/api/search?page=${index}&startTimeStamp=${start}&endTimeStamp=${end}`;
     },
@@ -85,13 +85,6 @@ const HackNewsTopArchive = ({ hits }: { hits: Hit[] }) => {
     {
       revalidateFirstPage: false
     }
-    // {
-    //   fallbackData: [
-    //     {
-    //       hits: hits
-    //     }
-    //   ]
-    // }
   );
 
   const dayMonthYear = [
@@ -118,8 +111,6 @@ const HackNewsTopArchive = ({ hits }: { hits: Hit[] }) => {
 
         datePickerInstance.setDate(selectedDate.getTime());
 
-        console.log('fsfddsfd', datePickerInstance);
-
         if (datepickerEl.current) {
           datepickerEl.current.addEventListener('changeDate', (e: any) => {
             const value = e.detail.date;
@@ -135,8 +126,6 @@ const HackNewsTopArchive = ({ hits }: { hits: Hit[] }) => {
       return [...acc, ...cur.hits];
     }, []) ?? [];
 
-  console.log('aaas', allHits);
-
   const isLoadingMore = isLoading || (size > 0 && data && typeof data[size - 1] === 'undefined');
 
   const canTriggleRight = useMemo(() => {
@@ -149,17 +138,14 @@ const HackNewsTopArchive = ({ hits }: { hits: Hit[] }) => {
       backOrForward
     });
 
-    console.log('timewalking__', _date);
-
     setSelectedDate(_date);
   };
-
-  console.log('dddddd--', format(selectedDate, '{MM}/{dd}/{yyyy}'));
 
   return (
     <>
       <Head>
         <link href="/styles/flowbite.css" rel="stylesheet" />
+        <link rel="icon" href="/images/hacker-news.png" sizes="any" />
       </Head>
       <div
         className="h-screen font-inter"
@@ -175,7 +161,7 @@ const HackNewsTopArchive = ({ hits }: { hits: Hit[] }) => {
             <Link href="/hackernews-top-archive" className="flex items-center">
               <Image
                 className="w-8 h-8 overflow-hidden mr-3"
-                src="/images/hn.png"
+                src="/images/hacker-news.png"
                 alt="Hacker News Cute Logo"
                 width="32"
                 height="32"
@@ -318,7 +304,7 @@ const HackNewsTopArchive = ({ hits }: { hits: Hit[] }) => {
 const HitItem = ({ hit, number }: { hit: Hit; number: number }) => {
   return (
     <>
-      <span className="inline-block opacity-50 w-8 text-right">{number}.</span>
+      <span className="inline-block opacity-50 w-8 text-right shrink-0">{number}.</span>
       <div className="ml-4 font-normal hover:text-hacker">
         <Link
           href={hit.url ?? 'https://baidu.com'}
