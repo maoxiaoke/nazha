@@ -174,6 +174,12 @@ const HackNewsTopArchive = ({ hits }: { hits: Hit[] }) => {
               </span>
             </Link>
             <div className="flex items-center">
+              <a
+                href="https://twitter.com/xiaokedada"
+                className="text-sm text-blue-600 dark:text-blue-500 hover:underline">
+                About me
+              </a>
+
               {/* <a href="#" className="text-sm text-blue-600 dark:text-blue-500 hover:underline"> */}
               {/* Login */}
               {/* </a> */}
