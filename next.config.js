@@ -8,20 +8,7 @@ module.exports = {
   transpilePackages: ['flowbite-datepicker'],
   webpack: (config, { isServer }) => {
     if (isServer) {
-      config.plugins.push(
-        new CopyWebpackPlugin({
-          patterns: [
-            {
-              from: 'node_modules/geoip-lite/data/geoip-country.dat',
-              to: 'data/geoip-country.dat'
-            },
-            {
-              from: 'node_modules/geoip-lite/data/geoip-country6.dat',
-              to: 'data/geoip-country6.dat'
-            }
-          ]
-        })
-      );
+      config.externals = [...config.externals, 'geoip-lite'];
     }
     return config;
   }
