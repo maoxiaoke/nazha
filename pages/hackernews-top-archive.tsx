@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import * as geoip from 'geoip-lite';
 import { format, localeFormat } from 'light-date';
 import { ChevronLeftCircle, ChevronRightCircle } from 'lucide-react';
 import Head from 'next/head';
