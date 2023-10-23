@@ -38,6 +38,8 @@ export async function getServerSideProps() {
   const startOfDay = getStartDateTimeByUnit(currentDate, 'day');
   const endOfDay = getEndOfDateTimeByUnit(currentDate, 'day');
 
+  console.log('startOfDay', getSecondFromTimeStamp(startOfDay), getSecondFromTimeStamp(endOfDay));
+
   const querys = `?query=&tags=story&numericFilters=created_at_i>${getSecondFromTimeStamp(
     startOfDay
   )},created_at_i<${getSecondFromTimeStamp(endOfDay)}&advancedSyntax=true&hitsPerPage=15`;
