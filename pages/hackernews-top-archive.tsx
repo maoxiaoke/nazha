@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import geoip from 'geoip-lite';
+import * as geoip from 'geoip-lite';
 import { format, localeFormat } from 'light-date';
 import { ChevronLeftCircle, ChevronRightCircle } from 'lucide-react';
 import Head from 'next/head';
@@ -51,6 +51,8 @@ export async function getServerSideProps(context) {
   const clientIp = context.req.headers['x-forwarded-for'] || context.req.socket.remoteAddress;
 
   const _currentDate = new Date();
+
+  console.log(geoip.lookup('43.230.88.221'), 'aaaa');
 
   const { timezone } = clientIp === '::1' ? { timezone: 'Asia/Shanghai' } : geoip.lookup(clientIp);
 
@@ -177,7 +179,7 @@ const HackNewsTopArchive = ({ hits }: { hits: Hit[] }) => {
   const canTriggleRight = useMemo(() => {
     const { start: _start } = getStartAndEndTimetamp(timezone, viewType, currentDate);
     return _start > start;
-  }, [viewType, start]);
+  }, [viewType, start, timezone]);
 
   const timewalking = (backOrForward: -1 | 1) => {
     const _date = getTimeWalkingDateByUnit(timezone, selectedDate, viewType, {
