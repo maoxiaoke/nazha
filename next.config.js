@@ -7,7 +7,6 @@ module.exports = {
   },
   transpilePackages: ['flowbite-datepicker'],
   webpack: (config, { isServer }) => {
-    if (isServer) {
       config.plugins.push(
         new CopyWebpackPlugin({
           patterns: [
@@ -22,7 +21,6 @@ module.exports = {
           ]
         })
       );
-    }
     return config;
   }
 };
