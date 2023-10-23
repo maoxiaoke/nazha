@@ -31,18 +31,29 @@ export interface Hit {
   url: string;
 }
 
-const currentDate = new Date();
 let datePickerInstance = null;
+const currentDate = new Date();
 
-export async function getServerSideProps() {
-  const startOfDay = getStartDateTimeByUnit(currentDate, 'day');
-  const endOfDay = getEndOfDateTimeByUnit(currentDate, 'day');
+export async function getServerSideProps(context) {
+  const clientIp = context.req.headers['x-forwarded-for'] || context.req.socket.remoteAddress;
 
-  console.log('startOfDay', getSecondFromTimeStamp(startOfDay), getSecondFromTimeStamp(endOfDay));
+  const _currentDate = new Date();
+
+  // console.log('fs', context.req);
+
+  const startOfDay = getStartDateTimeByUnit(_currentDate, 'day');
+  const endOfDay = getEndOfDateTimeByUnit(_currentDate, 'day');
+
+  console.log(
+    'startOfDay',
+    getSecondFromTimeStamp(startOfDay),
+    getSecondFromTimeStamp(endOfDay),
+    clientIp
+  );
 
   const querys = `?query=&tags=story&numericFilters=created_at_i>${getSecondFromTimeStamp(
     startOfDay
-  )},created_at_i<${getSecondFromTimeStamp(endOfDay)}&advancedSyntax=true&hitsPerPage=15`;
+  )},created_at_i<${getSecondFromTimeStamp(endOfDay) - 28800}&advancedSyntax=true&hitsPerPage=15`;
 
   // https://hn.algolia.com/api
   // https://www.algolia.com/doc/api-reference/search-api-parameters/
