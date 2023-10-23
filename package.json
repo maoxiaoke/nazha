@@ -11,6 +11,7 @@
     "next"
   ],
   "scripts": {
+    "preinstall": "npm install --no-save geoip-lite -f && npm run-script updatedb:geoip-lite",
     "dev": "next",
     "build": "next build",
     "postbuild": "next-sitemap",
