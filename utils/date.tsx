@@ -1,4 +1,9 @@
 import dayjs from 'dayjs';
+import timezone from 'dayjs/plugin/timezone';
+import utc from 'dayjs/plugin/utc';
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 export const visibleDate = (date: string) => {
   const d = new Date(date);
@@ -22,15 +27,24 @@ export const getSecondFromTimeStamp = (_date: Date) => {
   return Math.floor(_date.getTime() / 1000);
 };
 
-export const getStartDateTimeByUnit = (currentDate: Date, unit: 'day' | 'month' | 'year') => {
-  return dayjs(currentDate).startOf(unit).toDate();
+export const getStartDateTimeByUnit = (
+  tz: string,
+  currentDate: Date,
+  unit: 'day' | 'month' | 'year'
+) => {
+  return dayjs(currentDate).tz(tz).startOf(unit).toDate();
 };
 
-export const getEndOfDateTimeByUnit = (currentDate: Date, unit: 'day' | 'month' | 'year') => {
-  return dayjs(currentDate).endOf(unit).toDate();
+export const getEndOfDateTimeByUnit = (
+  tz: string,
+  currentDate: Date,
+  unit: 'day' | 'month' | 'year'
+) => {
+  return dayjs(currentDate).tz(tz).endOf(unit).toDate();
 };
 
 export const getTimeWalkingDateByUnit = (
+  tz: string,
   currentDate: Date,
   unit: 'day' | 'month' | 'year',
   {
@@ -43,5 +57,5 @@ export const getTimeWalkingDateByUnit = (
 ) => {
   const fnc = backOrForward === -1 ? 'subtract' : 'add';
 
-  return dayjs(currentDate)[fnc](step, unit).toDate();
+  return dayjs(currentDate).tz(tz)[fnc](step, unit).toDate();
 };
