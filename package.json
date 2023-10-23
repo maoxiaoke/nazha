@@ -34,6 +34,7 @@
     "feed": "^4.2.2",
     "flowbite-datepicker": "^1.2.2",
     "framer-motion": "^9.1.7",
+    "geoip-lite": "^1.4.7",
     "light-date": "^1.2.0",
     "lucide-react": "^0.287.0",
     "mdx-bundler": "^8.1.0",

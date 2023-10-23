@@ -1,11 +1,13 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
+import geoip from 'geoip-lite';
 import { format, localeFormat } from 'light-date';
 import { ChevronLeftCircle, ChevronRightCircle } from 'lucide-react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useMemo, useRef, useState } from 'react';
+import useSWR from 'swr';
 import useSWRInfinite from 'swr/infinite';
 
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -34,21 +36,33 @@ export interface Hit {
 let datePickerInstance = null;
 const currentDate = new Date();
 
+const fetcher = (url) => fetch(url).then((res) => res.json());
+
+/**
+ * get user timezone by ip
+ */
+const useTimezone = () => {
+  const { data } = useSWR('https://ipapi.co/json/', fetcher);
+
+  return data?.timezone ?? Intl.DateTimeFormat().resolvedOptions().timeZone;
+};
+
 export async function getServerSideProps(context) {
   const clientIp = context.req.headers['x-forwarded-for'] || context.req.socket.remoteAddress;
 
   const _currentDate = new Date();
 
-  // console.log('fs', context.req);
+  const { timezone } = clientIp === '::1' ? { timezone: 'Asia/Shanghai' } : geoip.lookup(clientIp);
 
-  const startOfDay = getStartDateTimeByUnit(_currentDate, 'day');
-  const endOfDay = getEndOfDateTimeByUnit(_currentDate, 'day');
+  const startOfDay = getStartDateTimeByUnit(timezone, _currentDate, 'day');
+  const endOfDay = getEndOfDateTimeByUnit(timezone, _currentDate, 'day');
 
   console.log(
     'startOfDay',
     getSecondFromTimeStamp(startOfDay),
     getSecondFromTimeStamp(endOfDay),
-    clientIp
+    clientIp,
+    timezone
   );
 
   const querys = `?query=&tags=story&numericFilters=created_at_i>${getSecondFromTimeStamp(
@@ -70,10 +84,14 @@ export async function getServerSideProps(context) {
   };
 }
 
-const getStartAndEndTimetamp = (viewType: 'day' | 'month' | 'year', selectDate: Date) => {
+const getStartAndEndTimetamp = (
+  tz: string,
+  viewType: 'day' | 'month' | 'year',
+  selectDate: Date
+) => {
   return {
-    start: getSecondFromTimeStamp(getStartDateTimeByUnit(selectDate, viewType)),
-    end: getSecondFromTimeStamp(getEndOfDateTimeByUnit(selectDate, viewType))
+    start: getSecondFromTimeStamp(getStartDateTimeByUnit(tz, selectDate, viewType)),
+    end: getSecondFromTimeStamp(getEndOfDateTimeByUnit(tz, selectDate, viewType))
   };
 };
 
@@ -82,12 +100,14 @@ const HackNewsTopArchive = ({ hits }: { hits: Hit[] }) => {
   const [viewType, setViewType] = useState<'day' | 'month' | 'year'>('day');
   const [selectedDate, setSelectedDate] = useState<Date>(currentDate);
 
+  const timezone = useTimezone();
+
   /**
    * searchs params
    */
   const { start, end } = useMemo(
-    () => getStartAndEndTimetamp(viewType, selectedDate),
-    [viewType, selectedDate]
+    () => getStartAndEndTimetamp(timezone, viewType, selectedDate),
+    [viewType, selectedDate, timezone]
   );
 
   /**
@@ -97,7 +117,7 @@ const HackNewsTopArchive = ({ hits }: { hits: Hit[] }) => {
     (index, previousPageData) => {
       return `/api/search?page=${index}&startTimeStamp=${start}&endTimeStamp=${end}`;
     },
-    (...args) => fetch(...args).then((res) => res.json()),
+    fetcher,
     {
       revalidateOnMount: false,
       revalidateFirstPage: false,
@@ -155,12 +175,12 @@ const HackNewsTopArchive = ({ hits }: { hits: Hit[] }) => {
   const isLoadingMore = isLoading || (size > 0 && data && typeof data[size - 1] === 'undefined');
 
   const canTriggleRight = useMemo(() => {
-    const { start: _start } = getStartAndEndTimetamp(viewType, currentDate);
+    const { start: _start } = getStartAndEndTimetamp(timezone, viewType, currentDate);
     return _start > start;
   }, [viewType, start]);
 
   const timewalking = (backOrForward: -1 | 1) => {
-    const _date = getTimeWalkingDateByUnit(selectedDate, viewType, {
+    const _date = getTimeWalkingDateByUnit(timezone, selectedDate, viewType, {
       backOrForward
     });
 
