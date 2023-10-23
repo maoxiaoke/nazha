@@ -34,27 +34,27 @@ export interface Hit {
 const currentDate = new Date();
 let datePickerInstance = null;
 
-// export async function getServerSideProps() {
-//   const startOfDay = getStartDateTimeByUnit(currentDate, 'day');
+export async function getServerSideProps() {
+  const startOfDay = getStartDateTimeByUnit(currentDate, 'day');
 
-//   const querys = `?query=&tags=story&numericFilters=created_at_i>${getSecondFromTimeStamp(
-//     startOfDay
-//   )},created_at_i<${getSecondFromTimeStamp(currentDate)}&advancedSyntax=true&hitsPerPage=15`;
+  const querys = `?query=&tags=story&numericFilters=created_at_i>${getSecondFromTimeStamp(
+    startOfDay
+  )},created_at_i<${getSecondFromTimeStamp(currentDate)}&advancedSyntax=true&hitsPerPage=15`;
 
-//   // https://hn.algolia.com/api
-//   // https://www.algolia.com/doc/api-reference/search-api-parameters/
-//   const revRes = await fetch(`http://hn.algolia.com/api/v1/search${querys}`, {
-//     method: 'GET'
-//   });
+  // https://hn.algolia.com/api
+  // https://www.algolia.com/doc/api-reference/search-api-parameters/
+  const revRes = await fetch(`http://hn.algolia.com/api/v1/search${querys}`, {
+    method: 'GET'
+  });
 
-//   const resObj = await revRes.json();
+  const resObj = await revRes.json();
 
-//   return {
-//     props: {
-//       hits: resObj?.hits ?? []
-//     }
-//   };
-// }
+  return {
+    props: {
+      hits: resObj?.hits ?? []
+    }
+  };
+}
 
 const getStartAndEndTimetamp = (viewType: 'day' | 'month' | 'year', selectDate: Date) => {
   return {
@@ -85,7 +85,16 @@ const HackNewsTopArchive = ({ hits }: { hits: Hit[] }) => {
     },
     (...args) => fetch(...args).then((res) => res.json()),
     {
-      revalidateFirstPage: false
+      revalidateOnMount: false,
+      revalidateFirstPage: false,
+      fallbackData:
+        viewType === 'day'
+          ? [
+              {
+                hits: hits
+              }
+            ]
+          : []
     }
   );
 
@@ -219,7 +228,10 @@ const HackNewsTopArchive = ({ hits }: { hits: Hit[] }) => {
               <div className="flex items-center justify-end">
                 <Tabs
                   defaultValue={viewType}
-                  onValueChange={(type: 'day' | 'month' | 'year') => setViewType(type)}
+                  onValueChange={(type: 'day' | 'month' | 'year') => {
+                    setViewType(type);
+                    setSelectedDate(currentDate);
+                  }}
                   className="rounded overflow-hidden">
                   <TabsList>
                     <TabsTrigger value="day">Day</TabsTrigger>
@@ -319,8 +331,9 @@ const HitItem = ({ hit, number }: { hit: Hit; number: number }) => {
       <span className="inline-block opacity-50 w-8 text-right shrink-0">{number}.</span>
       <div className="ml-4 font-normal hover:text-hacker">
         <Link
-          href={hit.url ?? 'https://baidu.com'}
-          className="hover:underline font-semibold opacity-90">
+          href={hit.url ?? `https://news.ycombinator.com/item?id=${hit.story_id ?? hit.objectID}`}
+          className="hover:underline font-semibold opacity-90"
+          target="_blank">
           {hit.title}
         </Link>
 
@@ -336,7 +349,8 @@ const HitItem = ({ hit, number }: { hit: Hit; number: number }) => {
           <span className="opacity-80">{hit.points} points</span> ·{' '}
           <Link
             href={`https://news.ycombinator.com/item?id=${hit.story_id ?? hit.objectID}`}
-            className="hover:underline">
+            className="hover:underline"
+            target="_blank">
             <span className="opacity-60">{hit.num_comments} comments</span>
           </Link>
         </div>
