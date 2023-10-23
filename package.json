@@ -29,6 +29,7 @@
     "@vercel/kv": "^0.2.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
+    "copy-webpack-plugin": "^11.0.0",
     "date-fns": "^2.30.0",
     "dayjs": "^1.11.10",
     "feed": "^4.2.2",
