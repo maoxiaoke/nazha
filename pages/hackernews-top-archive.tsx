@@ -52,9 +52,15 @@ export async function getServerSideProps(context) {
 
   const _currentDate = new Date();
 
-  console.log(geoip.lookup('43.230.88.221'), 'aaaa');
+  let timezone = 'Asia/Shanghai';
 
-  const { timezone } = clientIp === '::1' ? { timezone: 'Asia/Shanghai' } : geoip.lookup(clientIp);
+  if (clientIp !== '::1') {
+    const ipInfo = await fetch(`https://ipapi.co/${clientIp}/json/`).then((res) => res.json());
+
+    if (ipInfo) {
+      timezone = ipInfo.timezone;
+    }
+  }
 
   const startOfDay = getStartDateTimeByUnit(timezone, _currentDate, 'day');
   const endOfDay = getEndOfDateTimeByUnit(timezone, _currentDate, 'day');
