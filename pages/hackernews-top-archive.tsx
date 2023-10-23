@@ -36,10 +36,11 @@ let datePickerInstance = null;
 
 export async function getServerSideProps() {
   const startOfDay = getStartDateTimeByUnit(currentDate, 'day');
+  const endOfDay = getEndOfDateTimeByUnit(currentDate, 'day');
 
   const querys = `?query=&tags=story&numericFilters=created_at_i>${getSecondFromTimeStamp(
     startOfDay
-  )},created_at_i<${getSecondFromTimeStamp(currentDate)}&advancedSyntax=true&hitsPerPage=15`;
+  )},created_at_i<${getSecondFromTimeStamp(endOfDay)}&advancedSyntax=true&hitsPerPage=15`;
 
   // https://hn.algolia.com/api
   // https://www.algolia.com/doc/api-reference/search-api-parameters/

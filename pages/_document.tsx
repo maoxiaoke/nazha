@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/react';
 import { Head, Html, Main, NextScript } from 'next/document';
 
 export default function Document() {
@@ -10,6 +11,9 @@ export default function Document() {
             __html: `!function(){var a=document.body.classList;a.remove("dark");var e=localStorage.getItem("theme");e?a.add(e.replace(/"/g,"")):window.matchMedia("(prefers-color-scheme: dark)").matches?a.add("dark"):a.add("light")}()`
           }}
         />
+
+        <Analytics />
+
         <Main />
         <NextScript />
       </body>

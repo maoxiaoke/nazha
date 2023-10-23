@@ -17,6 +17,12 @@ dependencies:
   '@radix-ui/react-tabs':
     specifier: ^1.0.4
     version: 1.0.4(@types/react-dom@17.0.10)(@types/react@17.0.31)(react-dom@18.2.0)(react@18.2.0)
+  '@vercel/analytics':
+    specifier: ^1.1.1
+    version: 1.1.1
+  '@vercel/kv':
+    specifier: ^0.2.3
+    version: 0.2.3
   class-variance-authority:
     specifier: ^0.7.0
     version: 0.7.0
@@ -3332,6 +3338,29 @@ packages:
       eslint-visitor-keys: 3.4.3
     dev: true
 
+  /@upstash/redis@1.22.0:
+    resolution: {integrity: sha512-sXoJDoEqqik0HbrNE7yRWckOySEFsoBxfRdCgOqkc0w6py19ZZG50SpGkDDEUXSnBqP8VgGYXhWAiBpqxrt5oA==}
+    dependencies:
+      isomorphic-fetch: 3.0.0
+    transitivePeerDependencies:
+      - encoding
+    dev: false
+
+  /@vercel/analytics@1.1.1:
+    resolution: {integrity: sha512-+NqgNmSabg3IFfxYhrWCfB/H+RCUOCR5ExRudNG2+pcRehq628DJB5e1u1xqwpLtn4pAYii4D98w7kofORAGQA==}
+    dependencies:
+      server-only: 0.0.1
+    dev: false
+
+  /@vercel/kv@0.2.3:
+    resolution: {integrity: sha512-Wq1+EsRBQmvLlcqCZeYVg1MAARWrnETgLe3Sy3UCqG+zg7LThpkt0YHZe1NN3Aj4IRmCKQamotWrLDdEx+ZB3w==}
+    engines: {node: '>=14.6'}
+    dependencies:
+      '@upstash/redis': 1.22.0
+    transitivePeerDependencies:
+      - encoding
+    dev: false
+
   /abab@2.0.6:
     resolution: {integrity: sha512-j2afSsaIENvHZN2B8GOpF566vZ5WVk5opAiMTvWgaQT8DkbOqsTfvNAvHoRGU2zzP8cPoqys+xHTRDWW8L+/BA==}
     dev: false
@@ -6454,6 +6483,15 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: false
 
+  /isomorphic-fetch@3.0.0:
+    resolution: {integrity: sha512-qvUtwJ3j6qwsF3jLxkZ72qCgjMysPzDfeV240JHiGZsANBYd+EEuu35v7dfrJ9Up0Ak07D7GGSkGhCHTqg/5wA==}
+    dependencies:
+      node-fetch: 2.7.0
+      whatwg-fetch: 3.6.19
+    transitivePeerDependencies:
+      - encoding
+    dev: false
+
   /iterator.prototype@1.1.2:
     resolution: {integrity: sha512-DR33HMMr8EzwuRL8Y9D3u2BMj8+RqSE850jfGu59kS7tbmPLzGkZmVSfyCFSDxuZiEY6Rzt3T2NA/qU+NwVj1w==}
     dependencies:
@@ -9267,6 +9305,10 @@ packages:
       send: 0.18.0
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /server-only@0.0.1:
+    resolution: {integrity: sha512-qepMx2JxAa5jjfzxG79yPPq+8BuFToHd1hm7kI+Z4zAq1ftQiP7HcxMhDDItrbtwVeLg/cY2JnKnrcFkmiswNA==}
     dev: false
 
   /set-blocking@2.0.0:
