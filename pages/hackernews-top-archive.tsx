@@ -74,13 +74,15 @@ export async function getServerSideProps() {
   const cacheEndTimeStampBySecond =
     (await kv.hget<number>('last24Cache:page:0', 'endTime')) ?? endTimeStampBySecond;
 
+  console.log('hits', endTimeStampBySecond - cacheEndTimeStampBySecond);
+
   // If the cache is not within  10 min, it will be updated
-  if (cacheEndTimeStampBySecond - endTimeStampBySecond < last24CachedTime) {
+  if (endTimeStampBySecond - cacheEndTimeStampBySecond > last24CachedTime) {
     const querys = `?query=&numericFilters=created_at_i>${startTimeStampBySecond},created_at_i<${endTimeStampBySecond}&advancedSyntax=true&hitsPerPage=15`;
 
     // https://hn.algolia.com/api
     // https://www.algolia.com/doc/api-reference/search-api-parameters/
-    const revRes = await fetch(`http://hn.algolia.com/api/v1/search${querys}`, {
+    const revRes = await fetch(`${process.env.HACKER_NEWS_SEARCH_URL}${querys}`, {
       method: 'GET'
     });
 
@@ -102,11 +104,11 @@ export async function getServerSideProps() {
     };
   }
 
-  const hitsStr = await kv.hget<string>('last24Cache:page:0', 'hits');
+  const hits = await kv.hget<string>('last24Cache:page:0', 'hits');
 
   return {
     props: {
-      hits: hitsStr ? JSON.parse(hitsStr) : []
+      hits: hits ?? []
     }
   };
 }
@@ -145,7 +147,7 @@ const HackNewsTopArchive = ({ hits }: { hits: Hit[] }) => {
    */
   const { data, isLoading, size, setSize } = useSWRInfinite(
     (index) => {
-      return `/api/search?page=${index}&startTimeStamp=${start}&endTimeStamp=${end}&viewType=${viewType}}`;
+      return `/api/search?page=${index}&startTimeStamp=${start}&endTimeStamp=${end}&viewType=${viewType}`;
     },
     fetcher,
     {
