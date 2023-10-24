@@ -28,13 +28,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       (await kv.hgetall<Last24CacheObject>(`last24Cache:page:0`)) ?? {};
 
     if (endTime && startTime) {
-      _startTimeStamp = endTime;
-      _endTimeStamp = startTime;
+      _startTimeStamp = startTime;
+      _endTimeStamp = endTime;
     }
 
-    if (queryPage === 0) {
-      const cacheHits = JSON.parse(hits ?? '[]');
-      return res.status(200).json({ hits: cacheHits });
+    if (queryPage == 0) {
+      return res.status(200).json({ hits: hits ?? [] });
     }
   }
 
@@ -43,7 +42,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   // https://hn.algolia.com/api
   // https://www.algolia.com/doc/api-reference/search-api-parameters/
   try {
-    const revRes = await fetch(`http://hn.algolia.com/api/v1/search${querys}`, {
+    const revRes = await fetch(`${process.env.HACKER_NEWS_SEARCH_URL}${querys}`, {
       method: 'GET'
     });
 
