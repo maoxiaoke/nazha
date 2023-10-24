@@ -1,12 +1,44 @@
+import { kv } from '@vercel/kv';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
+interface Last24CacheObject {
+  endTime: number;
+  startTime: number;
+  page: number;
+  hits: string;
+  [index: string]: any;
+}
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { startTimeStamp, endTimeStamp, page = 0 } = req.query;
+  const { startTimeStamp, endTimeStamp, page: queryPage = 0, viewType = 'day' } = req.query;
   const hitsPerPage = 15;
+  const isLast24 = viewType === 'last24';
 
   res.setHeader('Access-Control-Allow-Origin', '*');
 
-  const querys = `?query=&tags=story&numericFilters=created_at_i>${startTimeStamp},created_at_i<${endTimeStamp}&advancedSyntax=true&hitsPerPage=${hitsPerPage}&page=${page}`;
+  let _startTimeStamp = startTimeStamp ?? Math.floor(Date.now() / 1000 - 24 * 60 * 60);
+  let _endTimeStamp = endTimeStamp ?? Math.floor(Date.now() / 1000);
+
+  /**
+   * If the request is for the first page of the last 24 hours, we can use the cache
+   * And If the viewType is last24, we use the cache timestamp
+   */
+  if (isLast24) {
+    const { endTime, startTime, hits } =
+      (await kv.hgetall<Last24CacheObject>(`last24Cache:page:0`)) ?? {};
+
+    if (endTime && startTime) {
+      _startTimeStamp = endTime;
+      _endTimeStamp = startTime;
+    }
+
+    if (queryPage === 0) {
+      const cacheHits = JSON.parse(hits ?? '[]');
+      return res.status(200).json({ hits: cacheHits });
+    }
+  }
+
+  const querys = `?query=&numericFilters=created_at_i>${_startTimeStamp},created_at_i<${_endTimeStamp}&advancedSyntax=true&hitsPerPage=${hitsPerPage}&page=${queryPage}`;
 
   // https://hn.algolia.com/api
   // https://www.algolia.com/doc/api-reference/search-api-parameters/

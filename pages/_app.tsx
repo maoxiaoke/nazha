@@ -1,8 +1,9 @@
 import '@/public/styles/font.css';
 import '@/public/styles/global.css';
 
+import { Analytics } from '@vercel/analytics/react';
 import { AppProps } from 'next/app';
-import { Inter, Montserrat, Overpass_Mono } from 'next/font/google';
+import { Montserrat, Overpass_Mono, Source_Serif_4 } from 'next/font/google';
 import localFont from 'next/font/local';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -32,9 +33,14 @@ const overpass = Overpass_Mono({
   variable: '--font-overpass'
 });
 
-const inter = Inter({
+// const inter = Inter({
+//   subsets: ['latin'],
+//   variable: '--font-inter'
+// });
+
+const sourceSerif4 = Source_Serif_4({
   subsets: ['latin'],
-  variable: '--font-inter'
+  variable: '--font-sourceSerif4'
 });
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
@@ -61,8 +67,10 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
         />
       </Head>
       <SEO />
+      <Analytics />
+
       <div
-        className={`${gothamsm.variable} ${catamaran.variable} ${montserrat.variable} ${overpass.variable} ${inter.variable} w-full h-full`}>
+        className={`${gothamsm.variable} ${catamaran.variable} ${montserrat.variable} ${overpass.variable} ${sourceSerif4.variable} w-full h-full`}>
         <TagsProvider>
           {hiddenNav ? <></> : <Nav />}
           <main className={cn('w-full', !hiddenNav && 'mt-2')}>
