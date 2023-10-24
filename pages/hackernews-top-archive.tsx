@@ -192,6 +192,9 @@ const HackNewsTopArchive = ({ hits }: { hits: Hit[] }) => {
           datepickerEl.current.addEventListener('changeDate', (e: any) => {
             const value = e.detail.date;
             setSelectedDate(value);
+            if (isDay) {
+              setViewType('day');
+            }
           });
         }
       }
@@ -305,7 +308,8 @@ const HackNewsTopArchive = ({ hits }: { hits: Hit[] }) => {
 
               <div className="flex items-center justify-end">
                 <Tabs
-                  defaultValue={viewType}
+                  defaultValue={'last24'}
+                  value={viewType}
                   onValueChange={(type: ViewType) => {
                     setViewType(type);
                     setSelectedDate(currentDate);
