@@ -1,16 +1,17 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
+import { kv } from '@vercel/kv';
 import { format, localeFormat } from 'light-date';
 import { ChevronLeftCircle, ChevronRightCircle } from 'lucide-react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useMemo, useRef, useState } from 'react';
-import useSWR from 'swr';
 import useSWRInfinite from 'swr/infinite';
 
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { cn } from '@/utils/cn';
+import type { ViewType } from '@/utils/date';
 import {
   getEndOfDateTimeByUnit,
   getSecondFromTimeStamp,
@@ -18,9 +19,11 @@ import {
   getTimeWalkingDateByUnit
 } from '@/utils/date';
 
+export type HitTag = 'story' | 'show_hn' | 'ask_hn' | 'job' | 'poll' | 'front_page';
+
 export interface Hit {
   author: 'string';
-  children: string[];
+  children?: string[];
   created_at: string;
   created_at_i: number;
   num_comments: number;
@@ -30,117 +33,136 @@ export interface Hit {
   title: string;
   updated_at: string;
   url: string;
+
+  _tags: HitTag;
+  _highlightResult?: any;
 }
 
 let datePickerInstance = null;
 const currentDate = new Date();
+const last24CachedTime = 60 * 10;
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
+const isContainTag = (hit: Hit, tag: HitTag) => {
+  return (hit?._tags ?? []).includes(tag);
+};
 /**
  * get user timezone by ip
  */
-const useTimezone = () => {
-  const { data } = useSWR('https://ipapi.co/json/', fetcher);
+// const useTimezone = () => {
+//   const { data } = useSWR('https://ipapi.co/json/', fetcher);
 
-  return data?.timezone ?? Intl.DateTimeFormat().resolvedOptions().timeZone;
+//   return data?.timezone ?? Intl.DateTimeFormat().resolvedOptions().timeZone;
+// };
+
+const pickNecessaryHitParm = (hit: Hit) => {
+  const _hit = {
+    ...hit
+  };
+  delete _hit.children;
+  delete _hit._highlightResult;
+  return _hit;
 };
 
-export async function getServerSideProps(context) {
-  const clientIp = context.req.headers['x-forwarded-for'] || context.req.socket.remoteAddress;
+export async function getServerSideProps() {
+  const currentTimeStamp = Date.now();
 
-  const _currentDate = new Date();
+  const endTimeStampBySecond = getSecondFromTimeStamp(currentTimeStamp);
+  const startTimeStampBySecond = getSecondFromTimeStamp(currentTimeStamp) - 24 * 60 * 60;
 
-  let timezone = 'Asia/Shanghai';
+  const cacheEndTimeStampBySecond =
+    (await kv.hget<number>('last24Cache:page:0', 'endTime')) ?? endTimeStampBySecond;
 
-  if (clientIp !== '::1') {
-    const ipInfo = await fetch(`https://ipapi.co/${clientIp}/json/`).then((res) => res.json());
+  // If the cache is not within  10 min, it will be updated
+  if (cacheEndTimeStampBySecond - endTimeStampBySecond < last24CachedTime) {
+    const querys = `?query=&numericFilters=created_at_i>${startTimeStampBySecond},created_at_i<${endTimeStampBySecond}&advancedSyntax=true&hitsPerPage=15`;
 
-    if (ipInfo) {
-      timezone = ipInfo.timezone;
+    // https://hn.algolia.com/api
+    // https://www.algolia.com/doc/api-reference/search-api-parameters/
+    const revRes = await fetch(`http://hn.algolia.com/api/v1/search${querys}`, {
+      method: 'GET'
+    });
+
+    const resObj = await revRes.json();
+
+    if (resObj?.hits) {
+      kv.hset('last24Cache:page:0', {
+        endTime: endTimeStampBySecond,
+        startTime: startTimeStampBySecond,
+        page: 0,
+        hits: JSON.stringify((resObj.hits ?? []).map(pickNecessaryHitParm))
+      });
     }
+
+    return {
+      props: {
+        hits: resObj?.hits ?? []
+      }
+    };
   }
 
-  const startOfDay = getStartDateTimeByUnit(timezone, _currentDate, 'day');
-  const endOfDay = getEndOfDateTimeByUnit(timezone, _currentDate, 'day');
-
-  console.log(
-    'startOfDay',
-    getSecondFromTimeStamp(startOfDay),
-    getSecondFromTimeStamp(endOfDay),
-    clientIp,
-    timezone
-  );
-
-  const querys = `?query=&tags=story&numericFilters=created_at_i>${getSecondFromTimeStamp(
-    startOfDay
-  )},created_at_i<${getSecondFromTimeStamp(endOfDay) - 28800}&advancedSyntax=true&hitsPerPage=15`;
-
-  // https://hn.algolia.com/api
-  // https://www.algolia.com/doc/api-reference/search-api-parameters/
-  const revRes = await fetch(`http://hn.algolia.com/api/v1/search${querys}`, {
-    method: 'GET'
-  });
-
-  const resObj = await revRes.json();
+  const hitsStr = await kv.hget<string>('last24Cache:page:0', 'hits');
 
   return {
     props: {
-      hits: resObj?.hits ?? []
+      hits: hitsStr ? JSON.parse(hitsStr) : []
     }
   };
 }
 
-const getStartAndEndTimetamp = (
-  tz: string,
-  viewType: 'day' | 'month' | 'year',
-  selectDate: Date
-) => {
+const getStartAndEndTimetamp = (viewType: ViewType, selectDate: Date) => {
+  if (viewType === 'last24') {
+    return {
+      start: getSecondFromTimeStamp(selectDate) - 24 * 60 * 60,
+      end: getSecondFromTimeStamp(selectDate)
+    };
+  }
+
   return {
-    start: getSecondFromTimeStamp(getStartDateTimeByUnit(tz, selectDate, viewType)),
-    end: getSecondFromTimeStamp(getEndOfDateTimeByUnit(tz, selectDate, viewType))
+    start: getSecondFromTimeStamp(getStartDateTimeByUnit(selectDate, viewType)),
+    end: getSecondFromTimeStamp(getEndOfDateTimeByUnit(selectDate, viewType))
   };
 };
 
 const HackNewsTopArchive = ({ hits }: { hits: Hit[] }) => {
   const datepickerEl = useRef<HTMLDivElement>(null);
-  const [viewType, setViewType] = useState<'day' | 'month' | 'year'>('day');
+  const [viewType, setViewType] = useState<ViewType>('last24');
   const [selectedDate, setSelectedDate] = useState<Date>(currentDate);
 
-  const timezone = useTimezone();
+  const isDay = viewType === 'day' || viewType === 'last24';
 
   /**
    * searchs params
    */
   const { start, end } = useMemo(
-    () => getStartAndEndTimetamp(timezone, viewType, selectedDate),
-    [viewType, selectedDate, timezone]
+    () => getStartAndEndTimetamp(viewType, selectedDate),
+    [viewType, selectedDate]
   );
 
   /**
    * request
    */
   const { data, isLoading, size, setSize } = useSWRInfinite(
-    (index, previousPageData) => {
-      return `/api/search?page=${index}&startTimeStamp=${start}&endTimeStamp=${end}`;
+    (index) => {
+      return `/api/search?page=${index}&startTimeStamp=${start}&endTimeStamp=${end}&viewType=${viewType}}`;
     },
     fetcher,
     {
       revalidateOnMount: false,
       revalidateFirstPage: false,
-      fallbackData:
-        viewType === 'day'
-          ? [
-              {
-                hits: hits
-              }
-            ]
-          : []
+      fallbackData: isDay
+        ? [
+            {
+              hits: hits
+            }
+          ]
+        : []
     }
   );
 
   const dayMonthYear = [
-    viewType === 'day' && format(selectedDate, '{dd}'),
+    isDay && format(selectedDate, '{dd}'),
     viewType !== 'year' && localeFormat(selectedDate, '{MMMM}'),
     format(selectedDate, '{yyyy}')
   ].filter(Boolean);
@@ -154,7 +176,7 @@ const HackNewsTopArchive = ({ hits }: { hits: Hit[] }) => {
     // @ts-ignore
     import('flowbite-datepicker/Datepicker').then(({ default: Datepicker }) => {
       if (datepickerEl.current) {
-        const pickLevel = viewType === 'day' ? 0 : viewType === 'month' ? 1 : 2;
+        const pickLevel = isDay ? 0 : viewType === 'month' ? 1 : 2;
         datePickerInstance = new Datepicker(datepickerEl.current, {
           pickLevel: pickLevel,
           minDate: new Date('2006-01-01'),
@@ -182,12 +204,23 @@ const HackNewsTopArchive = ({ hits }: { hits: Hit[] }) => {
   const isLoadingMore = isLoading || (size > 0 && data && typeof data[size - 1] === 'undefined');
 
   const canTriggleRight = useMemo(() => {
-    const { start: _start } = getStartAndEndTimetamp(timezone, viewType, currentDate);
+    if (viewType === 'last24') {
+      return false;
+    }
+    const { start: _start } = getStartAndEndTimetamp(viewType, currentDate);
     return _start > start;
-  }, [viewType, start, timezone]);
+  }, [viewType, start]);
+
+  const canTrigglLeft = useMemo(() => {
+    return viewType !== 'last24';
+  }, [viewType]);
 
   const timewalking = (backOrForward: -1 | 1) => {
-    const _date = getTimeWalkingDateByUnit(timezone, selectedDate, viewType, {
+    if (viewType === 'last24') {
+      return;
+    }
+
+    const _date = getTimeWalkingDateByUnit(selectedDate, viewType, {
       backOrForward
     });
 
@@ -201,7 +234,7 @@ const HackNewsTopArchive = ({ hits }: { hits: Hit[] }) => {
         <link rel="icon" href="/images/hacker-news.png" sizes="any" />
       </Head>
       <div
-        className="h-screen font-inter"
+        className="h-screen font-sourceSerif4"
         onClick={() => {
           if (datePickerInstance) {
             // @ts-ignore
@@ -239,13 +272,15 @@ const HackNewsTopArchive = ({ hits }: { hits: Hit[] }) => {
 
         <section className="w-full relative flex flex-row">
           <div className="flex-1 group">
-            <ChevronLeftCircle
-              onClick={() => timewalking(-1)}
-              size={48}
-              color="#ff6600"
-              absoluteStrokeWidth
-              className="fixed inset-y-1/2 left-60 cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-            />
+            {canTrigglLeft ? (
+              <ChevronLeftCircle
+                onClick={() => timewalking(-1)}
+                size={48}
+                color="#ff6600"
+                absoluteStrokeWidth
+                className="fixed inset-y-1/2 left-60 cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              />
+            ) : null}
           </div>
 
           <div className="w-[640px]">
@@ -269,12 +304,13 @@ const HackNewsTopArchive = ({ hits }: { hits: Hit[] }) => {
               <div className="flex items-center justify-end">
                 <Tabs
                   defaultValue={viewType}
-                  onValueChange={(type: 'day' | 'month' | 'year') => {
+                  onValueChange={(type: ViewType) => {
                     setViewType(type);
                     setSelectedDate(currentDate);
                   }}
                   className="rounded overflow-hidden">
                   <TabsList>
+                    <TabsTrigger value="last24">Last 24h</TabsTrigger>
                     <TabsTrigger value="day">Day</TabsTrigger>
                     <TabsTrigger value="month">Month</TabsTrigger>
                     <TabsTrigger value="year">Year</TabsTrigger>
@@ -367,15 +403,23 @@ const HackNewsTopArchive = ({ hits }: { hits: Hit[] }) => {
 };
 
 const HitItem = ({ hit, number }: { hit: Hit; number: number }) => {
+  const isAnotherTag = isContainTag(hit, 'ask_hn') || isContainTag(hit, 'show_hn');
+
   return (
     <>
       <span className="inline-block opacity-50 w-8 text-right shrink-0">{number}.</span>
       <div className="ml-4 font-normal hover:text-hacker">
+        {isAnotherTag ? (
+          <span className="bg-red-700 inline-block leading-normal text-orange-100 rounded-sm text-sm sm:text-xs h-5 sm:h-4 mr-1 px-1">
+            {hit.title.split(':')[0]}
+          </span>
+        ) : null}
+
         <Link
           href={hit.url ?? `https://news.ycombinator.com/item?id=${hit.story_id ?? hit.objectID}`}
           className="hover:underline font-semibold opacity-90"
           target="_blank">
-          {hit.title}
+          {isAnotherTag ? hit.title.split(':').slice(1).join(':') ?? hit.title : hit.title}
         </Link>
 
         <div className="text-xs font-normal text-black mt-[2px]">
