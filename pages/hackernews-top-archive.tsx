@@ -153,13 +153,14 @@ const HackNewsTopArchive = ({ hits }: { hits: Hit[] }) => {
     {
       revalidateOnMount: false,
       revalidateFirstPage: false,
-      fallbackData: isDay
-        ? [
-            {
-              hits: hits
-            }
-          ]
-        : []
+      fallbackData:
+        viewType === 'last24'
+          ? [
+              {
+                hits: hits
+              }
+            ]
+          : []
     }
   );
 
