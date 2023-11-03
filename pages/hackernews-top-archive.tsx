@@ -7,6 +7,7 @@ import type { GetServerSidePropsContext } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import type { Session } from 'next-auth';
 import { getServerSession } from 'next-auth/next';
 import { useMemo, useRef, useState } from 'react';
@@ -81,7 +82,7 @@ const getStartAndEndTimetamp = (viewType: ViewType, selectDate: Date) => {
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const session = await getServerSession(context.req, context.res, authOptions);
 
-  console.log('sesion11111', session);
+  console.log('sesion11111', session, context);
 
   const currentTimeStamp = Date.now();
 
@@ -90,8 +91,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
   const cacheEndTimeStampBySecond =
     (await kv.hget<number>('last24Cache:page:0', 'endTime')) ?? endTimeStampBySecond;
-
-  console.log('hits', endTimeStampBySecond - cacheEndTimeStampBySecond);
 
   // If the cache is not within  10 min, it will be updated
   if (endTimeStampBySecond - cacheEndTimeStampBySecond > last24CachedTime) {
@@ -150,7 +149,10 @@ const HackNewsTopArchive = ({
   last24StartTime
 }: HackNewsTopArchiveProps) => {
   const datepickerEl = useRef<HTMLDivElement>(null);
-  const [viewType, setViewType] = useState<ViewType>('last24');
+  const { query, pathname } = useRouter();
+  const isConcreteTime = query?.startTimeStamp && query?.endTimeStamp;
+
+  const [viewType, setViewType] = useState<ViewType>(isConcreteTime ? 'custom' : 'last24');
   const [selectedDate, setSelectedDate] = useState<Date>(currentDate);
 
   const isDay = viewType === 'day' || viewType === 'last24';
@@ -158,10 +160,15 @@ const HackNewsTopArchive = ({
   /**
    * searchs params
    */
-  const { start, end } = useMemo(
-    () => getStartAndEndTimetamp(viewType, selectedDate),
-    [viewType, selectedDate]
-  );
+  const { start, end } = useMemo(() => {
+    if (viewType === 'custom' && isConcreteTime) {
+      return {
+        start: query.startTimeStamp,
+        end: query.endTimeStamp
+      };
+    }
+    return getStartAndEndTimetamp(viewType, selectedDate);
+  }, [viewType, selectedDate, query, isConcreteTime]);
 
   /**
    * request
@@ -172,7 +179,7 @@ const HackNewsTopArchive = ({
     },
     fetcher,
     {
-      revalidateOnMount: false,
+      revalidateOnMount: true,
       revalidateFirstPage: false,
       fallbackData:
         viewType === 'last24'
@@ -244,7 +251,7 @@ const HackNewsTopArchive = ({
   const isLoadingMore = isLoading || (size > 0 && data && typeof data[size - 1] === 'undefined');
 
   const canTriggleRight = useMemo(() => {
-    if (viewType === 'last24') {
+    if (viewType === 'last24' || viewType === 'custom') {
       return false;
     }
     const { start: _start } = getStartAndEndTimetamp(viewType, currentDate);
@@ -343,29 +350,36 @@ const HackNewsTopArchive = ({
 
           <div className="w-[640px]">
             <header className="flex-wrap flex justify-between border-solid border-b py-4 px-6">
-              <ul>
-                {dayMonthYear.map((time, index) => {
-                  return (
-                    <li
-                      key={index}
-                      className={cn(
-                        'inline-block mr-2 text-gray-700 font-catamaran',
-                        index === 0 && 'text-3xl text-gray-600',
-                        index === 1 && 'text-2xl text-gray-400'
-                      )}>
-                      {time}
-                    </li>
-                  );
-                })}
-              </ul>
+              {viewType !== 'custom' ? (
+                <ul>
+                  {dayMonthYear.map((time, index) => {
+                    return (
+                      <li
+                        key={index}
+                        className={cn(
+                          'inline-block mr-2 text-gray-700 font-catamaran',
+                          index === 0 && 'text-3xl text-gray-600',
+                          index === 1 && 'text-2xl text-gray-400'
+                        )}>
+                        {time}
+                      </li>
+                    );
+                  })}
+                </ul>
+              ) : (
+                <span className="font-catamaran text-2xl text-gray-700 flex items-center text-hacker">
+                  {new Date(Number(query.startTimeStamp + '000')).toLocaleDateString()} ~{' '}
+                  <span>{new Date(Number(query.endTimeStamp + '000')).toLocaleDateString()}</span>
+                </span>
+              )}
 
               <div className="flex items-center justify-end">
                 <Tabs
-                  defaultValue={'last24'}
                   value={viewType}
                   onValueChange={(type: ViewType) => {
                     setViewType(type);
                     setSelectedDate(currentDate);
+                    history.replaceState(null, '', pathname);
                   }}
                   className="rounded overflow-hidden">
                   <TabsList>

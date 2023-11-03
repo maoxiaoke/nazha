@@ -25,7 +25,7 @@ export const getSecondFromTimeStamp = (_date: Date | number) => {
   return Math.floor(_date.getTime() / 1000);
 };
 
-export type ViewType = 'day' | 'month' | 'year' | 'last24';
+export type ViewType = 'day' | 'month' | 'year' | 'last24' | 'custom';
 
 export const getStartDateTimeByUnit = (currentDate: Date, unit: 'day' | 'month' | 'year') => {
   return dayjs(currentDate).startOf(unit).toDate();
