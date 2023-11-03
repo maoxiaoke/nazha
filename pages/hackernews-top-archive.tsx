@@ -3,12 +3,16 @@
 import { kv } from '@vercel/kv';
 import { format, localeFormat } from 'light-date';
 import { ChevronLeftCircle, ChevronRightCircle } from 'lucide-react';
+import type { GetServerSidePropsContext } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
+import type { Session } from 'next-auth';
+import { getServerSession } from 'next-auth/next';
 import { useMemo, useRef, useState } from 'react';
 import useSWRInfinite from 'swr/infinite';
 
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { cn } from '@/utils/cn';
 import type { ViewType } from '@/utils/date';
@@ -18,6 +22,8 @@ import {
   getStartDateTimeByUnit,
   getTimeWalkingDateByUnit
 } from '@/utils/date';
+
+import { authOptions } from './api/auth/[...nextauth]';
 
 export type HitTag = 'story' | 'show_hn' | 'ask_hn' | 'job' | 'poll' | 'front_page';
 
@@ -47,14 +53,6 @@ const fetcher = (url) => fetch(url).then((res) => res.json());
 const isContainTag = (hit: Hit, tag: HitTag) => {
   return (hit?._tags ?? []).includes(tag);
 };
-/**
- * get user timezone by ip
- */
-// const useTimezone = () => {
-//   const { data } = useSWR('https://ipapi.co/json/', fetcher);
-
-//   return data?.timezone ?? Intl.DateTimeFormat().resolvedOptions().timeZone;
-// };
 
 const pickNecessaryHitParm = (hit: Hit) => {
   const _hit = {
@@ -65,7 +63,25 @@ const pickNecessaryHitParm = (hit: Hit) => {
   return _hit;
 };
 
-export async function getServerSideProps() {
+const getStartAndEndTimetamp = (viewType: ViewType, selectDate: Date) => {
+  if (viewType === 'last24') {
+    return {
+      start: getSecondFromTimeStamp(selectDate) - 24 * 60 * 60,
+      end: getSecondFromTimeStamp(selectDate)
+    };
+  }
+
+  return {
+    start: getSecondFromTimeStamp(getStartDateTimeByUnit(selectDate, viewType)),
+    end: getSecondFromTimeStamp(getEndOfDateTimeByUnit(selectDate, viewType))
+  };
+};
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const session = await getServerSession(context.req, context.res, authOptions);
+
+  console.log('sesion11111', session);
+
   const currentTimeStamp = Date.now();
 
   const endTimeStampBySecond = getSecondFromTimeStamp(currentTimeStamp);
@@ -99,7 +115,8 @@ export async function getServerSideProps() {
 
     return {
       props: {
-        hits: resObj?.hits ?? []
+        hits: resObj?.hits ?? [],
+        userSession: session ?? null
       }
     };
   }
@@ -108,26 +125,13 @@ export async function getServerSideProps() {
 
   return {
     props: {
-      hits: hits ?? []
+      hits: hits ?? [],
+      userSession: session ?? null
     }
   };
 }
 
-const getStartAndEndTimetamp = (viewType: ViewType, selectDate: Date) => {
-  if (viewType === 'last24') {
-    return {
-      start: getSecondFromTimeStamp(selectDate) - 24 * 60 * 60,
-      end: getSecondFromTimeStamp(selectDate)
-    };
-  }
-
-  return {
-    start: getSecondFromTimeStamp(getStartDateTimeByUnit(selectDate, viewType)),
-    end: getSecondFromTimeStamp(getEndOfDateTimeByUnit(selectDate, viewType))
-  };
-};
-
-const HackNewsTopArchive = ({ hits }: { hits: Hit[] }) => {
+const HackNewsTopArchive = ({ hits, userSession }: { hits: Hit[]; userSession: Session }) => {
   const datepickerEl = useRef<HTMLDivElement>(null);
   const [viewType, setViewType] = useState<ViewType>('last24');
   const [selectedDate, setSelectedDate] = useState<Date>(currentDate);
@@ -263,15 +267,32 @@ const HackNewsTopArchive = ({ hits }: { hits: Hit[] }) => {
               </span>
             </Link>
             <div className="flex items-center">
-              <a
+              <Link
                 href="https://twitter.com/xiaokedada"
                 className="text-sm text-blue-600 dark:text-blue-500 hover:underline">
                 About me
-              </a>
-
-              {/* <a href="#" className="text-sm text-blue-600 dark:text-blue-500 hover:underline"> */}
-              {/* Login */}
-              {/* </a> */}
+              </Link>
+              {userSession ? (
+                <>
+                  <span className="whitespace-break-spaces">{'  '}</span>
+                  <Avatar className="h-8 w-8">
+                    <AvatarImage
+                      src={userSession?.user?.image ?? ''}
+                      alt={userSession.user?.name ?? ''}
+                    />
+                    <AvatarFallback>{userSession.user?.name}</AvatarFallback>
+                  </Avatar>
+                </>
+              ) : (
+                <>
+                  <span className="whitespace-break-spaces">{' · '}</span>
+                  <Link
+                    href="/api/auth/signin"
+                    className="text-sm text-blue-600 dark:text-blue-500 hover:underline">
+                    Login
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </nav>

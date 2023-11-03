@@ -7,6 +7,7 @@ import { Montserrat, Overpass_Mono, Source_Serif_4 } from 'next/font/google';
 import localFont from 'next/font/local';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { SessionProvider } from 'next-auth/react';
 
 import Nav from '@/components/Nav';
 import { SEO } from '@/components/SEO';
@@ -43,9 +44,10 @@ const sourceSerif4 = Source_Serif_4({
   variable: '--font-sourceSerif4'
 });
 
-const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
+const MyApp: React.FC<AppProps> = ({ Component, pageProps: { session, ...pageProps } }) => {
   const router = useRouter();
-  const hiddenNav = router.pathname === '/hackernews-top-archive';
+  const hiddenNav =
+    router.pathname === '/hackernews-top-archive' || router.pathname === '/authenticate';
   return (
     <>
       <Head>
@@ -69,15 +71,17 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
       <SEO />
       <Analytics />
 
-      <div
-        className={`${gothamsm.variable} ${catamaran.variable} ${montserrat.variable} ${overpass.variable} ${sourceSerif4.variable} w-full h-full`}>
-        <TagsProvider>
-          {hiddenNav ? <></> : <Nav />}
-          <main className={cn('w-full', !hiddenNav && 'mt-2')}>
-            <Component {...pageProps} />
-          </main>
-        </TagsProvider>
-      </div>
+      <SessionProvider session={session}>
+        <div
+          className={`${gothamsm.variable} ${catamaran.variable} ${montserrat.variable} ${overpass.variable} ${sourceSerif4.variable} w-full h-full`}>
+          <TagsProvider>
+            {hiddenNav ? <></> : <Nav />}
+            <main className={cn('w-full h-full', !hiddenNav && 'mt-2')}>
+              <Component {...pageProps} />
+            </main>
+          </TagsProvider>
+        </div>
+      </SessionProvider>
     </>
   );
 };
