@@ -15,6 +15,7 @@ import useSWRInfinite from 'swr/infinite';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { cn } from '@/utils/cn';
+import { copyToClipboard } from '@/utils/copyToClipborad';
 import type { ViewType } from '@/utils/date';
 import {
   getEndOfDateTimeByUnit,
@@ -116,7 +117,9 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     return {
       props: {
         hits: resObj?.hits ?? [],
-        userSession: session ?? null
+        userSession: session ?? null,
+        last24StartTime: startTimeStampBySecond,
+        last24EndTime: endTimeStampBySecond
       }
     };
   }
@@ -126,12 +129,26 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   return {
     props: {
       hits: hits ?? [],
-      userSession: session ?? null
+      userSession: session ?? null,
+      last24StartTime: cacheEndTimeStampBySecond - 24 * 60 * 60,
+      last24EndTime: cacheEndTimeStampBySecond
     }
   };
 }
 
-const HackNewsTopArchive = ({ hits, userSession }: { hits: Hit[]; userSession: Session }) => {
+export interface HackNewsTopArchiveProps {
+  hits: Hit[];
+  userSession: Session;
+  last24StartTime: number;
+  last24EndTime: number;
+}
+
+const HackNewsTopArchive = ({
+  hits,
+  userSession,
+  last24EndTime,
+  last24StartTime
+}: HackNewsTopArchiveProps) => {
   const datepickerEl = useRef<HTMLDivElement>(null);
   const [viewType, setViewType] = useState<ViewType>('last24');
   const [selectedDate, setSelectedDate] = useState<Date>(currentDate);
@@ -206,6 +223,19 @@ const HackNewsTopArchive = ({ hits, userSession }: { hits: Hit[]; userSession: S
     });
   };
 
+  const shareCurrentPage = async () => {
+    let sharedUrl = 'https://www.nazha.co/hackernews-top-archive';
+    if (viewType === 'last24') {
+      sharedUrl = `https://www.nazha.co/hackernews-top-archive?viewType=last24&startTimeStamp=${last24StartTime}&endTimeStamp=${last24EndTime}`;
+    }
+
+    try {
+      await copyToClipboard(sharedUrl);
+    } catch {
+      //
+    }
+  };
+
   const allHits =
     data?.reduce((acc, cur) => {
       return [...acc, ...cur.hits];
@@ -272,26 +302,27 @@ const HackNewsTopArchive = ({ hits, userSession }: { hits: Hit[]; userSession: S
                 className="text-sm text-blue-600 dark:text-blue-500 hover:underline">
                 About me
               </Link>
+              <span className="whitespace-break-spaces">{' · '}</span>
+              <span
+                className="text-sm text-hacker dark:text-blue-500 cursor-pointer"
+                onClick={shareCurrentPage}>
+                Share Current Page
+              </span>
+              <span className="whitespace-break-spaces">{' · '}</span>
               {userSession ? (
-                <>
-                  <span className="whitespace-break-spaces">{'  '}</span>
-                  <Avatar className="h-8 w-8">
-                    <AvatarImage
-                      src={userSession?.user?.image ?? ''}
-                      alt={userSession.user?.name ?? ''}
-                    />
-                    <AvatarFallback>{userSession.user?.name}</AvatarFallback>
-                  </Avatar>
-                </>
+                <Avatar className="h-8 w-8">
+                  <AvatarImage
+                    src={userSession?.user?.image ?? ''}
+                    alt={userSession.user?.name ?? ''}
+                  />
+                  <AvatarFallback>{userSession.user?.name}</AvatarFallback>
+                </Avatar>
               ) : (
-                <>
-                  <span className="whitespace-break-spaces">{' · '}</span>
-                  <Link
-                    href="/api/auth/signin"
-                    className="text-sm text-blue-600 dark:text-blue-500 hover:underline">
-                    Login
-                  </Link>
-                </>
+                <Link
+                  href="/api/auth/signin"
+                  className="text-sm text-blue-600 dark:text-blue-500 hover:underline">
+                  Login
+                </Link>
               )}
             </div>
           </div>

@@ -36,6 +36,7 @@
     "date-fns": "^2.30.0",
     "dayjs": "^1.11.10",
     "feed": "^4.2.2",
+    "flowbite": "^2.0.0",
     "flowbite-datepicker": "^1.2.2",
     "framer-motion": "^9.1.7",
     "light-date": "^1.2.0",
