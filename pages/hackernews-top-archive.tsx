@@ -66,7 +66,7 @@ const pickNecessaryHitParm = (hit: Hit) => {
 };
 
 const getStartAndEndTimetamp = (viewType: ViewType, selectDate: Date) => {
-  if (viewType === 'last24') {
+  if (viewType === 'last24' || viewType === 'custom') {
     return {
       start: getSecondFromTimeStamp(selectDate) - 24 * 60 * 60,
       end: getSecondFromTimeStamp(selectDate)
@@ -163,8 +163,8 @@ const HackNewsTopArchive = ({
   const { start, end } = useMemo(() => {
     if (viewType === 'custom' && isConcreteTime) {
       return {
-        start: query.startTimeStamp,
-        end: query.endTimeStamp
+        start: Number(query.startTimeStamp),
+        end: Number(query.endTimeStamp)
       };
     }
     return getStartAndEndTimetamp(viewType, selectedDate);
@@ -263,7 +263,7 @@ const HackNewsTopArchive = ({
   }, [viewType]);
 
   const timewalking = (backOrForward: -1 | 1) => {
-    if (viewType === 'last24') {
+    if (viewType === 'last24' || viewType === 'custom') {
       return;
     }
 
