@@ -3,14 +3,20 @@
 import { kv } from '@vercel/kv';
 import { format, localeFormat } from 'light-date';
 import { ChevronLeftCircle, ChevronRightCircle } from 'lucide-react';
+import type { GetServerSidePropsContext } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import type { Session } from 'next-auth';
+import { getServerSession } from 'next-auth/next';
 import { useMemo, useRef, useState } from 'react';
 import useSWRInfinite from 'swr/infinite';
 
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { cn } from '@/utils/cn';
+import { copyToClipboard } from '@/utils/copyToClipborad';
 import type { ViewType } from '@/utils/date';
 import {
   getEndOfDateTimeByUnit,
@@ -18,6 +24,8 @@ import {
   getStartDateTimeByUnit,
   getTimeWalkingDateByUnit
 } from '@/utils/date';
+
+import { authOptions } from './api/auth/[...nextauth]';
 
 export type HitTag = 'story' | 'show_hn' | 'ask_hn' | 'job' | 'poll' | 'front_page';
 
@@ -47,14 +55,6 @@ const fetcher = (url) => fetch(url).then((res) => res.json());
 const isContainTag = (hit: Hit, tag: HitTag) => {
   return (hit?._tags ?? []).includes(tag);
 };
-/**
- * get user timezone by ip
- */
-// const useTimezone = () => {
-//   const { data } = useSWR('https://ipapi.co/json/', fetcher);
-
-//   return data?.timezone ?? Intl.DateTimeFormat().resolvedOptions().timeZone;
-// };
 
 const pickNecessaryHitParm = (hit: Hit) => {
   const _hit = {
@@ -65,7 +65,25 @@ const pickNecessaryHitParm = (hit: Hit) => {
   return _hit;
 };
 
-export async function getServerSideProps() {
+const getStartAndEndTimetamp = (viewType: ViewType, selectDate: Date) => {
+  if (viewType === 'last24') {
+    return {
+      start: getSecondFromTimeStamp(selectDate) - 24 * 60 * 60,
+      end: getSecondFromTimeStamp(selectDate)
+    };
+  }
+
+  return {
+    start: getSecondFromTimeStamp(getStartDateTimeByUnit(selectDate, viewType)),
+    end: getSecondFromTimeStamp(getEndOfDateTimeByUnit(selectDate, viewType))
+  };
+};
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const session = await getServerSession(context.req, context.res, authOptions);
+
+  console.log('sesion11111', session, context);
+
   const currentTimeStamp = Date.now();
 
   const endTimeStampBySecond = getSecondFromTimeStamp(currentTimeStamp);
@@ -73,8 +91,6 @@ export async function getServerSideProps() {
 
   const cacheEndTimeStampBySecond =
     (await kv.hget<number>('last24Cache:page:0', 'endTime')) ?? endTimeStampBySecond;
-
-  console.log('hits', endTimeStampBySecond - cacheEndTimeStampBySecond);
 
   // If the cache is not within  10 min, it will be updated
   if (endTimeStampBySecond - cacheEndTimeStampBySecond > last24CachedTime) {
@@ -99,7 +115,10 @@ export async function getServerSideProps() {
 
     return {
       props: {
-        hits: resObj?.hits ?? []
+        hits: resObj?.hits ?? [],
+        userSession: session ?? null,
+        last24StartTime: startTimeStampBySecond,
+        last24EndTime: endTimeStampBySecond
       }
     };
   }
@@ -108,28 +127,32 @@ export async function getServerSideProps() {
 
   return {
     props: {
-      hits: hits ?? []
+      hits: hits ?? [],
+      userSession: session ?? null,
+      last24StartTime: cacheEndTimeStampBySecond - 24 * 60 * 60,
+      last24EndTime: cacheEndTimeStampBySecond
     }
   };
 }
 
-const getStartAndEndTimetamp = (viewType: ViewType, selectDate: Date) => {
-  if (viewType === 'last24') {
-    return {
-      start: getSecondFromTimeStamp(selectDate) - 24 * 60 * 60,
-      end: getSecondFromTimeStamp(selectDate)
-    };
-  }
+export interface HackNewsTopArchiveProps {
+  hits: Hit[];
+  userSession: Session;
+  last24StartTime: number;
+  last24EndTime: number;
+}
 
-  return {
-    start: getSecondFromTimeStamp(getStartDateTimeByUnit(selectDate, viewType)),
-    end: getSecondFromTimeStamp(getEndOfDateTimeByUnit(selectDate, viewType))
-  };
-};
-
-const HackNewsTopArchive = ({ hits }: { hits: Hit[] }) => {
+const HackNewsTopArchive = ({
+  hits,
+  userSession,
+  last24EndTime,
+  last24StartTime
+}: HackNewsTopArchiveProps) => {
   const datepickerEl = useRef<HTMLDivElement>(null);
-  const [viewType, setViewType] = useState<ViewType>('last24');
+  const { query, pathname } = useRouter();
+  const isConcreteTime = query?.startTimeStamp && query?.endTimeStamp;
+
+  const [viewType, setViewType] = useState<ViewType>(isConcreteTime ? 'custom' : 'last24');
   const [selectedDate, setSelectedDate] = useState<Date>(currentDate);
 
   const isDay = viewType === 'day' || viewType === 'last24';
@@ -137,10 +160,15 @@ const HackNewsTopArchive = ({ hits }: { hits: Hit[] }) => {
   /**
    * searchs params
    */
-  const { start, end } = useMemo(
-    () => getStartAndEndTimetamp(viewType, selectedDate),
-    [viewType, selectedDate]
-  );
+  const { start, end } = useMemo(() => {
+    if (viewType === 'custom' && isConcreteTime) {
+      return {
+        start: query.startTimeStamp,
+        end: query.endTimeStamp
+      };
+    }
+    return getStartAndEndTimetamp(viewType, selectedDate);
+  }, [viewType, selectedDate, query, isConcreteTime]);
 
   /**
    * request
@@ -151,7 +179,7 @@ const HackNewsTopArchive = ({ hits }: { hits: Hit[] }) => {
     },
     fetcher,
     {
-      revalidateOnMount: false,
+      revalidateOnMount: true,
       revalidateFirstPage: false,
       fallbackData:
         viewType === 'last24'
@@ -202,6 +230,19 @@ const HackNewsTopArchive = ({ hits }: { hits: Hit[] }) => {
     });
   };
 
+  const shareCurrentPage = async () => {
+    let sharedUrl = 'https://www.nazha.co/hackernews-top-archive';
+    if (viewType === 'last24') {
+      sharedUrl = `https://www.nazha.co/hackernews-top-archive?viewType=last24&startTimeStamp=${last24StartTime}&endTimeStamp=${last24EndTime}`;
+    }
+
+    try {
+      await copyToClipboard(sharedUrl);
+    } catch {
+      //
+    }
+  };
+
   const allHits =
     data?.reduce((acc, cur) => {
       return [...acc, ...cur.hits];
@@ -210,7 +251,7 @@ const HackNewsTopArchive = ({ hits }: { hits: Hit[] }) => {
   const isLoadingMore = isLoading || (size > 0 && data && typeof data[size - 1] === 'undefined');
 
   const canTriggleRight = useMemo(() => {
-    if (viewType === 'last24') {
+    if (viewType === 'last24' || viewType === 'custom') {
       return false;
     }
     const { start: _start } = getStartAndEndTimetamp(viewType, currentDate);
@@ -263,15 +304,33 @@ const HackNewsTopArchive = ({ hits }: { hits: Hit[] }) => {
               </span>
             </Link>
             <div className="flex items-center">
-              <a
+              <Link
                 href="https://twitter.com/xiaokedada"
                 className="text-sm text-blue-600 dark:text-blue-500 hover:underline">
                 About me
-              </a>
-
-              {/* <a href="#" className="text-sm text-blue-600 dark:text-blue-500 hover:underline"> */}
-              {/* Login */}
-              {/* </a> */}
+              </Link>
+              <span className="whitespace-break-spaces">{' · '}</span>
+              <span
+                className="text-sm text-hacker dark:text-blue-500 cursor-pointer"
+                onClick={shareCurrentPage}>
+                Share Current Page
+              </span>
+              <span className="whitespace-break-spaces">{' · '}</span>
+              {userSession ? (
+                <Avatar className="h-8 w-8">
+                  <AvatarImage
+                    src={userSession?.user?.image ?? ''}
+                    alt={userSession.user?.name ?? ''}
+                  />
+                  <AvatarFallback>{userSession.user?.name}</AvatarFallback>
+                </Avatar>
+              ) : (
+                <Link
+                  href="/api/auth/signin"
+                  className="text-sm text-blue-600 dark:text-blue-500 hover:underline">
+                  Login
+                </Link>
+              )}
             </div>
           </div>
         </nav>
@@ -291,29 +350,36 @@ const HackNewsTopArchive = ({ hits }: { hits: Hit[] }) => {
 
           <div className="w-[640px]">
             <header className="flex-wrap flex justify-between border-solid border-b py-4 px-6">
-              <ul>
-                {dayMonthYear.map((time, index) => {
-                  return (
-                    <li
-                      key={index}
-                      className={cn(
-                        'inline-block mr-2 text-gray-700 font-catamaran',
-                        index === 0 && 'text-3xl text-gray-600',
-                        index === 1 && 'text-2xl text-gray-400'
-                      )}>
-                      {time}
-                    </li>
-                  );
-                })}
-              </ul>
+              {viewType !== 'custom' ? (
+                <ul>
+                  {dayMonthYear.map((time, index) => {
+                    return (
+                      <li
+                        key={index}
+                        className={cn(
+                          'inline-block mr-2 text-gray-700 font-catamaran',
+                          index === 0 && 'text-3xl text-gray-600',
+                          index === 1 && 'text-2xl text-gray-400'
+                        )}>
+                        {time}
+                      </li>
+                    );
+                  })}
+                </ul>
+              ) : (
+                <span className="font-catamaran text-2xl text-gray-700 flex items-center text-hacker">
+                  {new Date(Number(query.startTimeStamp + '000')).toLocaleDateString()} ~{' '}
+                  <span>{new Date(Number(query.endTimeStamp + '000')).toLocaleDateString()}</span>
+                </span>
+              )}
 
               <div className="flex items-center justify-end">
                 <Tabs
-                  defaultValue={'last24'}
                   value={viewType}
                   onValueChange={(type: ViewType) => {
                     setViewType(type);
                     setSelectedDate(currentDate);
+                    history.replaceState(null, '', pathname);
                   }}
                   className="rounded overflow-hidden">
                   <TabsList>
