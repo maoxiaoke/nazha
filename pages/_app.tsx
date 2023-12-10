@@ -71,17 +71,17 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps: { session, ...pagePro
       <SEO />
       <Analytics />
 
-      <SessionProvider session={session}>
-        <div
-          className={`${gothamsm.variable} ${catamaran.variable} ${montserrat.variable} ${overpass.variable} ${sourceSerif4.variable} w-full h-full`}>
-          <TagsProvider>
-            {hiddenNav ? <></> : <Nav />}
-            <main className={cn('w-full h-full', !hiddenNav && 'mt-2')}>
-              <Component {...pageProps} />
-            </main>
-          </TagsProvider>
-        </div>
-      </SessionProvider>
+      {/* <SessionProvider session={session}> */}
+      <div
+        className={`${gothamsm.variable} ${catamaran.variable} ${montserrat.variable} ${overpass.variable} ${sourceSerif4.variable} w-full h-full`}>
+        <TagsProvider>
+          {hiddenNav ? <></> : <Nav />}
+          <main className={cn('w-full h-full', !hiddenNav && 'mt-2')}>
+            <Component {...pageProps} />
+          </main>
+        </TagsProvider>
+      </div>
+      {/* </SessionProvider> */}
     </>
   );
 };
