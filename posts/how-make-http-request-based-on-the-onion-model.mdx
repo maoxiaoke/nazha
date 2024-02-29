@@ -18,7 +18,7 @@ language: Chinese
 
 在实际的开发中，对请求库的常见诉求主要有：
 
-![http-client-ability](https://nazha-image-store.oss-cn-shanghai.aliyuncs.com/blog/http-client-abilities.png)
+![http-client-ability](https://pub-388464a2ac764e37ba36c5ea17d573ee.r2.dev/how-request-lib-work.png)
 
 可见，大部分针对请求库的诉求，集中在实际发起 **请求前**，和 **请求结束后**。
 
@@ -28,7 +28,7 @@ language: Chinese
 
 那如何设计一套简单的插件系统呢？考虑到我们设计的插件需要访问请求和响应对象，一个类似 [Koa 中间件](https://koajs.com/) 的设计就呼之欲出了。
 
-![how-middleware-work](https://nazha-image-store.oss-cn-shanghai.aliyuncs.com/blog/how-middleware-work.png)
+![how-middleware-work](https://pub-388464a2ac764e37ba36c5ea17d573ee.r2.dev/how-onion-model-work.png)
 
 ### compose 函数
 
@@ -55,7 +55,7 @@ export const compose = (...funcs: Function[]) => {
 
 这个函数最终实现一个类似洋葱的效果：
 
-<img src="https://nazha-image-store.oss-cn-shanghai.aliyuncs.com/blog/onion-model.png" alt="onion-model" style={{ height: "300px", width: "auto" }} />
+<img src="https://pub-388464a2ac764e37ba36c5ea17d573ee.r2.dev/a-request-lib-onion-model.png" alt="onion-model" />
 
 接下来，就能很好地定义中间件函数了：
 
