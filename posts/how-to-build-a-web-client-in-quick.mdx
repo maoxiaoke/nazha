@@ -11,7 +11,7 @@ language: Chinese
 几周前，有尝试写一个 chatGPT 客户端的想法，经历了 chatGPT key 被 Ban，意外之喜是收到了 [Anthropic](https://www.anthropic.com/) 这家公司研发的 AI 助理 [Claude](https://www.anthropic.com/product) 的内测邀请。
 
 > Anthropic 和 Cluade 的介绍
-> ![cluade intro](https://nazha-image-store.oss-cn-shanghai.aliyuncs.com/blog/cluade.png)
+> ![cluade intro](https://pub-388464a2ac764e37ba36c5ea17d573ee.r2.dev/easier-chat-overview.webp)
 
 所以快速利用了两个周末的（两天 + 两个晚上）开发和优化了页面。在这个开发过程中，如何更快地完成产品开发，如何进行技术决策，提供给大家参考。
 
@@ -27,7 +27,9 @@ language: Chinese
 - [Tailwindcss](https://tailwindcss.com/)
 
 对于**业余项目**，从我目前的体感来说，这俩的结合是目前写代码**最爽**的。
-![](https://nazha-image-store.oss-cn-shanghai.aliyuncs.com/blog/radix.png)
+
+![](https://pub-388464a2ac764e37ba36c5ea17d573ee.r2.dev/radix-ui.webp)
+
 表现在：
 
 - 可以任意修改样式 （不需要特地去侵入样式）
@@ -41,15 +43,12 @@ language: Chinese
 
 图标除了用了 Radix 官方提供的[图标](https://icons.radix-ui.com/)，还用了 [unicorn](https://unicornicons.com/)。通过 Lottie 可以放图标动起来。效果真的百倍的好。下面是为 Mobile 添加的设置按钮。
 
-![](https://nazha-image-store.oss-cn-shanghai.aliyuncs.com/blog/RPReplay_Final1681578787.gif)
-
-右上角的设置图标，就是通过 Lottie 渲染出来的。
-
-
 ## cmd + k 的设计
 
 在后期的优化中，我重构成 cmd + k 这种设计。讲真，真的超中意这种设计，可以把所有的设置收敛起来，保持界面的简洁，不影响用户注意力。
-![](https://nazha-image-store.oss-cn-shanghai.aliyuncs.com/blog/cmd%2Bk.png)
+
+![](https://pub-388464a2ac764e37ba36c5ea17d573ee.r2.dev/easier-chat-command-k.webp)
+
 cmd + k 用的是 [kbar](https://github.com/timc1/kbar)，使用起来，也是个非常棒的产品。
 
 ## 客户端

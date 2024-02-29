@@ -4,11 +4,11 @@
         <title>nazha's blog</title>
         <link>https://www.nazha.co/</link>
         <description>You can find me talking about topics related to JavaScript, TypeScript, React, Web development and technical/coding interviews</description>
-        <lastBuildDate>Sun, 10 Dec 2023 15:45:43 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 29 Feb 2024 06:11:17 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
-        <copyright>All rights reserved 2023, nazha</copyright>
+        <copyright>All rights reserved 2024, nazha</copyright>
         <item>
             <title><![CDATA[先直译后意译 prompt 翻译能力不完全测试]]></title>
             <link>https://www.nazha.co//posts/a-english-2-chinese-prompt-testing</link>

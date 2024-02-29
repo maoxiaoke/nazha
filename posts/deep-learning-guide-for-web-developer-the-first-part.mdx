@@ -55,15 +55,11 @@ sh setup-conda.sh
 
 到 [HuggingFace](https://huggingface.co/) 这个平台上创建一个项目，HuggingFace 可以托管仓库、发布模型、分享数据集、部署前端应用。简单来理解，可以把它当作是 AI 界的 Github。
 
-创建一个 HuggingFace Space：
-
-<img src="https://nazha-image-store.oss-cn-shanghai.aliyuncs.com/blog/huggingface-space-setup.png" />
-
-然后按照 Guideline 克隆，下载，创建第一次提交。
+创建一个 HuggingFace Space 后，然后按照 Guideline 克隆，下载，创建第一次提交。
 
 接下来你会踩坑，由于 HuggingFace 需要使用 [git-lfs](https://git-lfs.com/) 来上传 `> 5M` 的文件，以及一些二进制文件（不如图片之类的）。但是如果没有进行提前设置，就进行 git commit 之后，那么提交记录就一直在，你就一直无法把 `> 5M`  的模型文件上传上去。
 
-![[Pasted image 20230716211943.png]]
+![](https://pub-388464a2ac764e37ba36c5ea17d573ee.r2.dev/huggface-file-is-to-large.png)
 
 所以，**在你做任何提交之前**，先设置 git-lfs。
 
