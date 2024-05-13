@@ -11,7 +11,7 @@ import { useTags } from './tags/TagsContext';
 import ThemeSwitch from './ThemeSwitch';
 
 const routes = [
-  { route: '/about', title: 'About Me' },
+  { route: 'https://garden.nazha.co', title: 'Garden' },
   { route: '/subscribe', title: 'Newsletter' }
 ];
 
