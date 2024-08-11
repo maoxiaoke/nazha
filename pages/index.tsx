@@ -108,6 +108,12 @@ const Posts: React.FC<Props> = ({ posts }) => {
           <Link href="https://hnta.nazha.co" className="hover:font-bold hover:underline">
             Hacker News Top Archive
           </Link>{' '}
+          /{' '}
+          <Link
+            href="https://chromewebstore.google.com/detail/candy/hnmedbpaedahbjkgdionefljphkglpco"
+            className="hover:font-bold hover:underline">
+            Candy
+          </Link>{' '}
           / <span>Megrez (soon)</span>
         </div>
 

@@ -4,11 +4,19 @@
         <title>nazha's blog</title>
         <link>https://www.nazha.co/</link>
         <description>You can find me talking about topics related to JavaScript, TypeScript, React, Web development and technical/coding interviews</description>
-        <lastBuildDate>Tue, 02 Jul 2024 05:07:53 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 11 Aug 2024 07:51:58 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <copyright>All rights reserved 2024, nazha</copyright>
+        <item>
+            <title><![CDATA[来自程序员健身初学者的一些建议]]></title>
+            <link>https://www.nazha.co//posts/some-advice-from-a-beginner-in-fitness-for-programmers</link>
+            <guid>https://www.nazha.co//posts/some-advice-from-a-beginner-in-fitness-for-programmers</guid>
+            <pubDate>Sat, 10 Aug 2024 16:00:00 GMT</pubDate>
+            <author>maoxiaoke@outlook.com (nazha)</author>
+            <category>fitness</category>
+        </item>
         <item>
             <title><![CDATA[Change My Input Method Engine To Rime]]></title>
             <link>https://www.nazha.co//posts/change-my-innput-method-engine-2-rime</link>
