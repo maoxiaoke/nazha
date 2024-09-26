@@ -41,7 +41,7 @@ const generateRSSFeed = (posts: PostMeta[]) => {
   // </follow_challenge>
   feed.addExtra('follow_challenge', {
     feedId: '56285316790819840',
-    userId: '552087324236'
+    userId: '55208732423649280'
   });
 
   posts.forEach((post) => {
