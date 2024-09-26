@@ -1,4 +1,4 @@
-import { Feed } from 'feed';
+import { Feed } from '@nzha/feed';
 import { writeFileSync } from 'fs';
 import { getMDXComponent } from 'mdx-bundler/client';
 import { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
@@ -33,6 +33,15 @@ const generateRSSFeed = (posts: PostMeta[]) => {
     updated: date,
     author,
     copyright: `All rights reserved ${new Date().getFullYear()}, nazha`
+  });
+
+  //   <follow_challenge>
+  //     <feedId>56285316790819840</feedId>
+  //     <userId>55208732423649280</userId>
+  // </follow_challenge>
+  feed.addExtra('follow_challenge', {
+    feedId: '56285316790819840',
+    userId: '552087324236'
   });
 
   posts.forEach((post) => {

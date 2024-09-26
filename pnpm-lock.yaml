@@ -11,6 +11,9 @@ dependencies:
   '@codesandbox/sandpack-themes':
     specifier: ^2.0.21
     version: 2.0.21
+  '@nzha/feed':
+    specifier: 5.0.1
+    version: 5.0.1
   '@radix-ui/react-avatar':
     specifier: ^1.0.4
     version: 1.0.4(@types/react-dom@17.0.10)(@types/react@17.0.31)(react-dom@18.2.0)(react@18.2.0)
@@ -47,9 +50,6 @@ dependencies:
   dayjs:
     specifier: ^1.11.10
     version: 1.11.10
-  feed:
-    specifier: ^4.2.2
-    version: 4.2.2
   flowbite:
     specifier: ^2.0.0
     version: 2.0.0
@@ -2133,6 +2133,13 @@ packages:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.15.0
+
+  /@nzha/feed@5.0.1:
+    resolution: {integrity: sha512-V60lCV+jGp/TbWmzAexwpaDeW+ncRGc+5BmMfTOrTzRFpwzsomoibAQgtGQuJi4iPoE5R8G1xzjD+MsQEyZRBw==}
+    engines: {node: '>=0.4.0'}
+    dependencies:
+      xml-js: 1.6.11
+    dev: false
 
   /@open-draft/deferred-promise@2.2.0:
     resolution: {integrity: sha512-CecwLWx3rhxVQF6V4bAgPS5t+So2sTbPgAzafKkVizyi7tlwpcFpdFqq+wqF2OwNBmqFuu6tOyouTuxgpMfzmA==}
@@ -5688,13 +5695,6 @@ packages:
     resolution: {integrity: sha512-p5161BqbuCaSnB8jIbzQHOlpgsPmK5rJVDfDKO91Axs5NC1uu3HRQm6wt9cd9/+GtQQIO53JdGXXoyDpTAsgYA==}
     dependencies:
       bser: 2.1.1
-    dev: false
-
-  /feed@4.2.2:
-    resolution: {integrity: sha512-u5/sxGfiMfZNtJ3OvQpXcvotFpYkL0n9u9mM2vkui2nGo8b4wvDkJ8gAkYqbA8QpGyFCv3RK0Z+Iv+9veCS9bQ==}
-    engines: {node: '>=0.4.0'}
-    dependencies:
-      xml-js: 1.6.11
     dev: false
 
   /fetch-blob@3.2.0:
@@ -9385,6 +9385,7 @@ packages:
 
   /rimraf@2.6.3:
     resolution: {integrity: sha512-mwqeW5XsA2qAejG46gYdENaxXjx9onRNCfn7L0duuP4hCuTIi/QO7PDK07KJfp1d+izWPrzEJDcSqBa0OZQriA==}
+    deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
     dependencies:
       glob: 7.2.3
