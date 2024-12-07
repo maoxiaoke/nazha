@@ -103,7 +103,7 @@ const Posts: React.FC<Props> = ({ posts }) => {
         canonical="https://www.nazha.co/posts"
         openGraph={{ url: 'https://www.nazha.co/posts' }}
       />
-      <div className="w-full sm:max-w-[75ch] m-auto px-5 py-16 flex flex-col justify-center items-center">
+      <div className="w-full sm:max-w-[75ch] m-auto px-5 py-16 pt-0 sm:pt-16 flex flex-col justify-center items-center">
         <div className="font-overpass text-sm mb-4">
           <Link href="https://hnta.nazha.co" className="hover:font-bold hover:underline">
             Hacker News Top Archive
