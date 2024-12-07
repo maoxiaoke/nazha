@@ -4,15 +4,23 @@
         <title>nazha's blog</title>
         <link>https://www.nazha.co/</link>
         <description>You can find me talking about topics related to JavaScript, TypeScript, React, Web development and technical/coding interviews</description>
-        <lastBuildDate>Thu, 26 Sep 2024 02:43:55 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 07 Dec 2024 06:56:14 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <copyright>All rights reserved 2024, nazha</copyright>
         <follow_challenge>
             <feedId>56285316790819840</feedId>
-            <userId>552087324236</userId>
+            <userId>55208732423649280</userId>
         </follow_challenge>
+        <item>
+            <title><![CDATA[What Resend Is]]></title>
+            <link>https://www.nazha.co//posts/what-resend-is</link>
+            <guid>https://www.nazha.co//posts/what-resend-is</guid>
+            <pubDate>Wed, 04 Dec 2024 16:00:00 GMT</pubDate>
+            <author>maoxiaoke@outlook.com (nazha)</author>
+            <category>reading</category>
+        </item>
         <item>
             <title><![CDATA[来自程序员健身初学者的一些建议]]></title>
             <link>https://www.nazha.co//posts/some-advice-from-a-beginner-in-fitness-for-programmers</link>

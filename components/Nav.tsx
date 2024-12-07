@@ -24,8 +24,8 @@ const Nav: React.FC = () => {
   const { resetTags } = useTags();
 
   return (
-    <header className="relative w-full h-16">
-      <div className="fixed h-20 z-40 w-full flex justify-between backdrop-blur-[20px] backdrop-saturate-150 bg-white/50 dark:bg-[#0D0D1050]">
+    <header className="relative w-full h-40 sm:h-20">
+      <div className="fixed sm:h-20 h-40 z-40 w-full flex justify-between backdrop-blur-[20px] backdrop-saturate-150 bg-white/50 dark:bg-[#0D0D1050]">
         <nav className="w-full sm:max-w-[75ch] m-auto sm:grid md:flex px-5 justify-between items-center ">
           <motion.div
             whileHover={{ scale: 1.3 }}
@@ -43,7 +43,7 @@ const Nav: React.FC = () => {
               </div>
             </Link>
           </motion.div>
-          <div className="flex items-center gap-5">
+          <div className="flex items-center flex-wrap gap-5">
             {routes.map(({ route, title }) => (
               <Link
                 key={route}
