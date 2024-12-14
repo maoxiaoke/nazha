@@ -27,7 +27,7 @@ export const PostPage: React.FC<Props> = ({ meta, children }) => {
       <article className="max-w-[85ch] mx-auto pt-10 pb-28 px-5 prose dark:prose-invert">
         <div>
           <h1 className="mb-1 text-3xl font-black capitalize md:text-4xl">{meta.title}</h1>
-          <div className="flex flex-col	pt-4 pb-8 text-sm font-thin uppercase text-warmGray-500 dark:text-warmGray-400">
+          <div className="flex flex-col	pt-4 pb-4 text-sm font-thin uppercase text-warmGray-500 dark:text-warmGray-400">
             <time dateTime={validDate(meta.date)}>{formateDateFull(meta.date)}</time>
             {/* {meta.lastUpdateDate ? (
               <time dateTime={validDate(meta.lastUpdateDate)}>
@@ -35,6 +35,9 @@ export const PostPage: React.FC<Props> = ({ meta, children }) => {
               </time>
             ) : null} */}
           </div>
+
+          <div className="pb-8">{meta.aiProportion === 0 || meta.aiProportion === undefined ? 'This post was created without the involvement of AI.' : `This post was created with ${meta.aiProportion * 100}% of AI.`}</div>
+
 
           <div className="flex justify-center mb-10 sm:mb-12">
             <div className="hr dark:hr-dark w-64"></div>

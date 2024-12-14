@@ -7,6 +7,7 @@ import rehypeSlug from 'rehype-slug';
 import remarkGfm from 'remark-gfm';
 import remarkPrism from 'remark-prism';
 import glob from 'tiny-glob';
+import remarkHighlightSyntax from './hightlight';
 
 import { autoLinkHeadingsOptions } from './rehypeAutolinkPlugin';
 
@@ -18,11 +19,11 @@ export async function loadMDX(source: string) {
   const bundle = await bundleMDX({
     source,
     xdmOptions: (options) => {
-      options.remarkPlugins = [...(options?.remarkPlugins ?? []), remarkGfm, remarkPrism];
+      options.remarkPlugins = [...(options?.remarkPlugins ?? []), remarkGfm, remarkPrism, remarkHighlightSyntax];
       options.rehypePlugins = [
         ...(options?.rehypePlugins ?? []),
         rehypeSlug,
-        [rehypeAutolink, autoLinkHeadingsOptions]
+        [rehypeAutolink, autoLinkHeadingsOptions],
       ];
       return options;
     }

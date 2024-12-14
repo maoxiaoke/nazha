@@ -193,6 +193,8 @@
   },
   "active": "4a18469369535da3",
   "lastOpenFiles": [
+    "pnpm-lock.yaml.4199058146",
+    "utils/hightlight.ts",
     "test.md",
     "utils/highlight.ts",
     "posts/what-resend-is.mdx",

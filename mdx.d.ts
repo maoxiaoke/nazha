@@ -8,4 +8,5 @@ interface PostMeta {
   tags: string;
   slug: string;
   language: 'Chinese' | 'English';
+  aiProportion: number;
 }
