@@ -50,7 +50,8 @@ export const Newsletter = ({ issue }) => {
         description: issue?.summary,
         tags: issue?.tags,
         slug: issue?.slug,
-        language: 'Chinese'
+        language: 'Chinese',
+        aiProportion: issue?.aiProportion
       }}>
       <Component components={{ ...components }} />
     </PostPage>
