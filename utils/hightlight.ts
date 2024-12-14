@@ -5,29 +5,33 @@ export default function remarkHighlightSyntax() {
   return (tree) => {
     visit(tree, 'text', (node, index, parent) => {
       if (!parent || index === null) return;
-      
+
       const matches = node.value.match(/--(.+?)--/g);
       if (!matches) return;
 
       const parts = node.value.split(/(--.+?--)/g);
-      const children = parts.map(part => {
-        const highlightMatch = part.match(/^--(.+?)--$/);
-        if (highlightMatch) {
+      const children = parts
+        .map((part) => {
+          const highlightMatch = part.match(/^--(.+?)--$/);
+          if (highlightMatch) {
+            return {
+              type: 'mdxJsxTextElement',
+              name: 'mark',
+              attributes: [],
+              children: [
+                {
+                  type: 'text',
+                  value: highlightMatch[1]
+                }
+              ]
+            };
+          }
           return {
-            type: 'mdxJsxTextElement',
-            name: 'mark',
-            attributes: [],
-            children: [{
-              type: 'text',
-              value: highlightMatch[1]
-            }]
+            type: 'text',
+            value: part
           };
-        }
-        return {
-          type: 'text',
-          value: part
-        };
-      }).filter(part => part.value !== '');
+        })
+        .filter((part) => part.value !== '');
 
       parent.children.splice(index, 1, ...children);
     });

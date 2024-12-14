@@ -36,8 +36,11 @@ export const PostPage: React.FC<Props> = ({ meta, children }) => {
             ) : null} */}
           </div>
 
-          <div className="pb-8">{meta.aiProportion === 0 || meta.aiProportion === undefined ? 'This post was created without the involvement of AI.' : `This post was created with ${meta.aiProportion * 100}% of AI.`}</div>
-
+          <div className="pb-8">
+            {meta.aiProportion === 0 || meta.aiProportion === undefined
+              ? 'This post was created without the involvement of AI.'
+              : `This post was created with ${meta.aiProportion * 100}% of AI.`}
+          </div>
 
           <div className="flex justify-center mb-10 sm:mb-12">
             <div className="hr dark:hr-dark w-64"></div>
