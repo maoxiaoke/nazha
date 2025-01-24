@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "posts/7-things-learned-from-The-Tools-of-Titans.mdx",
+                "file": "posts/this-is-the-worst-of-times-and-the-best-times-for-programmers.md",
                 "mode": "source",
                 "source": true
               },
               "icon": "lucide-file",
-              "title": "7-things-learned-from-The-Tools-of-Titans"
+              "title": "this-is-the-worst-of-times-and-the-best-times-for-programmers"
             }
           },
           {
@@ -125,6 +125,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "posts/this-is-the-worst-of-times-and-the-best-times-for-programmers.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -134,7 +135,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks"
+              "title": "Backlinks for this-is-the-worst-of-times-and-the-best-times-for-programmers"
             }
           },
           {
@@ -177,8 +178,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -193,19 +193,22 @@
   },
   "active": "4a18469369535da3",
   "lastOpenFiles": [
-    "pnpm-lock.yaml.4199058146",
-    "utils/hightlight.ts",
-    "test.md",
-    "utils/highlight.ts",
-    "posts/what-resend-is.mdx",
-    "posts/what-pnpm-reslove.mdx",
+    "posts/how-resend-work.mdx",
+    "posts/how-make-http-request-based-on-the-onion-model.mdx",
+    "posts/how-to-use-effect-hook.mdx",
+    "posts/load-esmodule.mdx",
+    "posts/polyfills-and-helpers.mdx",
+    "posts/revue-alternative.mdx",
+    "posts/some-advice-from-a-beginner-in-fitness-for-programmers.mdx",
+    "posts/10-principles-about-sharing-your-work.mdx",
     "posts/why-functional-over-class-component.mdx",
-    "posts/change-my-innput-method-engine-2-rime.mdx",
+    "posts/7-things-learned-from-The-Tools-of-Titans.mdx",
+    "posts/this-is-the-worst-of-times-and-the-best-times-for-programmers.md",
+    "posts/anything-about-video-compress.md",
+    "pnpm-lock.yaml.4199058146",
+    "test.md",
     "posts/What is resend, and wha is using for.md",
     "Untitled.md",
-    "posts/a-english-2-chinese-prompt-testing.mdx",
-    "posts/10-principles-about-sharing-your-work.mdx",
-    "posts/7-things-learned-from-The-Tools-of-Titans.mdx",
     "Untitled.canvas"
   ]
 }

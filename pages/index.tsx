@@ -105,6 +105,12 @@ const Posts: React.FC<Props> = ({ posts }) => {
       />
       <div className="w-full sm:max-w-[75ch] m-auto px-5 py-16 pt-0 sm:pt-16 flex flex-col justify-center items-center">
         <div className="font-overpass text-sm mb-4">
+          <Link
+            href="https://github.com/maoxiaoke/r2Uploader"
+            className="hover:font-bold hover:underline">
+            R2Uploader
+          </Link>{' '}
+          /{' '}
           <Link href="https://hnta.nazha.co" className="hover:font-bold hover:underline">
             Hacker News Top Archive
           </Link>{' '}
