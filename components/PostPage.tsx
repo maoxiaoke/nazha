@@ -4,6 +4,7 @@ import { NextSeo } from 'next-seo';
 
 import { formateDateFull, validDate } from '@/utils/formatDate';
 
+import { FollowUp } from './FollowUp';
 import Subscribe from './Subscribe';
 
 type Props = { meta: PostMeta };
@@ -59,6 +60,8 @@ export const PostPage: React.FC<Props> = ({ meta, children }) => {
           <div className="hr dark:hr-dark w-64"></div>
         </div>
         {/*  FIXME： empty div is needed. why? */}
+
+        <FollowUp meta={meta} />
         <div>
           <Subscribe />
         </div>

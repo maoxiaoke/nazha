@@ -56,7 +56,7 @@ const Subscribe = () => {
   return (
     <div className="w-full p-4 mt-10 fontOutfit">
       <div className="flex justify-between items-center">
-        <div>
+        <div className="flex-shrink-0">
           <Image
             className="rounded-full"
             src="/portrait/logo.jpg"
@@ -70,7 +70,7 @@ const Subscribe = () => {
           />
         </div>
 
-        <div className="max-w-[55ch]">
+        <div className="ml-2 max-w-[55ch]">
           <p className="font-medium text-sm">Have a weekly visit of</p>
           <p className="font-bold text-2xl bg-gradient-to-r from-subscribleRight to-subscrible bg-clip-text text-transparent">
             Howl&apos;s Moving Castle

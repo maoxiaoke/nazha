@@ -4,7 +4,7 @@
         <title>nazha's blog</title>
         <link>https://www.nazha.co/</link>
         <description>You can find me talking about topics related to JavaScript, TypeScript, React, Web development and technical/coding interviews</description>
-        <lastBuildDate>Fri, 24 Jan 2025 07:37:58 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 06 Feb 2025 08:52:15 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -14,7 +14,7 @@
             <userId>55208732423649280</userId>
         </follow_challenge>
         <item>
-            <title><![CDATA[AI Coding 编辑器没有那么神秘 - 深入探究 Cline]]></title>
+            <title><![CDATA[AI Coding 编辑器没有那么神秘 - How Cline works]]></title>
             <link>https://www.nazha.co//posts/how-cline-works</link>
             <guid>https://www.nazha.co//posts/how-cline-works</guid>
             <pubDate>Thu, 23 Jan 2025 16:00:00 GMT</pubDate>
