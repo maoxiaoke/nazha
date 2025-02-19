@@ -49,8 +49,8 @@ const Nav: React.FC = () => {
                 key={route}
                 href={route}
                 className={`capitalize ${
-                  isActive(route) ? '' : 'opacity-60'
-                } font-gothamsm tracking-[2px] text-sm`}
+                  isActive(route) ? '' : 'opacity-70'
+                } font-gothamsm tracking-[2px] text-sm hover:opacity-100`}
                 onClick={resetTags}>
                 {/* <a
                   className={`capitalize ${isActive(route) ? '' : 'opacity-50'}`}

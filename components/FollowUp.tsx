@@ -8,7 +8,7 @@ export const FollowUp = (props: Props) => {
   return (
     <div className="gap-2 flex flex-wrap mt-4 justify-center">
       <Link href="https://twitter.com/xiaokedada" passHref>
-        <Button>
+        <Button className="w-56">
           <svg
             width="24"
             height="24"
@@ -26,7 +26,7 @@ export const FollowUp = (props: Props) => {
       </Link>
 
       <Button
-        className="ml-2"
+        className="w-56"
         variant={'outline'}
         onClick={() =>
           navigator.share({
