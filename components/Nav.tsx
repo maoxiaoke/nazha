@@ -11,8 +11,8 @@ import { useTags } from './tags/TagsContext';
 import ThemeSwitch from './ThemeSwitch';
 
 const routes = [
-  { route: 'https://garden.nazha.co', title: 'Garden' },
-  { route: '/subscribe', title: 'Newsletter' }
+  { route: 'https://quaily.com/nazha', title: 'Newsletter' },
+  { route: 'https://garden.nazha.co', title: 'Garden' }
 ];
 
 const Nav: React.FC = () => {
