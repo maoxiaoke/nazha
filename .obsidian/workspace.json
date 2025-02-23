@@ -11,14 +11,10 @@
             "id": "4a18469369535da3",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "posts/this-is-the-worst-of-times-and-the-best-times-for-programmers.md",
-                "mode": "source",
-                "source": true
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "this-is-the-worst-of-times-and-the-best-times-for-programmers"
+              "title": "New tab"
             }
           },
           {
@@ -72,7 +68,8 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabetical"
+                "sortOrder": "alphabetical",
+                "autoReveal": false
               },
               "icon": "lucide-folder-closed",
               "title": "Files"
@@ -125,7 +122,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "posts/this-is-the-worst-of-times-and-the-best-times-for-programmers.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -135,7 +131,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for this-is-the-worst-of-times-and-the-best-times-for-programmers"
+              "title": "Backlinks"
             }
           },
           {

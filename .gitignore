@@ -1,6 +1,9 @@
 # Project Dependencies
 node_modules/
 
+// obsidian files
+.obsidian
+
 log
 
 # Next build files 
