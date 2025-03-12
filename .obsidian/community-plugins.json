@@ -1,6 +1,7 @@
 [
-  "mdx-as-md-obsidian",
-  "obsidian-minimal-settings",
   "obsidian-hider",
-  "terminal"
+  "terminal",
+  "obsidian-minimal-settings",
+  "mdx-as-md-obsidian",
+  "open-in-vscode"
 ]

@@ -8,16 +8,6 @@
         "type": "tabs",
         "children": [
           {
-            "id": "4a18469369535da3",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "New tab"
-            }
-          },
-          {
             "id": "bab1e7eee8e3756c",
             "type": "leaf",
             "state": {
@@ -184,10 +174,11 @@
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
-      "terminal:Open terminal": false
+      "terminal:Open terminal": false,
+      "open-in-vscode:Open in VSCode": false
     }
   },
-  "active": "4a18469369535da3",
+  "active": "bab1e7eee8e3756c",
   "lastOpenFiles": [
     "posts/how-resend-work.mdx",
     "posts/how-make-http-request-based-on-the-onion-model.mdx",

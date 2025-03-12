@@ -69,7 +69,7 @@ const Nav: React.FC = () => {
                 height="20"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="1.5"
+                strokeWidth="1.5"
                 viewBox="0 0 24 24"
                 stroke-linecap="round"
                 stroke-linejoin="round"
