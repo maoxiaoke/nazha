@@ -4,7 +4,7 @@
         <title>nazha's blog</title>
         <link>https://www.nazha.co/</link>
         <description>You can find me talking about topics related to JavaScript, TypeScript, React, Web development and technical/coding interviews</description>
-        <lastBuildDate>Thu, 08 May 2025 07:21:17 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 27 May 2025 05:50:07 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -13,6 +13,15 @@
             <feedId>56285316790819840</feedId>
             <userId>55208732423649280</userId>
         </follow_challenge>
+        <item>
+            <title><![CDATA[Advanced Guide to AI Programming]]></title>
+            <link>https://www.nazha.co//posts/advanced-guide-to-ai-programming</link>
+            <guid>https://www.nazha.co//posts/advanced-guide-to-ai-programming</guid>
+            <pubDate>Mon, 26 May 2025 16:00:00 GMT</pubDate>
+            <author>maoxiaoke@outlook.com (nazha)</author>
+            <category>ai</category>
+            <category>coding</category>
+        </item>
         <item>
             <title><![CDATA[AI 编程进阶指南]]></title>
             <link>https://www.nazha.co//posts/ai-coding-advanced-guide</link>

@@ -3,7 +3,7 @@ import '@/public/styles/global.css';
 
 import { Analytics } from '@vercel/analytics/react';
 import { AppProps } from 'next/app';
-import { Montserrat, Overpass_Mono, Source_Serif_4 } from 'next/font/google';
+import { Montserrat, Overpass_Mono, Source_Serif_4, Crimson_Text, Libre_Baskerville } from 'next/font/google';
 import localFont from 'next/font/local';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -24,6 +24,11 @@ const catamaran = localFont({
   src: './Catamaran.ttf'
 });
 
+const Huiwenmingchao = localFont({
+  variable: '--font-Huiwenmingchao',
+  src: './Huiwenmincho-improved.woff2'
+});
+
 const montserrat = Montserrat({
   subsets: ['latin'],
   variable: '--font-montserrat'
@@ -42,6 +47,18 @@ const overpass = Overpass_Mono({
 const sourceSerif4 = Source_Serif_4({
   subsets: ['latin'],
   variable: '--font-sourceSerif4'
+});
+
+const crimsonText = Crimson_Text({
+  subsets: ['latin'],
+  weight: ['400', '600', '700'],
+  variable: '--font-crimsonText'
+});
+
+const libreBaskerville = Libre_Baskerville({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '--font-libreBaskerville'
 });
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps: { session, ...pageProps } }) => {
@@ -73,7 +90,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps: { session, ...pagePro
 
       {/* <SessionProvider session={session}> */}
       <div
-        className={`${gothamsm.variable} ${catamaran.variable} ${montserrat.variable} ${overpass.variable} ${sourceSerif4.variable} w-full h-full`}>
+        className={`${gothamsm.variable}  ${Huiwenmingchao.variable} ${crimsonText.variable} ${libreBaskerville.variable} ${catamaran.variable} ${montserrat.variable} ${overpass.variable} ${sourceSerif4.variable} w-full h-full`}>
         <TagsProvider>
           {hiddenNav ? <></> : <Nav />}
           <main className={cn('w-full h-full', !hiddenNav && 'mt-2')}>

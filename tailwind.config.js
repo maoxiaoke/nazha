@@ -36,7 +36,10 @@ module.exports = {
         catamaran: ['var(--font-catamaran)'],
         montserrat: ['var(--font-montserrat)'],
         overpass: ['var(--font-overpass)'],
-        sourceSerif4: ['var(--font-sourceSerif4)']
+        sourceSerif4: ['var(--font-sourceSerif4)'],
+        crimsonText: ['var(--font-crimsonText)'],
+        libreBaskerville: ['var(--font-libreBaskerville)'],
+        Huiwenmingchao: ['var(--font-Huiwenmingchao)']
       },
 
       colors: {
@@ -126,7 +129,7 @@ module.exports = {
   variants: {
     extend: {}
   },
-  plugins: [hoverPlugin, require('flowbite/plugin'), require('tailwindcss-animate')],
+  plugins: [hoverPlugin, require('flowbite/plugin'), require('tailwindcss-animate'), require('@tailwindcss/typography')],
 
   content: ['./node_modules/flowbite/**/*.js', 'app/**/*.{ts,tsx}', 'components/**/*.{ts,tsx}']
 };

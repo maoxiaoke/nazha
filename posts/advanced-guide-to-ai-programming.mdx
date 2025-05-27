@@ -1,0 +1,161 @@
+---
+title: Advanced Guide to AI Programming
+published: true
+listed: true
+date: '05/27/2025'
+lastUpdateDate: '05/27/2025'
+tags: ai,coding
+language: English
+aiProportion: 1
+---
+
+## Introduction
+
+AI programming is fast emerging as a new paradigm. It includes two main modes: Vibe Coding—where you co-create with AI in real time—and assisted programming, where AI helps you move faster and smarter. Once you’re past the beginner phase, the real question is: how do you fully leverage this new way of working, avoid common pitfalls in Vibe Coding, and stay competitive in a future powered by AI?
+
+AI programming is like the Pandora’s box of this era. Some developers claim they’ve become first movers in a new market using Vibe Coding. Others feel AI-generated code is way off the mark. Some folks are shipping high-quality results with AI. Others are still buried in legacy messes.
+
+In Chinese culture, there’s a saying about balance—don't get too hyped, but don’t dismiss the potential either. When it comes to AI programming, here’s the mindset worth adopting:
+
+- **Be proactive and open-minded**: Start early. Experiment often. Grow with the tools. “New” is where the leverage lives—and if you dive deep, you’ll unlock serious productivity gains.
+
+- **Learn fast. Build fast**: AI programming is evolving at breakneck speed. Models get smarter, tools change weekly. Today’s best practices might be outdated tomorrow. Plus, this space is full of gray areas. Tiny workflow habits can lead to big differences. For example: people say don’t let AI rewrite too much code—it might break things. But how much is too much? What does “break” even look like? You only figure these things out by building, failing, and building again. That’s how you develop real trust in the process.
+
+- **Stay in the driver’s seat**: Yes, AI is powerful. But things like breaking down product requirements, designing systems, and making scalable, high-quality decisions still demand human judgment. If you hand over too much control, your project becomes a black box—and that’s not what good engineering looks like. Owning the code is owning the problem.
+
+- **Level up across the board**: AI will automate a lot of code writing. That means what matters more is upstream thinking—problem framing, modeling, validating solutions. Long-term, the best engineers will be those who expand their impact up and down the stack. Ask yourself: what skills do I need to grow to thrive in this new era?
+
+- **Raise your standards**: We should’ve always aimed high. But when coding took up most of your time, things like deep design, regular refactors, or comprehensive testing often got deprioritized. Now, with AI picking up more of the heavy lifting, you can and should push your bar higher—for yourself, and for your team.
+
+## Think Before You Code
+
+If you throw a prompt at a large language model and it jumps straight into coding, you might run into a few problems:
+
+1. You can’t be sure it actually understood what you meant. Maybe your instructions weren’t clear. Or maybe the model interpreted them differently.
+
+2. You don’t know how it plans to tackle the task. If there are multiple valid approaches, it might pick the one you wouldn’t.
+
+Here’s a better way to go about it: for anything remotely complex, ask the LLM to first explain how it understands the problem and what steps it plans to take. Only once that checks out—then let it code.
+
+If you’re using Cursor, there are a couple ways to make this workflow happen:
+
+1. Use a model that supports reasoning, like Gemini 2.5 in “thinking” mode or Claude-3.7-sonnet with its planning mode.
+
+2. In a single session, toggle between Ask mode (for planning) and Agent mode (for implementation). Start by aligning on the plan in Ask mode, then flip the switch and let Agent take over the code.
+
+## Better Docs, Bigger Leverage
+
+Great documentation isn’t just about writing things down — it’s how we think better, work faster, and scale ourselves. In the age of AI programming, writing clear, high-quality docs matters more than ever:
+
+- You’ll have more time to think — and the bar for quality thinking goes up. Writing forces clarity. Good docs = better thinking.
+
+- AI lets you handle more work and more projects. Clear documentation helps you (or your future self) jump into a new context without getting lost.
+
+- For AI to be truly useful, it needs good context. High-quality docs give it the signal it needs to generate better code.
+
+Here’s the kicker:
+
+1. You can use AI to help draft and polish documentation.
+
+2. Comments, README files — they’re not just for humans anymore. They’re context for the AI too.
+
+So, how you structure docs in your repo, how you keep them up-to-date, and how you plug them into your AI workflow — all of that matters now. Some solid practices:
+
+- Review every doc and comment — AI-written or not — like you wrote it yourself. Treat clarity and accuracy in docs as seriously (or more) than you treat your code. Docs aren’t just for people anymore — they’re for machines too.
+
+- Anytime you update code, update the docs. Do it yourself or let the AI help — just don’t let them drift apart.
+
+- Build your own habits. Maybe every package gets a quick explainer. Maybe every file starts with a summary of its interface. Whatever works — just make it consistent.
+
+Bottom line: documentation is a real signal of engineering maturity. There’s no one-size-fits-all standard for “good” docs — but in the AI era, writing better documentation isn’t optional. It’s the new baseline.
+
+## Take Control of Your Context
+
+Most AI coding tools today follow the same pattern: chat on one side, code on the other. And in a perfect world, you'd just talk to the AI, share your goals, and it would understand your whole codebase like a senior teammate.
+
+Reality check: we’re not there yet.
+
+Until AI gets truly “code-aware,” you have to manage the context yourself. And when it comes to feeding the right context, more is often better — as long as it’s relevant to the task at hand.
+
+Managing context well is one of the biggest levers you have for writing better code with AI. Tools like Cursor are built around this idea. And there are a few tactics that make a real difference:
+
+1. **Be proactive: bring in context manually**
+
+Sure, Cursor auto-indexes your codebase using things like `codebase_search` and code indexing — but those still rely on the LLM getting it right. If it misunderstands something, your results suffer.
+
+You can do better. Use `@` to directly reference files, functions, or past chats. Example:
+
+> Based on the logic in @a.ts, help me implement xxx in @b.ts.
+
+This makes your intent crystal clear — and gives the AI everything it needs.
+
+2. **One task per chat**
+
+Don’t dump every idea into one thread. Unrelated prompts = context overload. When chats try to do too much, the AI starts losing the plot.
+
+Treat each thread like its own little mission — implement a function, fix a bug, build a feature. If it’s a new goal, spin up a new thread.
+
+Here’s what a clean workflow looks like:
+
+![A New Develop Process for AI Programming](https://nazhaimage.xyz/A-new-developing-process.png)
+
+Oh, and if you need something from an earlier convo? Just `@Past Chats` and pull it in.
+
+## Show the AI How You'd Solve It
+
+AI doesn’t always get it right. When it goes off track — or when you already know the answer — the best move is to steer it. Lay out your thinking. Better yet, give it pseudocode or a rough code sketch, and let it handle the details.
+
+This kind of guided collaboration often leads to much better outcomes than letting the AI guess.
+
+## Keep It in Bounds
+
+We’re talking serious coding here — not Vibe Coding experiments. In real development, you should limit the files the AI can touch. After it makes changes, review them. If everything looks good, move forward.
+
+Sure, letting a Coding Agent roam free can sometimes lead to cool surprises. But more often, it breaks stuff.
+
+A solid pattern looks like this:
+
+> Implement the xxx feature, but only modify @a.ts, @b.ts, and @a.css
+
+This way, you stay in control — and the AI works where you tell it to.
+
+## Start With Tests
+
+TDD has always sounded good in theory. But in traditional workflows, writing and maintaining full test coverage was often too time-consuming to be practical.
+
+With AI, that’s no longer the case.
+
+- You can use AI to quickly generate high-quality test cases.
+- You can write more tests with less effort — and lower the bar for doing it well.
+- Most importantly, tests give your Coding Agent real-time feedback. The Agent can use those results to tweak and improve the code.
+
+In fact, you can (and should) require your AI to run tests after every change. It’s one of the best ways to ensure your code is stable — and that your AI is actually doing a good job.
+
+## Run Code Optimization Before You Commit
+
+Once a feature is done and test coverage is solid, it’s a good time to run a few rounds of AI-powered code optimization. The goal here isn’t to change what the code does — it’s to make the structure cleaner, the implementation sharper, and the readability better.
+
+If you — right now — can't understand the code AI just wrote, there's a good chance that your future self (or your teammates) won’t either. Ideally, sure, AI could maintain the code on its own in the future. But we’re not there yet — and unclear code is a risk to any project.
+
+That said, you don’t have to optimize — skipping this step is okay too. Just remember that you’re trading clarity for speed, and may be introducing long-term refactoring debt. The safest path is still strong test coverage to back you up.
+
+From a workflow perspective, you can maintain a shared code-optimization-guide.md file in your project. Then use prompts like:
+
+> Optimize @file based on the practices in @code-optimization-guide.md
+
+This gives the AI a clear reference, keeps your team aligned, and makes results more consistent.
+
+## Learn to Write Better Prompts
+
+There’s a lot of noise lately about how prompt engineering is becoming obsolete as models improve. In reality? Good prompts still make a big difference. Writing clear, effective prompts is still one of the most valuable skills in AI-assisted development.
+
+Yes, there are frameworks out there — like RTGO or CO-STAR — but they all come down to the same thing: give the AI the right context, be clear about what you want, and avoid ambiguity.
+
+If you want to dig in, there are some great resources:
+
+- [Anthropic Prompt Engineering Guide](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview)
+- [Google Prompt Engineering](https://www.kaggle.com/whitepaper-prompt-engineering)
+
+But reading is not enough.
+
+Being clear requires clear thinking — but clear thinking doesn’t always translate to clear prompts. That’s why you need deliberate practice. Iterate often. Try new phrasings. Refactor your prompts like you refactor code. Don’t sacrifice prompt quality just to move faster.

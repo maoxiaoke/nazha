@@ -220,7 +220,7 @@
   }
 
   article :is(h1) {
-    font-family: var(--font-montserrat);
+    font-family: var(--font-Huiwenmingchao), var(--font-montserrat);
     font-weight: 500;
   }
 
@@ -268,6 +268,7 @@
   article blockquote {
     @apply relative py-1 pl-[2ch] pr-[1ch] my-8 dark:bg-[#2a2e31];
     background-color: #fefce8;
+    border-inline-start-width: 0 !important;
   }
 
   article blockquote::before {
@@ -276,14 +277,15 @@
     background-color: #fde047;
   }
 
-  article li {
+  /* article li {
     @apply relative my-3 pl-7;
   }
 
   article li::before {
-    content: '—';
+    content: '*';
     @apply absolute left-1 opacity-90;
-  }
+  } */
+
 }
 
 article .anchor {
