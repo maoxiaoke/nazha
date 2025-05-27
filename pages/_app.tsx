@@ -3,7 +3,13 @@ import '@/public/styles/global.css';
 
 import { Analytics } from '@vercel/analytics/react';
 import { AppProps } from 'next/app';
-import { Montserrat, Overpass_Mono, Source_Serif_4, Crimson_Text, Libre_Baskerville } from 'next/font/google';
+import {
+  Crimson_Text,
+  Libre_Baskerville,
+  Montserrat,
+  Overpass_Mono,
+  Source_Serif_4
+} from 'next/font/google';
 import localFont from 'next/font/local';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
