@@ -39,7 +39,8 @@ module.exports = {
         sourceSerif4: ['var(--font-sourceSerif4)'],
         crimsonText: ['var(--font-crimsonText)'],
         libreBaskerville: ['var(--font-libreBaskerville)'],
-        Huiwenmingchao: ['var(--font-Huiwenmingchao)']
+        Huiwenmingchao: ['var(--font-Huiwenmingchao)'],
+        spectral: ['var(--font-spectral)']
       },
 
       colors: {
@@ -129,7 +130,12 @@ module.exports = {
   variants: {
     extend: {}
   },
-  plugins: [hoverPlugin, require('flowbite/plugin'), require('tailwindcss-animate'), require('@tailwindcss/typography')],
+  plugins: [
+    hoverPlugin,
+    require('flowbite/plugin'),
+    require('tailwindcss-animate'),
+    require('@tailwindcss/typography')
+  ],
 
   content: ['./node_modules/flowbite/**/*.js', 'app/**/*.{ts,tsx}', 'components/**/*.{ts,tsx}']
 };

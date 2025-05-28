@@ -110,12 +110,13 @@ const Posts: React.FC<Props> = ({ posts }) => {
             className="hover:font-bold hover:underline">
             R2Uploader
           </Link>{' '}
+          /{' '}
           <Link
             href="https://github.com/maoxiaoke/BaiJi-releases"
             className="hover:font-bold hover:underline">
             BaiJi
           </Link>{' '}
-          / /{' '}
+          /{' '}
           <Link href="https://hnta.nazha.co" className="hover:font-bold hover:underline">
             Hacker News Top Archive
           </Link>{' '}

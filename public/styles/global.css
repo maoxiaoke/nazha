@@ -141,7 +141,7 @@
   }
 
   main {
-    font-family: 'iA Quattro', var(--font-overpass);
+    font-family: var(--font-spectral);
   }
 
   @supports (font-variation-settings: normal) {

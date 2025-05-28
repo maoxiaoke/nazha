@@ -8,7 +8,8 @@ import {
   Libre_Baskerville,
   Montserrat,
   Overpass_Mono,
-  Source_Serif_4
+  Source_Serif_4,
+  Spectral
 } from 'next/font/google';
 import localFont from 'next/font/local';
 import Head from 'next/head';
@@ -43,6 +44,12 @@ const montserrat = Montserrat({
 const overpass = Overpass_Mono({
   subsets: ['latin'],
   variable: '--font-overpass'
+});
+
+const spectral = Spectral({
+  subsets: ['latin'],
+  weight: ['200', '300', '400', '500', '600', '700', '800'],
+  variable: '--font-spectral'
 });
 
 // const inter = Inter({
@@ -96,7 +103,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps: { session, ...pagePro
 
       {/* <SessionProvider session={session}> */}
       <div
-        className={`${gothamsm.variable}  ${Huiwenmingchao.variable} ${crimsonText.variable} ${libreBaskerville.variable} ${catamaran.variable} ${montserrat.variable} ${overpass.variable} ${sourceSerif4.variable} w-full h-full`}>
+        className={`${gothamsm.variable} ${spectral.variable} ${Huiwenmingchao.variable} ${crimsonText.variable} ${libreBaskerville.variable} ${catamaran.variable} ${montserrat.variable} ${overpass.variable} ${sourceSerif4.variable} w-full h-full`}>
         <TagsProvider>
           {hiddenNav ? <></> : <Nav />}
           <main className={cn('w-full h-full', !hiddenNav && 'mt-2')}>
