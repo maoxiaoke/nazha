@@ -7,7 +7,7 @@ import { formateDateFull, validDate } from '@/utils/formatDate';
 import { FollowUp } from './FollowUp';
 import Subscribe from './Subscribe';
 
-type Props = { meta: PostMeta };
+type Props = { meta: PostMeta; children: React.ReactNode };
 
 export const PostPage: React.FC<Props> = ({ meta, children }) => {
   return (

@@ -29,6 +29,7 @@ const Nav: React.FC = () => {
         <nav className="w-full sm:max-w-[75ch] m-auto sm:grid md:flex px-5 justify-between items-center ">
           <motion.div
             whileHover={{ scale: 1.3 }}
+            // @ts-ignore
             className="hover:cursor-pointer px-2 py-1 flex items-center">
             <Link href="/" passHref>
               <div className="flex items-center">

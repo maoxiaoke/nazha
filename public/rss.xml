@@ -4,7 +4,7 @@
         <title>nazha's blog</title>
         <link>https://www.nazha.co/</link>
         <description>You can find me talking about topics related to JavaScript, TypeScript, React, Web development and technical/coding interviews</description>
-        <lastBuildDate>Wed, 28 May 2025 02:51:01 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 16 Aug 2025 09:30:53 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -17,7 +17,7 @@
             <title><![CDATA[Advanced Guide to AI Programming]]></title>
             <link>https://www.nazha.co//posts/advanced-guide-to-ai-programming</link>
             <guid>https://www.nazha.co//posts/advanced-guide-to-ai-programming</guid>
-            <pubDate>Mon, 26 May 2025 16:00:00 GMT</pubDate>
+            <pubDate>Tue, 27 May 2025 00:00:00 GMT</pubDate>
             <author>maoxiaoke@outlook.com (nazha)</author>
             <category>ai</category>
             <category>coding</category>
@@ -26,7 +26,7 @@
             <title><![CDATA[AI 编程进阶指南]]></title>
             <link>https://www.nazha.co//posts/ai-coding-advanced-guide</link>
             <guid>https://www.nazha.co//posts/ai-coding-advanced-guide</guid>
-            <pubDate>Wed, 07 May 2025 16:00:00 GMT</pubDate>
+            <pubDate>Thu, 08 May 2025 00:00:00 GMT</pubDate>
             <author>maoxiaoke@outlook.com (nazha)</author>
             <category>ai</category>
             <category>coding</category>
@@ -35,7 +35,7 @@
             <title><![CDATA[智能体，从 ReAct 到多智能体]]></title>
             <link>https://www.nazha.co//posts/what-is-agent</link>
             <guid>https://www.nazha.co//posts/what-is-agent</guid>
-            <pubDate>Tue, 11 Mar 2025 16:00:00 GMT</pubDate>
+            <pubDate>Wed, 12 Mar 2025 00:00:00 GMT</pubDate>
             <author>maoxiaoke@outlook.com (nazha)</author>
             <category>ai</category>
             <category>coding</category>
@@ -44,7 +44,7 @@
             <title><![CDATA[MCP 入门指南]]></title>
             <link>https://www.nazha.co//posts/what-is-mcp-and-how-to-use</link>
             <guid>https://www.nazha.co//posts/what-is-mcp-and-how-to-use</guid>
-            <pubDate>Fri, 07 Feb 2025 16:00:00 GMT</pubDate>
+            <pubDate>Sat, 08 Feb 2025 00:00:00 GMT</pubDate>
             <author>maoxiaoke@outlook.com (nazha)</author>
             <category>ai</category>
             <category>coding</category>
@@ -53,7 +53,7 @@
             <title><![CDATA[AI Coding 编辑器没有那么神秘 - How Cline works]]></title>
             <link>https://www.nazha.co//posts/how-cline-works</link>
             <guid>https://www.nazha.co//posts/how-cline-works</guid>
-            <pubDate>Thu, 23 Jan 2025 16:00:00 GMT</pubDate>
+            <pubDate>Fri, 24 Jan 2025 00:00:00 GMT</pubDate>
             <author>maoxiaoke@outlook.com (nazha)</author>
             <category>ai</category>
             <category>coding</category>
@@ -62,7 +62,7 @@
             <title><![CDATA[来自程序员健身初学者的一些建议]]></title>
             <link>https://www.nazha.co//posts/some-advice-from-a-beginner-in-fitness-for-programmers</link>
             <guid>https://www.nazha.co//posts/some-advice-from-a-beginner-in-fitness-for-programmers</guid>
-            <pubDate>Sat, 10 Aug 2024 16:00:00 GMT</pubDate>
+            <pubDate>Sun, 11 Aug 2024 00:00:00 GMT</pubDate>
             <author>maoxiaoke@outlook.com (nazha)</author>
             <category>fitness</category>
         </item>
@@ -70,7 +70,7 @@
             <title><![CDATA[Change My Input Method Engine To Rime]]></title>
             <link>https://www.nazha.co//posts/change-my-innput-method-engine-2-rime</link>
             <guid>https://www.nazha.co//posts/change-my-innput-method-engine-2-rime</guid>
-            <pubDate>Tue, 12 Mar 2024 16:00:00 GMT</pubDate>
+            <pubDate>Wed, 13 Mar 2024 00:00:00 GMT</pubDate>
             <author>maoxiaoke@outlook.com (nazha)</author>
             <category>reading</category>
         </item>
@@ -78,7 +78,7 @@
             <title><![CDATA[先直译后意译 prompt 翻译能力不完全测试]]></title>
             <link>https://www.nazha.co//posts/a-english-2-chinese-prompt-testing</link>
             <guid>https://www.nazha.co//posts/a-english-2-chinese-prompt-testing</guid>
-            <pubDate>Thu, 09 Nov 2023 16:00:00 GMT</pubDate>
+            <pubDate>Fri, 10 Nov 2023 00:00:00 GMT</pubDate>
             <author>maoxiaoke@outlook.com (nazha)</author>
             <category>chat</category>
             <category> prompt</category>
@@ -87,7 +87,7 @@
             <title><![CDATA[Deep Learning Guide For Web Developer, The First Part]]></title>
             <link>https://www.nazha.co//posts/deep-learning-guide-for-web-developer-the-first-part</link>
             <guid>https://www.nazha.co//posts/deep-learning-guide-for-web-developer-the-first-part</guid>
-            <pubDate>Sat, 15 Jul 2023 16:00:00 GMT</pubDate>
+            <pubDate>Sun, 16 Jul 2023 00:00:00 GMT</pubDate>
             <author>maoxiaoke@outlook.com (nazha)</author>
             <category>ml</category>
             <category> setup</category>
@@ -96,7 +96,7 @@
             <title><![CDATA[如何快速开发一个 Web 产品]]></title>
             <link>https://www.nazha.co//posts/how-to-build-a-web-client-in-quick</link>
             <guid>https://www.nazha.co//posts/how-to-build-a-web-client-in-quick</guid>
-            <pubDate>Sun, 16 Apr 2023 16:00:00 GMT</pubDate>
+            <pubDate>Mon, 17 Apr 2023 00:00:00 GMT</pubDate>
             <author>maoxiaoke@outlook.com (nazha)</author>
             <category>chatGPT</category>
             <category> Next.js</category>
@@ -111,7 +111,7 @@
             <title><![CDATA[Revue alternative for your personal blog - MailChimp]]></title>
             <link>https://www.nazha.co//posts/revue-alternative</link>
             <guid>https://www.nazha.co//posts/revue-alternative</guid>
-            <pubDate>Fri, 10 Feb 2023 16:00:00 GMT</pubDate>
+            <pubDate>Sat, 11 Feb 2023 00:00:00 GMT</pubDate>
             <author>maoxiaoke@outlook.com (nazha)</author>
             <category>revue</category>
             <category> nextjs</category>
@@ -120,7 +120,7 @@
             <title><![CDATA[How to use Effect Hook]]></title>
             <link>https://www.nazha.co//posts/how-to-use-effect-hook</link>
             <guid>https://www.nazha.co//posts/how-to-use-effect-hook</guid>
-            <pubDate>Fri, 03 Feb 2023 16:00:00 GMT</pubDate>
+            <pubDate>Sat, 04 Feb 2023 00:00:00 GMT</pubDate>
             <author>maoxiaoke@outlook.com (nazha)</author>
             <category>react</category>
             <category> hook</category>
@@ -129,16 +129,16 @@
             <title><![CDATA[How make http request based on the Onion Model]]></title>
             <link>https://www.nazha.co//posts/how-make-http-request-based-on-the-onion-model</link>
             <guid>https://www.nazha.co//posts/how-make-http-request-based-on-the-onion-model</guid>
-            <pubDate>Wed, 14 Dec 2022 16:00:00 GMT</pubDate>
+            <pubDate>Thu, 15 Dec 2022 00:00:00 GMT</pubDate>
             <author>maoxiaoke@outlook.com (nazha)</author>
             <category>javascript</category>
             <category>technical</category>
         </item>
         <item>
             <title><![CDATA[Create a Newsletter Subscription for Your Website]]></title>
-            <link>https://www.nazha.co//posts/create-a-newsletter-subscription</link>
-            <guid>https://www.nazha.co//posts/create-a-newsletter-subscription</guid>
-            <pubDate>Wed, 06 Jul 2022 16:00:00 GMT</pubDate>
+            <link>https://www.nazha.co//posts/Create-a-newsletter-subscription</link>
+            <guid>https://www.nazha.co//posts/Create-a-newsletter-subscription</guid>
+            <pubDate>Thu, 07 Jul 2022 00:00:00 GMT</pubDate>
             <author>maoxiaoke@outlook.com (nazha)</author>
             <category>technical</category>
             <category>blog</category>
@@ -147,7 +147,7 @@
             <title><![CDATA[10 principles about sharing your work]]></title>
             <link>https://www.nazha.co//posts/10-principles-about-sharing-your-work</link>
             <guid>https://www.nazha.co//posts/10-principles-about-sharing-your-work</guid>
-            <pubDate>Mon, 04 Jul 2022 16:00:00 GMT</pubDate>
+            <pubDate>Tue, 05 Jul 2022 00:00:00 GMT</pubDate>
             <author>maoxiaoke@outlook.com (nazha)</author>
             <category>reading</category>
         </item>
@@ -155,7 +155,7 @@
             <title><![CDATA[Why Functional Component over Class Component]]></title>
             <link>https://www.nazha.co//posts/why-functional-over-class-component</link>
             <guid>https://www.nazha.co//posts/why-functional-over-class-component</guid>
-            <pubDate>Fri, 17 Jun 2022 16:00:00 GMT</pubDate>
+            <pubDate>Sat, 18 Jun 2022 00:00:00 GMT</pubDate>
             <author>maoxiaoke@outlook.com (nazha)</author>
             <category>react</category>
         </item>
@@ -163,7 +163,7 @@
             <title><![CDATA[Polyfills and helpers - How to save your bundle size]]></title>
             <link>https://www.nazha.co//posts/polyfills-and-helpers</link>
             <guid>https://www.nazha.co//posts/polyfills-and-helpers</guid>
-            <pubDate>Thu, 26 May 2022 16:00:00 GMT</pubDate>
+            <pubDate>Fri, 27 May 2022 00:00:00 GMT</pubDate>
             <author>maoxiaoke@outlook.com (nazha)</author>
             <category>javascript</category>
         </item>
@@ -171,7 +171,7 @@
             <title><![CDATA[My New Macbook Setup (2022)]]></title>
             <link>https://www.nazha.co//posts/how-i-setup-a-mac</link>
             <guid>https://www.nazha.co//posts/how-i-setup-a-mac</guid>
-            <pubDate>Wed, 25 May 2022 16:00:00 GMT</pubDate>
+            <pubDate>Thu, 26 May 2022 00:00:00 GMT</pubDate>
             <author>maoxiaoke@outlook.com (nazha)</author>
             <category>setup</category>
         </item>
@@ -179,7 +179,7 @@
             <title><![CDATA[7 things I learned from “The Tools of Titans”]]></title>
             <link>https://www.nazha.co//posts/7-things-learned-from-The-Tools-of-Titans</link>
             <guid>https://www.nazha.co//posts/7-things-learned-from-The-Tools-of-Titans</guid>
-            <pubDate>Tue, 03 May 2022 16:00:00 GMT</pubDate>
+            <pubDate>Wed, 04 May 2022 00:00:00 GMT</pubDate>
             <author>maoxiaoke@outlook.com (nazha)</author>
             <category>reading</category>
         </item>
@@ -187,7 +187,7 @@
             <title><![CDATA[How load ES module micro application in icestark]]></title>
             <link>https://www.nazha.co//posts/load-esmodule</link>
             <guid>https://www.nazha.co//posts/load-esmodule</guid>
-            <pubDate>Wed, 20 Apr 2022 16:00:00 GMT</pubDate>
+            <pubDate>Thu, 21 Apr 2022 00:00:00 GMT</pubDate>
             <description><![CDATA[This post show how you can load Vite application in icestark.]]></description>
             <content:encoded><![CDATA[This post show how you can load Vite application in icestark.]]></content:encoded>
             <author>maoxiaoke@outlook.com (nazha)</author>
@@ -199,7 +199,7 @@
             <title><![CDATA[A diagram to show how pnpm works]]></title>
             <link>https://www.nazha.co//posts/what-pnpm-reslove</link>
             <guid>https://www.nazha.co//posts/what-pnpm-reslove</guid>
-            <pubDate>Mon, 21 Feb 2022 16:00:00 GMT</pubDate>
+            <pubDate>Tue, 22 Feb 2022 00:00:00 GMT</pubDate>
             <description><![CDATA[Pnpm may be alternative of npm、yarn and lerna. But do you know how pnpm works?]]></description>
             <content:encoded><![CDATA[Pnpm may be alternative of npm、yarn and lerna. But do you know how pnpm works?]]></content:encoded>
             <author>maoxiaoke@outlook.com (nazha)</author>

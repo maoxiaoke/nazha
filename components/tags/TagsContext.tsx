@@ -9,13 +9,14 @@ type ContextValue = { tags: Tags; toggleTags: Dispatch<string>; resetTags: Set<s
 const TagsContext = createContext<undefined | ContextValue>(undefined);
 
 export function TagsProvider({ children }: { children: ReactNode; tagNames?: string[] }) {
-  const [tags, toggleTags] = useReducer<Reducer>((prevTags: Tags, tag: string) => {
-    if (prevTags.has(tag)) {
-      prevTags.delete(tag);
+  const [tags, toggleTags] = useReducer((prevTags: Tags, tag: string) => {
+    const newTags = new Set(prevTags);
+    if (newTags.has(tag)) {
+      newTags.delete(tag);
     } else {
-      prevTags.add(tag);
+      newTags.add(tag);
     }
-    return new Set(prevTags);
+    return newTags;
   }, new Set<string>());
 
   const resetTags = () => tags.forEach((tag) => toggleTags(tag));
