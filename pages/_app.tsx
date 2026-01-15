@@ -13,6 +13,7 @@ import {
 } from 'next/font/google';
 import localFont from 'next/font/local';
 import Head from 'next/head';
+import Script from 'next/script';
 import { useRouter } from 'next/router';
 import { SessionProvider } from 'next-auth/react';
 
@@ -81,23 +82,22 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps: { session, ...pagePro
   return (
     <>
       <Head>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-MD6N0LS362" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
+      </Head>
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-MD6N0LS362"
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
           window.dataLayer = window.dataLayer || [];
-          {/* @ts-ignore */}
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-
           gtag('config', 'G-MD6N0LS362', {
             page_path: window.location.pathname
           });
-          `
-          }}
-        />
-      </Head>
+        `}
+      </Script>
       <SEO />
       <Analytics />
 
