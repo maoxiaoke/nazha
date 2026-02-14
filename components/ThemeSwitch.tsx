@@ -5,7 +5,7 @@ import { setLocalStorage } from '../utils/localStorage';
 
 const DarkModeSwitch = dynamic(
   () => import('react-toggle-dark-mode').then((mod) => mod.DarkModeSwitch),
-  { loading: () => <div className="w-5 h-5"></div> }
+  { loading: () => <div className="w-5 h-5" aria-busy="true" aria-label="Loading theme toggle"></div> }
 );
 
 type ColorTheme = 'light' | 'dark';
@@ -13,19 +13,19 @@ type ColorTheme = 'light' | 'dark';
 const ThemeSwitch: React.FC = () => {
   const COLOR_THEME = 'theme';
 
+  const [mounted, setMounted] = useState(false);
   const [theme, setTheme] = useState<ColorTheme>('dark');
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
+    const currentTheme = (document.body.getAttribute('class') as ColorTheme) || 'dark';
+    setTheme(currentTheme);
+    setMounted(true);
+
     if (!audioRef.current) {
       const audio = new Audio('/audios/switch.wav');
       audioRef.current = audio;
     }
-  }, []);
-
-  useEffect(() => {
-    const theme = (document.body.getAttribute('class') as ColorTheme) || 'dark';
-    setTheme(theme);
   }, []);
 
   const switchTheme = () => {
@@ -48,17 +48,20 @@ const ThemeSwitch: React.FC = () => {
     }
   };
 
+  if (!mounted) {
+    return <div className="w-11 h-11 flex items-center justify-center" aria-busy="true" aria-label="Loading theme toggle" />;
+  }
+
   return (
-    <>
-      <div className="flex items-center w-5 h-5 bg-transparent">
-        <DarkModeSwitch
-          checked={theme === 'dark'}
-          onChange={switchTheme}
-          moonColor="white"
-          sunColor="black"
-        />
-      </div>
-    </>
+    <div className="flex items-center justify-center w-11 h-11 bg-transparent cursor-pointer">
+      <DarkModeSwitch
+        checked={theme === 'dark'}
+        onChange={switchTheme}
+        moonColor="white"
+        sunColor="black"
+        aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+      />
+    </div>
   );
 };
 

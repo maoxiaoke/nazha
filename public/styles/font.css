@@ -133,3 +133,51 @@
   font-weight: 400;
   src: url(/fonts/JetBrainsMono-Regular.woff2) format('woff2');
 }
+
+@font-face {
+  font-family: 'Moderat';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url(/fonts/Moderat-Regular.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Moderat';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url(/fonts/Moderat-Bold.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Ashbury';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url(/fonts/ashburyreg.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Ashbury';
+  font-style: italic;
+  font-display: swap;
+  font-weight: 400;
+  src: url(/fonts/ashburyita.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Ashbury';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url(/fonts/ashburybol_.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Ashbury';
+  font-style: italic;
+  font-display: swap;
+  font-weight: 700;
+  src: url(/fonts/ashburybolita.woff2) format('woff2');
+}

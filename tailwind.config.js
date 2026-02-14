@@ -40,7 +40,9 @@ module.exports = {
         crimsonText: ['var(--font-crimsonText)'],
         libreBaskerville: ['var(--font-libreBaskerville)'],
         Huiwenmingchao: ['var(--font-Huiwenmingchao)'],
-        spectral: ['var(--font-spectral)']
+        spectral: ['var(--font-spectral)'],
+        moderat: ['Moderat', 'sans-serif'],
+        ashbury: ['Ashbury', 'var(--font-spectral)', 'serif']
       },
 
       colors: {

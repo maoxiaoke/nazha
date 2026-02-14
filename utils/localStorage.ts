@@ -1,6 +1,6 @@
 export const setLocalStorage = <T>(key: string, data: T): void => {
   try {
-    if (typeof window === undefined) {
+    if (typeof window === 'undefined') {
       return;
     }
 
@@ -12,7 +12,7 @@ export const setLocalStorage = <T>(key: string, data: T): void => {
 
 export const getLocalStorage = <T>(key: string, initialValue: T): T => {
   try {
-    if (typeof window === undefined) {
+    if (typeof window === 'undefined') {
       return initialValue;
     }
 

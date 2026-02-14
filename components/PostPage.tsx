@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-css-tags */
 import Head from 'next/head';
 import { NextSeo } from 'next-seo';
+import { useEffect, useState } from 'react';
 
 import { formateDateFull, validDate } from '@/utils/formatDate';
 
@@ -10,6 +11,21 @@ import Subscribe from './Subscribe';
 type Props = { meta: PostMeta };
 
 export const PostPage: React.FC<Props> = ({ meta, children }) => {
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+
+  useEffect(() => {
+    const currentTheme = document.body.classList.contains('dark') ? 'dark' : 'light';
+    setTheme(currentTheme);
+
+    const observer = new MutationObserver(() => {
+      const newTheme = document.body.classList.contains('dark') ? 'dark' : 'light';
+      setTheme(newTheme);
+    });
+
+    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
       <NextSeo
@@ -27,8 +43,8 @@ export const PostPage: React.FC<Props> = ({ meta, children }) => {
       </Head>
       <article className="max-w-[85ch] mx-auto pt-10 pb-5 px-5 prose dark:prose-invert">
         <div>
-          <h1 className="mb-1 text-3xl font-black capitalize md:text-4xl">{meta.title}</h1>
-          <div className="flex flex-col	pt-4 pb-4 text-sm font-thin uppercase text-stone-500 dark:text-stone-400">
+          <h1 className="mb-1 font-moderat text-[1.75rem] font-semibold capitalize">{meta.title}</h1>
+          <div className="flex flex-col pt-6 pb-4 font-moderat text-[0.75rem] font-normal text-black dark:text-white">
             <time dateTime={validDate(meta.date)}>{formateDateFull(meta.date)}</time>
             {/* {meta.lastUpdateDate ? (
               <time dateTime={validDate(meta.lastUpdateDate)}>
@@ -37,26 +53,20 @@ export const PostPage: React.FC<Props> = ({ meta, children }) => {
             ) : null} */}
           </div>
 
-          <div className="pb-8">
-            {meta.aiProportion === 0 || meta.aiProportion === undefined
-              ? 'This post was created without the involvement of AI.'
-              : `This post was created with ${meta.aiProportion * 100}% of AI.`}
-          </div>
-
-          <div className="flex justify-center mb-10 sm:mb-12">
+          <div className="flex justify-center mb-10 sm:mb-12" aria-hidden="true">
             <div className="hr dark:hr-dark w-64"></div>
           </div>
 
           {meta.description ? (
-            <>
-              <p className="italic">{meta.description}</p>
-            </>
+            <p className="font-ashbury text-[1.125rem] font-normal leading-[1.625] italic">{meta.description}</p>
           ) : null}
         </div>
 
-        {children}
+        <div className="font-ashbury text-[1.125rem] font-normal leading-[1.625] prose-headings:font-moderat prose-headings:font-semibold">
+          {children}
+        </div>
 
-        <div className="flex justify-center mt-10 sm:mb-12">
+        <div className="flex justify-center mt-10 sm:mb-12" aria-hidden="true">
           <div className="hr dark:hr-dark w-64"></div>
         </div>
         {/*  FIXME： empty div is needed. why? */}
@@ -67,12 +77,12 @@ export const PostPage: React.FC<Props> = ({ meta, children }) => {
       <div className="mt-10">
         {/* <Subscribe /> */}
         <iframe
-          src="https://quaily.com/nazha/widget.external?theme=light&list_slug=nazha&layout=subscribe_form&lang=zh"
-          data-theme="light"
+          src={`https://quaily.com/nazha/widget.external?theme=${theme}&list_slug=nazha&layout=subscribe_form&lang=zh`}
+          data-theme={theme}
           width="100%"
           height="350px"
           title="Quail Widget"
-          frameBorder="0"
+          className="border-0"
           allow="web-share"
           allowFullScreen></iframe>
       </div>
