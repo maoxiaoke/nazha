@@ -1,0 +1,33 @@
+{
+  "cli_version": "0.4.5",
+  "checkpoint_id": "488119fba6c3",
+  "session_id": "2746461b-bc24-4542-abce-41547d1447d1",
+  "strategy": "manual-commit",
+  "created_at": "2026-02-19T08:24:19.093109Z",
+  "branch": "master",
+  "checkpoints_count": 5,
+  "files_touched": [
+    "components/PostPage.tsx",
+    "public/styles/global.css"
+  ],
+  "agent": "Claude Code",
+  "turn_id": "0a0bc00741c7",
+  "transcript_identifier_at_start": "fd25a139-13cd-4f5e-bc92-27b1789e9631",
+  "token_usage": {
+    "input_tokens": 33,
+    "cache_creation_tokens": 45062,
+    "cache_read_tokens": 947255,
+    "output_tokens": 2561,
+    "api_call_count": 23
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-02-19T08:24:19.020662Z",
+    "agent_lines": 0,
+    "human_added": 8219,
+    "human_modified": 5,
+    "human_removed": 0,
+    "total_committed": 8223,
+    "agent_percentage": 0
+  },
+  "transcript_path": ".claude/projects/-Users-nazha-nazha-all-nazha/2746461b-bc24-4542-abce-41547d1447d1.jsonl"
+}

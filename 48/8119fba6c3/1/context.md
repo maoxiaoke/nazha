@@ -1,0 +1,30 @@
+# Session Context
+
+## User Prompts
+
+### Prompt 1
+
+## Page Feedback: /posts/advanced-guide-to-ai-programming
+
+1. **<Container> <PagesDevOverlayBridge> <PathnameContextProviderAdapter> <MyApp> <Post> <PostPage> time**: 这个 letter-space 改成 1px
+
+### Prompt 2
+
+如果是中文字体,使用系统字体即可,比如 mac 上就是 PingFang
+
+### Prompt 3
+
+## Page Feedback: /posts/how-make-http-request-based-on-the-onion-model
+
+1. **paragraph: "公司内部往往有很多项目，每个项目都有自己的 Http Client，这些请求库的..."**: 这个字体改成英文使用 Ashbury，中文使用系统字体，比如 PingFang SC
+
+### Prompt 4
+
+## Page Feedback: /posts/how-make-http-request-based-on-the-onion-model
+
+1. **paragraph: "公司内部往往有很多项目，每个项目都有自己的 Http Client，这些请求库的..."**: 字体大小是 18，请改成 16
+
+### Prompt 5
+
+我感觉正文的英文字体使用 "Spectral" 挺好的,先使用 Spectral 然后才 fallback 到 Ashbury
+
