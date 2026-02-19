@@ -140,7 +140,7 @@
   }
 
   main {
-    font-family: var(--font-spectral);
+    font-family: var(--font-spectral), 'Ashbury', "PingFang SC", "PingFang TC", "Hiragino Sans GB", "Microsoft YaHei", serif;
   }
 
   @supports (font-variation-settings: normal) {
@@ -219,7 +219,7 @@
   }
 
   article :is(h1) {
-    font-family: var(--font-Huiwenmingchao), var(--font-montserrat);
+    font-family: "PingFang SC", "PingFang TC", "Hiragino Sans GB", "Microsoft YaHei", var(--font-montserrat);
     font-weight: 500;
   }
 

@@ -45,7 +45,7 @@ export const PostPage: React.FC<Props> = ({ meta, children }) => {
         <div>
           <h1 className="mb-1 font-moderat text-[1.75rem] font-semibold capitalize">{meta.title}</h1>
           <div className="flex flex-col pt-6 pb-4 font-moderat text-[0.75rem] font-normal text-black dark:text-white">
-            <time dateTime={validDate(meta.date)}>{formateDateFull(meta.date)}</time>
+            <time dateTime={validDate(meta.date)} className="tracking-[1px]">{formateDateFull(meta.date)}</time>
             {/* {meta.lastUpdateDate ? (
               <time dateTime={validDate(meta.lastUpdateDate)}>
                 Last updated on {formateDateFull(meta.lastUpdateDate)}
@@ -62,7 +62,7 @@ export const PostPage: React.FC<Props> = ({ meta, children }) => {
           ) : null}
         </div>
 
-        <div className="font-ashbury text-[1.125rem] font-normal leading-[1.625] prose-headings:font-moderat prose-headings:font-semibold">
+        <div className="text-base font-normal leading-[1.625] prose-headings:font-moderat prose-headings:font-semibold">
           {children}
         </div>
 

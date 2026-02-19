@@ -2,6 +2,7 @@ import '@/public/styles/font.css';
 import '@/public/styles/global.css';
 
 import { Analytics } from '@vercel/analytics/react';
+import { Agentation } from 'agentation';
 import { AppProps } from 'next/app';
 import {
   Crimson_Text,
@@ -112,6 +113,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps: { session, ...pagePro
         </TagsProvider>
       </div>
       {/* </SessionProvider> */}
+      {process.env.NODE_ENV === 'development' && <Agentation />}
     </>
   );
 };
