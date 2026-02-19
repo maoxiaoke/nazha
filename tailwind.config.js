@@ -41,6 +41,7 @@ module.exports = {
         libreBaskerville: ['var(--font-libreBaskerville)'],
         Huiwenmingchao: ['var(--font-Huiwenmingchao)'],
         spectral: ['var(--font-spectral)'],
+        gaegu: ['var(--font-gaegu)', 'cursive'],
         moderat: ['Moderat', 'sans-serif'],
         ashbury: ['Ashbury', 'var(--font-spectral)', 'serif']
       },

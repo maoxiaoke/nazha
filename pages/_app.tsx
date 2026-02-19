@@ -6,6 +6,7 @@ import { Agentation } from 'agentation';
 import { AppProps } from 'next/app';
 import {
   Crimson_Text,
+  Gaegu,
   Libre_Baskerville,
   Montserrat,
   Overpass_Mono,
@@ -52,6 +53,12 @@ const spectral = Spectral({
   subsets: ['latin'],
   weight: ['200', '300', '400', '500', '600', '700', '800'],
   variable: '--font-spectral'
+});
+
+const gaegu = Gaegu({
+  subsets: ['latin'],
+  weight: ['300', '400', '700'],
+  variable: '--font-gaegu'
 });
 
 // const inter = Inter({
@@ -104,7 +111,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps: { session, ...pagePro
 
       {/* <SessionProvider session={session}> */}
       <div
-        className={`${gothamsm.variable} ${spectral.variable} ${Huiwenmingchao.variable} ${crimsonText.variable} ${libreBaskerville.variable} ${catamaran.variable} ${montserrat.variable} ${overpass.variable} ${sourceSerif4.variable} w-full h-full`}>
+        className={`${gothamsm.variable} ${spectral.variable} ${Huiwenmingchao.variable} ${crimsonText.variable} ${libreBaskerville.variable} ${catamaran.variable} ${montserrat.variable} ${overpass.variable} ${sourceSerif4.variable} ${gaegu.variable} w-full h-full`}>
         <TagsProvider>
           {hiddenNav ? <></> : <Nav />}
           <main className={cn('w-full h-full', !hiddenNav && 'mt-2')}>
