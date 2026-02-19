@@ -1,0 +1,50 @@
+{
+  "cli_version": "0.4.5",
+  "checkpoint_id": "488119fba6c3",
+  "session_id": "16434766-7390-4250-943d-30f57e988f4a",
+  "strategy": "manual-commit",
+  "created_at": "2026-02-19T08:24:14.879966Z",
+  "branch": "master",
+  "checkpoints_count": 2,
+  "files_touched": [
+    ".agent/skills/agentation",
+    ".agent/skills/agentation-self-driving",
+    ".agents/skills/agentation-self-driving/SKILL.md",
+    ".agents/skills/agentation-self-driving/references/two-session-workflow.md",
+    ".agents/skills/agentation/SKILL.md",
+    ".claude/skills/agentation",
+    ".claude/skills/agentation-self-driving",
+    ".continue/skills/agentation",
+    ".continue/skills/agentation-self-driving",
+    ".cursor/skills/agentation",
+    ".cursor/skills/agentation-self-driving",
+    ".goose/skills/agentation",
+    ".goose/skills/agentation-self-driving",
+    ".neovate/skills/agentation",
+    ".neovate/skills/agentation-self-driving",
+    ".windsurf/skills/agentation",
+    ".windsurf/skills/agentation-self-driving",
+    "pages/_app.tsx",
+    "skills/agentation",
+    "skills/agentation-self-driving"
+  ],
+  "agent": "Claude Code",
+  "turn_id": "3ecefac1c168",
+  "token_usage": {
+    "input_tokens": 33,
+    "cache_creation_tokens": 35323,
+    "cache_read_tokens": 1097159,
+    "output_tokens": 1747,
+    "api_call_count": 27
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-02-19T08:24:14.784746Z",
+    "agent_lines": 323,
+    "human_added": 7905,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 8228,
+    "agent_percentage": 3.925619834710744
+  },
+  "transcript_path": ".claude/projects/-Users-nazha-nazha-all-nazha/16434766-7390-4250-943d-30f57e988f4a.jsonl"
+}

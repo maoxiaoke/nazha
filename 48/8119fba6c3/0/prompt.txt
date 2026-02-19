@@ -1,0 +1,27 @@
+follow this guide: https://agentation.dev/install, install agentation for me
+
+---
+
+oik
+
+---
+
+do YOU ADD THE MCP SERVER FOR ME ?
+
+---
+
+[Request interrupted by user for tool use]
+
+---
+
+<task-notification>
+<task-id>b70f085</task-id>
+<output-file>/private/tmp/claude-501/-Users-nazha-nazha-all-nazha/tasks/b70f085.output</output-file>
+<status>completed</status>
+<summary>Background command "Find files containing mcpServers config" completed (exit code 0)</summary>
+</task-notification>
+Read the output file to retrieve the result: /private/tmp/claude-501/-Users-nazha-nazha-all-nazha/tasks/b70f085.output
+
+---
+
+[Request interrupted by user]
