@@ -1,0 +1,58 @@
+## Page Feedback: /
+**Viewport:** 1512×861
+
+### 1. <Container> <PagesDevOverlayBridge> <PathnameContextProviderAdapter> <MyApp> <Home> <MotionComponent> paragraph: "You can reach me at @xiaokedada."
+**Location:** .w-full > .w-full > .mb-16 > p
+**React:** <Container> <PagesDevOverlayBridge> <PathnameContextProviderAdapter> <MyApp> <Home> <MotionComponent>
+**Feedback:** 改成： Feel free to reach me at @xiaokedada. If you can speak Chinese, you can add my WeChat (id: nazha_m).
+
+### 2. <Container> <PagesDevOverlayBridge> <PathnameContextProviderAdapter> <MyApp> <Home> <MotionComponent> paragraph: "I created R2Uploader, a desktop client f..."
+**Location:** .w-full > .w-full > .mb-16 > p
+**React:** <Container> <PagesDevOverlayBridge> <PathnameContextProviderAdapter> <MyApp> <Home> <MotionComponent>
+**Feedback:** 这三段话都是 I 打头，切换一点用法新意
+
+---
+
+改回之前的表达方式,但是不要 I 开头
+
+---
+
+移除 Candy
+
+---
+
+把我的 lemonsqueezy 加到合适的位置  https://anotherme.lemonsqueezy.com/
+
+---
+
+不是 SOME ARE , 是所有的在,或者说更多可以在 LEMON SQUEEZY 找到
+
+---
+
+https://anotherme.lemonsqueezy.com/
+
+---
+
+[Request interrupted by user]
+
+---
+
+## Page Feedback: /
+**Viewport:** 1512×861
+
+### 1. <Container> <PagesDevOverlayBridge> <PathnameContextProviderAdapter> <MyApp> <Home> <MotionComponent> space text
+**Location:** .spectral > .w-full > .w-full > .mb-16
+**React:** <Container> <PagesDevOverlayBridge> <PathnameContextProviderAdapter> <MyApp> <Home> <MotionComponent>
+**Feedback:** 表达更亲切一些
+
+---
+
+这个改成 I also write a newsletter and tend a digital garden
+
+---
+
+这句可以以 I 开头
+
+---
+
+NOW, COMMIT AND PUSH
