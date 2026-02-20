@@ -143,6 +143,7 @@ export async function loadMDX(source: string) {
         remarkPrism,
         remarkHighlightSyntax
       ];
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       options.rehypePlugins = [
         ...(options?.rehypePlugins ?? []),
         rehypeSlug,
@@ -150,7 +151,7 @@ export async function loadMDX(source: string) {
         rehypeUnwrapImages,
         rehypeFootnotesToSidenotes,
         rehypeFixAutoLinks,
-      ];
+      ] as any;
       return options;
     }
   });
