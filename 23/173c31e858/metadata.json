@@ -1,0 +1,26 @@
+{
+  "cli_version": "0.4.5",
+  "checkpoint_id": "23173c31e858",
+  "strategy": "manual-commit",
+  "branch": "master",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "utils/loadMDX.ts"
+  ],
+  "sessions": [
+    {
+      "metadata": "/23/173c31e858/0/metadata.json",
+      "transcript": "/23/173c31e858/0/full.jsonl",
+      "context": "/23/173c31e858/0/context.md",
+      "content_hash": "/23/173c31e858/0/content_hash.txt",
+      "prompt": "/23/173c31e858/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 1466,
+    "cache_creation_tokens": 89272,
+    "cache_read_tokens": 1757601,
+    "output_tokens": 5344,
+    "api_call_count": 39
+  }
+}
