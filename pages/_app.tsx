@@ -1,5 +1,6 @@
 import '@/public/styles/font.css';
 import '@/public/styles/global.css';
+import 'katex/dist/katex.min.css';
 
 import { Analytics } from '@vercel/analytics/react';
 import { Agentation } from 'agentation';

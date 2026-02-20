@@ -3,10 +3,11 @@
 
 import Link from 'next/link';
 
+import { Footnote } from './Footnote';
 import { SideNote } from './SideNote';
 
 const linkClass =
-  'font-normal underline underline-offset-2 decoration-gray-300 hover:decoration-current dark:decoration-gray-600 dark:hover:decoration-current transition-colors duration-200 ease-out';
+  'font-normal underline decoration-2 underline-offset-2 decoration-gray-300 hover:decoration-current dark:decoration-gray-600 dark:hover:decoration-current transition-colors duration-200 ease-out';
 
 export const components = {
   a: ({ href = '', ...props }) => {
@@ -35,4 +36,5 @@ export const components = {
     </figure>
   ),
   SideNote,
+  Footnote,
 };

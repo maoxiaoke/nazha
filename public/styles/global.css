@@ -262,15 +262,28 @@
   }
 
   article blockquote {
-    @apply relative py-1 pl-[2ch] pr-[1ch] my-8 dark:bg-[#2a2e31];
-    background-color: #fefce8;
+    @apply relative py-1 text-center;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    background-color: transparent;
     border-inline-start-width: 0 !important;
+    font-size: 1.875rem;
+    line-height: 1.45;
+    font-family: 'Moderat', sans-serif;
+    font-style: italic;
+    font-weight: 400;
+    color: #ff6654 !important;
+    margin-inline: 0;
   }
 
   article blockquote::before {
-    content: '';
-    @apply absolute top-0 left-0 inline-block w-1 h-full;
-    background-color: #fde047;
+    display: none;
+  }
+
+  article blockquote p {
+    @apply my-0;
   }
 
   /* article li {
@@ -325,6 +338,11 @@ details {
   background: url(/images/wave.svg) 0 repeat-x
 }
 
+/* Normalize KaTeX font size to match surrounding body text */
+.katex {
+  font-size: 1em !important;
+}
+
 /* Override Tailwind Typography's backtick pseudo-elements on inline code */
 .prose :not(pre) > code::before,
 .prose :not(pre) > code::after {
@@ -377,18 +395,40 @@ details {
   line-height: 1.65;
   color: var(--color-text-secondary);
   font-style: normal;
-  font-family: var(--font-moderat), sans-serif;
+  font-family: 'Moderat', sans-serif;
+}
+
+@media (min-width: 640px) {
+  article blockquote {
+    margin-inline: -4rem;
+  }
+}
+
+.sidenote-no-border {
+  border-left: none !important;
+}
+
+.footnote-ref-boxed {
+  outline: 1px solid currentColor;
+  outline-offset: 0px;
+  border-radius: 2px;
+}
+
+/* Footnote inline annotation */
+.footnote-ref {
+  cursor: help;
 }
 
 @media (min-width: 1280px) {
   .sidenote {
     float: right;
     clear: right;
-    width: 10rem;
-    margin-right: -12.5rem;
+    width: 18rem;
+    margin-right: -20rem;
     margin-left: 1.5rem;
     margin-top: 0.2rem;
     margin-bottom: 0.5rem;
     font-size: 0.7rem;
   }
+
 }

@@ -1,0 +1,328 @@
+---
+title: 如何构建 Agent 及其上下文工程
+published: true
+listed: true
+date: '02/20/2026'
+lastUpdateDate: '02/20/2026'
+tags: Agent, AI
+language: Chinese
+---
+
+## 什么是 Agent？
+
+<SideNote>这张图来自 https://www.anthropic.com/engineering/building-effective-agents</SideNote>
+
+![what we called agents](https://assets.nazha.co/agent-in-action%20(1).png) 
+
+Agent 是基于 LLMs 构建的具备自我决策能力，推理、规划和与环境交互的系统。
+
+
+## 站在巨人肩膀上：使用 Claude Agent SDK 构建 Agent
+
+### 为什么是 Claude Agent SDK
+
+**经过 Claude Code 的可行性验证**：Claude Code / CoWork 基于 [Claude Agent SDK](https://platform.claude.com/docs/en/agent-sdk/overview) 开发，它的爆火证明选择 Claude Agent SDK 是一个下限不错的选择
+
+**国产模型兼容性更高**：[Minimax](https://platform.minimax.io/docs/coding-plan/claude-code)、 [GLM](https://docs.z.ai/devpack/tool/claude) 和 [DeepSeek](https://api-docs.deepseek.com/guides/anthropic_api) 都有兼容 Claude Code 的专有 api，更容易降级
+
+**开箱即用的内置工具和能力**： 开箱即用的 Tools ，支持上下文压缩 、Session 管理这些开箱即用的功能
+
+**很强的扩展能力**：支持 Hooks、MCP Tools、Skills 等方式进行能力扩展
+
+**官方出品**：如果基础模型就是 Claude Opus/Sonet，官方的 Claude Agent SDK 显然是最佳的选择。下面[这张图](https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/)告诉你现阶段为什么选择 Claude 模型。
+
+<SideNote>长任务的完成度是 Agent 的一个很重要的指标，完成度越高的 LLMs，在指令的对齐、工具的有效使用上效果相对更好</SideNote>
+
+![Opus 在长任务表现非常出色](https://assets.nazha.co/%E5%A6%82%E4%BD%95%E6%9E%84%E5%BB%BA%20Agent%20%E5%8F%8A%E5%85%B6%E4%B8%8A%E4%B8%8B%E6%96%87%E5%B7%A5%E7%A8%8B%20-%20Opus%20%E7%9A%84%E8%A1%A8%E7%8E%B0%E9%9D%9E%E5%B8%B8%E5%87%BA%E8%89%B2.png)
+
+> 用 Claude Agent SDK 先 run 起来，后续再考虑优化
+
+### Skills 是什么
+
+一个典型的 Skill 包含三层内容：
+
+- 元数据：用来告诉  Agent 这个 Skill 是干啥的，什么时候用
+- 指令：它可以是一个工作流程、最佳时间、注意事项。只有 Agent 确定要使用 Skill 是才读取这部分内容
+- 资源或代码：附带的脚本、模板或参考文档。通常使用「渐进式披露」策略，按需读取。
+
+![A simple skill.md file](https://assets.nazha.co/%E5%A6%82%E4%BD%95%E6%9E%84%E5%BB%BA%20Agent%20%E5%8F%8A%E5%85%B6%E4%B8%8A%E4%B8%8B%E6%96%87%E5%B7%A5%E7%A8%8B%20-%20a%20simple%20skill.md%20file.png)
+
+Skills 的本质是「可复用的提示词」，它的特点是：
+
+- 给 LLMs 运行时上下文学习的能力
+- 动态的：不是 Agent 执行前就注入，而是执行过程中 **动态加载**
+- 方便复用
+- 依赖于 Agent  环境（非强依赖）
+
+先聊一下为什么我们要 Prompt？是为了避免得到一个平庸的结果，而进行的有意的引导或激发。Prompt 为了让 Agent 从概率收敛（Distributional convergence）问题中解脱出来。
+
+为什么又说 Skills 的本质就是提示，无论从形态上，还是行为上，它都是用来补充 Agent 本身不具备、而又可以复用的信息。
+
+另一个特点是“动态的”。也就是说，你把 Skills 的内容放到系统提示词其实很可能达到一样的效果。但问题在于，如果把 Skills 都放到系统提示词里，也会造成很多上下文问题：
+
+1. Token 膨胀：用不上的 token 占据了系统提示词的大部分
+2. 混淆：多余信息导致低质量回复
+
+所以动态加载提示词的方案就被考虑进行来了。既然可以动态加载，就可以考虑原子化。可重用，可组合的能力就有了。所以，这个设计其实挺棒的。
+
+### Skills 跟 MCP 、 SubAgent 的区别
+
+MCP Tools 的官网有一句话[描述 MCP 是什么](https://modelcontextprotocol.io/docs/getting-started/intro)：MCP (Model Context Protocol) is an open-source standard for connecting AI applications **to external systems**。MCP 的重点关注的是 Agent 和外部世界的数据交互。
+
+![MCP is the standard to connect external systems](https://assets.nazha.co/%E5%A6%82%E4%BD%95%E6%9E%84%E5%BB%BA%20Agent%20%E5%8F%8A%E5%85%B6%E4%B8%8A%E4%B8%8B%E6%96%87%E5%B7%A5%E7%A8%8B%20-%20MCP%20is%20the%20standard%20to%20connect%20external%20systems.png)
+
+Agent 更多是以个体的「人」或者「角色」为维度来定义的（回到我们最开始的定义）。一个只能做 Code Review 的 Agent 并不是一个真正的 Agent，因为在现实场景下，很少有一个「人」或者「角色」只做  Code Review 这一件事的。
+
+<SideNote>来自 https://x.com/dotey/status/2015264362538160573，一个非常形象的解释</SideNote>
+
+> 我们不能把一个带说明书的电锯称之为木工
+
+换个前端同学能听懂的比喻，你可以把一个 React 页面看成是一个 Agent，一个个可复用的 React Components 看作是 Skills,  [useEffect](https://react.dev/reference/react/useEffect) 看成是 MCP。
+
+![Frontend metaphor](https://assets.nazha.co/%E5%A6%82%E4%BD%95%E6%9E%84%E5%BB%BA%20Agent%20%E5%8F%8A%E5%85%B6%E4%B8%8A%E4%B8%8B%E6%96%87%E5%B7%A5%E7%A8%8B%20-%20frontend%20metaphor.png)
+
+在没有 Skills 的早期，Skills / SubAgent 通常被设计为 MCP tools （比如 manus 的 [Agent as Tool 的设计](https://www.youtube.com/watch?v=6_BcCthVvb8)），用来隔离上下文。在实际设计中：
+
+- 随时变化、灵活的领域知识和工作流，可以通过 skill 来实现
+- 稳定的、可靠的行为通过 Tools 或 SubAgent 实现
+
+### Hooks 是什么
+
+利用 [Hooks](https://code.claude.com/docs/en/hooks-guide#code-formatting-hook) 在 Claude Code 的生命周期的不同节点中插入自定义处理，也可以影响 Agent 的后续行为。
+
+基于 Hooks 可以做的一些事情：
+
+- Log
+- [通知](https://code.claude.com/docs/en/terminal-config#notification-setup)
+- 代码格式化
+- ...
+
+比如使用 “PostToolUse” 这个 Hook 来处理进行 ESlint，检查实时改动的代码，给出 LLMs Lint 结果。
+
+```json
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/lint.py"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+### 一个例子
+OK，基于 Claude Agent SDK 有了基本的工具（bash/read...）、Skills、自定义的 MCP 工具、Hooks 和 SubAgent，就可以着手实现自己的智能体。
+
+### 不适合 Claude Agent SDK 的场景
+
+基于 Claude Agent  SDK 可以很快交付一个「先 run 起来的 Demo」，但涉及这些场景下需要多考虑一下：
+
+- Claude 模型不是实现任务的最佳的模型
+- 有自己更好的抽象和实现
+- 设计架构无法基于 Claude Agent SDK 实现
+
+## Multi-Agent 架构：转交 vs 委托
+
+**一旦智能达到某个阈值，多智能体就成为提升性能的关键方式**。在过去的十万年间，个体变得更加聪明，但集体智能和协调能力，人类社会在信息时代的能力呈现指数级增长。**通过在不同上下文窗口的智能体间分配工作，来增加并行推理的容量**。
+
+从模拟人类协助方式的角度，我倾向于将 Mulit-Agent 分类为：
+
+- 委托 (Delegation)
+
+在这种模式下 <Footnote note="通常指的是在 AI 系统中，一个专用的 Agent 被封装为可调用的函数（工具），供其他代理使用。\n Agent as Tool 从设计上缓解多 Agent 之间通信的难度，也可实现关注点分离（Seperation of concerns）。这种设计通常也可以激发灵活性，主 Agent 负责调度和处理流程。">Agent as Tool</Footnote> 的这种"父子"分层协作模型是目前主流的方案。它更强调单一的 Agent （也就是主  Agent）保持对任务的控制，在需要的时候调用其他子 Agent 来协助处理 **子任务**。
+
+[^what]: 通常指的是在 AI 系统中，一个专用的 Agent 被封装为可调用的函数（工具），供其他代理使用。
+
+委托模式不移交任务控制权。
+
+![nano-banana-1768876869766-0.jpeg](https://assets.nazha.co/nano-banana-1768876869766-0.jpeg)
+
+这种模式的好处是架构设计简单，灵活性相对而言更强。
+
+- 转交
+
+另一种 Multi-Agent 模式是转交（Handoff）。跟委托的区别是：转交模式是一种去中心化的多智能体编排方式，其中一个智能体可以将整个对话或任务委托给另一个智能体，通过单向的方式转移控制权和上下文。
+
+这种交接方式下，通常没有单一的"大脑"，被转交的 Agent 完全接管与用户的互动。系统需要维护一个共享内存或状态，以便在交接过程中传递上下文。
+
+如果转交的路径是确定的（顺序通常**由某些业务逻辑或 Orchestrator Agent 确定** ），那么这个系统的灵活性就较低 - 还要考虑分配错误的问题。共享上下文可能会更难。延迟方面，转交模式增加了顺序回合，Agent 依次运行，可能会比单个 Agent 处理事情要慢。
+
+根据不同的场景，还可以进一步细化为：
+
+1. 工作流
+
+以工作流按照预定义的 SOP 流程编排智能体。
+
+2. [Swarm](https://en.wikipedia.org/wiki/Swarm_intelligence)
+
+![Swarm Intelligence](https://assets.nazha.co/418698-artificial-intelligence-swarm-predictions-unu.webp)
+
+Swarm 最初由 OpenAI 在 [swarm 项目](https://github.com/openai/swarm)中引入。Swarm 的核心思想是多个代理作为团队一起解决复杂问题，同时所有代理共享相同的信息上下文，特点是去中心化。
+
+3. Graph
+
+基于确定性有向图的代理编排系统，是可以包含多路径、分支、反馈循环的一种架构模式。
+
+![Graph patterns of agent architecture](https://assets.nazha.co/nano-banana-1768964408672-0.jpeg)
+
+## 公式化的 Context Engineering
+
+
+在传统自回归 LLM 标准概率模型：
+
+![Standard probabilistic model](https://assets.nazha.co/Context%20Engineering%20-%20standard%20probabilistic%20model.png)
+
+其中 C = prompt。
+
+对现代系统来说，C = prompt 是不够的。上下文工程将上下文 C 重新概念化为一个动态结构的信息组件集合 `c1, c2, ..., cn`。这些组件由一组函数进行获取，过滤和格式化，并最终由一个高级组装函数（$\mathcal{A}$）进行协调：
+
+![what is 上下文工程](https://assets.nazha.co/Context%20Engineering%20-%20what%20is%20%E4%B8%8A%E4%B8%8B%E6%96%87%E5%B7%A5%E7%A8%8B.png)
+
+其中 $c_i$ 包含这么几类：
+
+1. $c_{instr}$  - System instructions and rules  系统指令和规则
+2. $c_{know}$  - External knowledge 通过 RAG / Web Search / 记忆系统等召回的外部知识
+3. $c_{tools}$  - Available external tools 工具的定义和返回
+4. $c_{mem}$  - Persistent information from prior interactions  执行累计的过程数据
+5. $c_{state}$  - The dynamic state of the user, world, or multi-agent system 多智能体系统和编排转交的数据
+6. $c_{query}$  - The user's immediate request 用户的请求
+
+从优化的角度来看，上下文工程就是「**寻找到一组理想的上下文生成函数** $\mathcal{F} = \{ A, \text{Retrieve}, \text{Select}, \ldots \}$，**以最大化提升 LLMs 的预期输出质量**」。
+
+从数学原理分析，组装函数 $\mathcal{A}$ 是一种动态上下文编排形式，是一个包含格式化和连接操作的管道 $A = \text{Concat} \circ (Format_1, \ldots, Format_n)$。
+
+知识检索 $c_{\text{know}} = \text{Retrieve}(\ldots)$ 可以被视为一个信息论最优问题，目标是选择与目标答案在给定查询条件下**具有最大互信息量的知识**。这要求检索到的上下文不仅语义相似，而且对于解决任务具有最大信息量。
+
+![用户可见的仅是上下文工程很少的一部分](https://assets.nazha.co/%E5%A6%82%E4%BD%95%E6%9E%84%E5%BB%BA%20Agent%20%E5%8F%8A%E5%85%B6%E4%B8%8A%E4%B8%8B%E6%96%87%E5%B7%A5%E7%A8%8B%20-%20%E7%94%A8%E6%88%B7%E5%8F%AF%E8%A7%81%E7%9A%84.png)
+然后在实践过程中，会存在以下的一些问题：
+
+- **过程累积导致的上下文膨胀**。这其中包含工具的定义和结果会大量消耗 token、中间推理过程会在上下文大量累积。
+- Agent 执行过程中无法对齐目标，不遵循指令
+
+## 上下文卸载
+
+卸载主要包含两方面，一是卸载中间过程；二是将结果卸载到文件系统做 **渐进式披露**。
+
+无用的中间过程会产生大量的  Token 堆积。卸载无用的中间过程的策略可以是委托任务到子 Agent，或者支持 [Code execution](https://www.anthropic.com/engineering/code-execution-with-mcp)。Code execution 像函数一样，有输入和输出，中间过程被封装/消除，不污染上下文。
+
+另外就是将返回结果进行渐进式披露。在内部很多业务场景，为了避免工具返回大量的内容，可以将大文档拆分成小文档，并将小文档卸载到文件系统。它的结果可能是：
+
+```text
+文件 A
+
+A 的使用方法 [./usage.txt]
+A 的示例 [.example.txt]
+```
+
+还比如，对 RAG 返回的候选结果进行卸载：
+
+```txt
+检索内容为 xxx、yyy 的使用文档
+
+A 使用文档 [./a.txt]
+B 使用文档 [./b.txt]
+```
+
+### 文件系统作为上下文的容器
+
+#### 为什么
+
+对于长上下文，很多智能体采用上下文截断或压缩策略。从逻辑上讲，任何不可逆的压缩都伴随着风险。
+
+- **Plan/Scratch files**：Agent 可以创建临时文件整理思路、跟踪进度或存储中间结果
+- **Long context handling**：将旧消息和工具结果压缩到文件系统的文件中，Agent 需要时重新读取
+-  **渐进式披露**：不必将所有内容都保留在上下文中
+- **可逆的**：卸载到文件系统是可逆的，内容没有被丢掉，知识外部化了
+
+总之容量无限，天然持久，并且智能体自身可直接操作。模型学习如何按需读写文件——不仅是将文件系统用作存储，更是将文件系统当作结构化的外部记忆体。
+
+#### 基于文件系统的二次检索策略
+
+![基于文件系统的二次检索策略](https://assets.nazha.co/%E5%A6%82%E4%BD%95%E6%9E%84%E5%BB%BA%20Agent%20%E5%8F%8A%E5%85%B6%E4%B8%8A%E4%B8%8B%E6%96%87%E5%B7%A5%E7%A8%8B%20-%20%E5%9F%BA%E4%BA%8E%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%BA%8C%E6%AC%A1%E6%A3%80%E7%B4%A2%E7%AD%96%E7%95%A5.png)
+
+在一些主要以组件文档、库文档和 api 文档这些 **偏结构性的文档** 的场景。实践下来如果按照传统方案进行分块，效果反而不一定好。比方说，组件 A 的使用文档如下：
+
+```
+## 组件名
+描述
+## api
+## 示例
+### Demo1
+### Demo2
+### Demo3
+
+...
+```
+
+如果只召回了 A 的描述，却没有召回 api 或者召回了 api 却没有召回某个特定使用的 Demo 种种边界问题。
+
+策略是做 **二次检索**。它的步骤是先对文件做摘要处理，只把摘要文档送入 RAG 系统进行检索。然后让 Agent 做一次粗略检索，大概会有 5 到 10 个候选。再让 Agent 从这 5 到 10 个候选中找出匹配要求的全量文档。
+
+为了减少 Token 和上下文，可以基于文件系统向 Agent 返回少量的数据，而其他内容进行渐进式披露。比方说，返回的全量文档的内容实际上可能是：
+
+```text
+## 组件名
+描述
+## api
+[api](./api.txt)
+## 示例
+[Demo1](./demo1.txt)
+[Demo2](./demo2.txt)
+[Demo3](./demo3.txt)
+
+```
+
+这样既减少了上下文膨胀，也可以降低噪音对 LLM 的干扰。更重要的时候，基于文件系统，后续的对话 or Agent 可以直接进行本地 grep 检索而无需再次召回。
+
+## 从 Tools 到 Scripting
+
+减少中间过程还可以借鉴编程中 「函数」的概念，通过 Agent 的自动编写和执行代码来链接操作，减少中间过程的输出。Anthropic 工程团队有一篇[文章](https://www.anthropic.com/engineering/code-execution-with-mcp) 介绍，另外一篇可以学习的是 [CodeAct](https://www.anthropic.com/engineering/code-execution-with-mcp) 这篇论文。
+
+## 自我强化
+
+在 Claude Code 中，Todo read/write 工具就是一个**自我强化**工具。Todo read/write 的作用非常简单，就是 Todo 的读写。在读写过程中，这份 Todo 都会再次返回上下文，从而让 Agent 在长循环里持续对齐目标。
+
+Todo 模式的进阶是 [Plan](https://cursor.com/blog/plan-mode)，一个包含 Todo 和思维过程的中间草稿。
+
+## 面向开发环境工具分层设计
+
+越来越多的 Agent 把宿主环境搬到 Unix/Linux 环境，让 LLMs 可以直接访问文件系统和 Bash 操作等基础功能。如果配置了 Node.js / Python 等开发环境，还可以直接写脚本和代码。这表明：标准协议（CodeAct/SQL/Shell）天然比自定义工具对 LLMs 更友好。
+
+![MCP 的分层设计](https://assets.nazha.co/%E5%A6%82%E4%BD%95%E6%9E%84%E5%BB%BA%20Agent%20%E5%8F%8A%E5%85%B6%E4%B8%8A%E4%B8%8B%E6%96%87%E5%B7%A5%E7%A8%8B%20-%20MCP%20%E7%9A%84%E5%88%86%E5%B1%82%E8%AE%BE%E8%AE%A1.png)
+
+许多流行的通用智能体使用的工具数量出人意料地少。Claude Code 只有十几个工具；Manus 据说只有不到 20 个。
+
+## SOTA 构建生产智能体的三基本要素
+
+- 沙箱 （让 Agent 住在沙箱上）
+- 可执行环境
+- 文件系统
+
+## Agent 的设计原则
+
+### 先定义好环境还是先构建智能体
+
+[Biomni](https://github.com/snap-stanford/biomni) （[开源](https://github.com/snap-stanford/biomni)）是一个「通用型」生物医学 Agent，希望融合跨学科的知识。在他们的[论文](https://www.biorxiv.org/content/10.1101/2025.05.30.656746v1.full)中提到：Biomni 由两部分组成： Biomni-E1（一个具备统一行动空间的基础生物医学环境，包含 150 种专业生物医学工具、105 个软件包和 59 个数据库） 和 Biomni-A1（一个专门设计用于高效利用该环境的智能代理）。具体来说，在构建 Biomni-E1 中，他们利用 bioRxiv 定义的 25 个学科类别，从每个类别中选取了 100 篇最新发表的论文。一个行动发现 LLM 代理按顺序处理每篇论文，提取、复制或生成所述研究所需的关键任务、工具、数据库和软件。这一全面的资源集合构成了执行大量生物学研究任务所需的基本行动空间。
+
+![biomni overview](https://assets.nazha.co/2026-01-19%20-%20biomni%20overview.png)
+
+在 A1 的设计中，根据用户查询，Agent 首先使用检索系统来识别所需的最相关工具、数据和软件。它运用基于 LLM 的推理和领域专业知识，生成一份详细的、分步执行的计划。每一步都通过可**执行代码**来表达，从而实现对生物医学操作的精确而灵活的组合。 
+
+### 从简开始，必要时才增加复杂性
+
+可以先从单智能体设计，再逐步往 Multi Agent 设计。做 Agent 设计和上下文工程应该目的应该是 “简化” 而不是复杂化。并非来自于增加了更多花哨的上下文管理层或巧妙的检索技巧，而是来自于简化，来自于移除不必要的技巧并给予模型更多信任。每一次我们简化系统架构，系统都会变得更快、更稳定、也更智能。
+
+### 动作空间的设计向训练数据看齐
+
+目前上下文工程的 SOTA 的最佳实践，给我的一个感觉就是「跟 LLMs 的认知对齐」。LLMs 针对全网的信息进行训练，所以它对已有的系统、Spec、工具都是非常了解的。在动作空间的设计上，可以多和训练数据对齐，比如：
+
+- 写代码
+- Bash
+- 文件读写
+- 对命令行的使用 -h

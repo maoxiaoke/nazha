@@ -24,14 +24,14 @@ const TableOfContents: React.FC<{ contentRef: React.RefObject<HTMLElement> }> = 
   // Extract headings from the rendered article after mount
   useEffect(() => {
     if (!contentRef.current) return;
-    const els = Array.from(contentRef.current.querySelectorAll('h2, h3'));
+    const els = Array.from(contentRef.current.querySelectorAll('h2'));
     setHeadings(
       els.map((el) => ({
         id: el.id,
         // rehype-autolink-headings injects a "#" anchor inside each heading;
         // strip it so TOC labels are clean.
         text: (el.textContent ?? '').replace(/#\s*$/, '').trim(),
-        level: el.tagName === 'H2' ? 2 : 3,
+        level: 2,
       }))
     );
   // eslint-disable-next-line react-hooks/exhaustive-deps
