@@ -1,0 +1,26 @@
+{
+  "cli_version": "0.4.5",
+  "checkpoint_id": "0fad8a825dd7",
+  "strategy": "manual-commit",
+  "branch": "master",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "pnpm-lock.yaml"
+  ],
+  "sessions": [
+    {
+      "metadata": "/0f/ad8a825dd7/0/metadata.json",
+      "transcript": "/0f/ad8a825dd7/0/full.jsonl",
+      "context": "/0f/ad8a825dd7/0/context.md",
+      "content_hash": "/0f/ad8a825dd7/0/content_hash.txt",
+      "prompt": "/0f/ad8a825dd7/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 1466,
+    "cache_creation_tokens": 89272,
+    "cache_read_tokens": 1757601,
+    "output_tokens": 5344,
+    "api_call_count": 39
+  }
+}
