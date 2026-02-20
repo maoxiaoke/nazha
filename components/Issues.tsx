@@ -30,7 +30,7 @@ const NewsLetters = ({ className, issues }: NewsLettersProps) => {
   const issueLen = issues?.length ?? 0;
   return (
     <div className={className}>
-      <h1 className="font-semibold text-center mb-2">Previous Issues</h1>
+      <h2 className="font-semibold text-center mb-2">Previous Issues</h2>
       <ul>
         {issues.map((issue, idx) => (
           <li key={issue.id} className="grid grid-cols-[1fr_4fr_1fr] p-2 border-b last:border-none">

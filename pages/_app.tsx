@@ -86,7 +86,10 @@ const libreBaskerville = Libre_Baskerville({
 const MyApp: React.FC<AppProps> = ({ Component, pageProps: { session, ...pageProps } }) => {
   const router = useRouter();
   const hiddenNav =
-    router.pathname === '/hackernews-top-archive' || router.pathname === '/authenticate';
+    router.pathname === '/' ||
+    router.pathname === '/posts/[slug]' ||
+    router.pathname === '/hackernews-top-archive' ||
+    router.pathname === '/authenticate';
   return (
     <>
       <Head>

@@ -1,6 +1,4 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useRouter } from 'next/router';
 
 import { useTags } from './TagsContext';
@@ -14,9 +12,10 @@ export function Tag({ tag, count }: { tag: string; count?: number }) {
   const isIsPreviewList = !isInPosts && !isInNotes;
 
   return (
-    <small
+    <button
+      type="button"
       className={!isSelected || !isIsPreviewList ? `link-tag` : 'link-tag-selected'}
-      style={{ margin: '12px 12px 0 0', display: 'inline-block', cursor: 'pointer' }}
+      style={{ margin: '12px 12px 0 0', cursor: 'pointer' }}
       onClick={() => {
         if (isInPosts) {
           router.push('/posts');
@@ -29,7 +28,7 @@ export function Tag({ tag, count }: { tag: string; count?: number }) {
       }}>
       {tag}
       {count && ` (${count})`}
-    </small>
+    </button>
   );
 }
 

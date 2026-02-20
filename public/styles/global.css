@@ -85,15 +85,15 @@
     --sc-divider-dark: rgba(140, 140, 140, 1);
 
     --syntax-background: hsl(60, 0%, 96%);
-    --syntax-comment: hsl(0, 0%, 43.5%);
-    --syntax-text: hsl(60, 0%, 20%);
-    --syntax-operator: hsl(39, 0%, 17.5%);
-    --syntax-string: hsl(60, 0%, 35%);
-    --syntax-number: hsl(42.3, 0%, 30%);
-    --syntax-primary: hsl(45, 0%, 32.5%);
-    --syntax-keyword: hsl(36.3, 0%, 19%);
-    --syntax-html-tag: hsl(0, 0%, 32%);
-    --syntax-boolean: hsl(60, 0%, 20%);
+    --syntax-comment: #9ca3af;
+    --syntax-text: #1e1e1e;
+    --syntax-operator: #0369a1;
+    --syntax-string: #166534;
+    --syntax-number: #b45309;
+    --syntax-primary: #1e1e1e;
+    --syntax-keyword: #7c3aed;
+    --syntax-html-tag: #be185d;
+    --syntax-boolean: #7c3aed;
   }
 
   body.dark {
@@ -112,15 +112,15 @@
     --sc-divider-dark: rgba(200, 200, 200, 0.48);
 
     --syntax-background: hsl(60, 0%, 8.8%);
-    --syntax-comment: hsl(0, 0%, 50.2%);
-    --syntax-text: hsl(60, 0%, 80%);
-    --syntax-operator: hsl(39, 0%, 92.5%);
-    --syntax-string: hsl(60, 0%, 65%);
-    --syntax-number: hsl(42.3, 0%, 60%);
-    --syntax-primary: hsl(45, 0%, 67.5%);
-    --syntax-keyword: hsl(36.3, 0%, 87.8%);
-    --syntax-html-tag: hsl(33.9, 0%, 68%);
-    --syntax-boolean: hsl(60, 0%, 80%);
+    --syntax-comment: #64748b;
+    --syntax-text: #e2e8f0;
+    --syntax-operator: #38bdf8;
+    --syntax-string: #86efac;
+    --syntax-number: #fb923c;
+    --syntax-primary: #e2e8f0;
+    --syntax-keyword: #c084fc;
+    --syntax-html-tag: #f472b6;
+    --syntax-boolean: #c084fc;
     --docsearch-searchbox-background: #283035;
     --docsearch-muted-color: #939fb4;
     --docsearch-text-color: #d3dae6;
@@ -256,12 +256,9 @@
     font-family: 'Fira Code', monospace;
     @apply rounded-sm mx-1 py-[2px] px-2 text-sm text-stone-800 dark:text-stone-200;
   }
-  article :not(pre) > code::before {
-    content: '`';
-  }
-
+  article :not(pre) > code::before,
   article :not(pre) > code::after {
-    content: '`';
+    content: '';
   }
 
   article blockquote {
@@ -326,4 +323,72 @@ details {
   border: none;
   height: 5px;
   background: url(/images/wave.svg) 0 repeat-x
+}
+
+/* Override Tailwind Typography's backtick pseudo-elements on inline code */
+.prose :not(pre) > code::before,
+.prose :not(pre) > code::after {
+  content: '' !important;
+}
+
+/* Inline code: no bold */
+.prose :not(pre) > code {
+  font-weight: 400 !important;
+}
+
+/* Code block copy button */
+.remark-highlight {
+  position: relative;
+}
+
+.remark-highlight .copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  opacity: 0;
+  transition: opacity 150ms ease;
+  font-size: 11px;
+  font-family: 'Moderat', sans-serif;
+  letter-spacing: 0.5px;
+  color: var(--syntax-comment);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 3px;
+  line-height: 1.6;
+}
+
+.remark-highlight:hover .copy-btn {
+  opacity: 1;
+}
+
+.remark-highlight .copy-btn:hover {
+  color: var(--syntax-text);
+}
+
+/* Margin annotations / sidenotes */
+.sidenote {
+  display: block;
+  margin: 0.875rem 0;
+  padding-left: 0.75rem;
+  border-left: 1.5px solid var(--color-muted);
+  font-size: 0.8rem;
+  line-height: 1.65;
+  color: var(--color-text-secondary);
+  font-style: normal;
+  font-family: var(--font-moderat), sans-serif;
+}
+
+@media (min-width: 1280px) {
+  .sidenote {
+    float: right;
+    clear: right;
+    width: 10rem;
+    margin-right: -12.5rem;
+    margin-left: 1.5rem;
+    margin-top: 0.2rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.7rem;
+  }
 }

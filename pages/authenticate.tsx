@@ -33,7 +33,7 @@ export default function AuthenticationPage({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <>
-      <div className="container relative hidden h-[800px] flex-col items-center justify-center md:grid">
+      <div className="container relative flex flex-col items-center justify-center min-h-[800px] md:grid">
         {/* <Link
           href="/examples/authentication"
           className={cn('absolute right-4 top-4 md:right-8 md:top-8')}>

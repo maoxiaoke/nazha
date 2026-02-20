@@ -48,7 +48,7 @@ Agent 的功能模块专门处理特定类型的信息或执行特定任务；�
 
 在 [LLM Powered Autonomous Agents](https://lilianweng.github.io/posts/2023-06-23-agent/) 这篇内容中，将 Agent System 的设计更具体地拆分为三个构件：
 
-![](https://nazhaimage.xyz/compents-of-llms-based-agent.png)
+![](https://assets.nazha.co/compents-of-llms-based-agent.png)
 
 ### Planning
 
@@ -86,7 +86,7 @@ agent ≈ model + tools, within a for-loop + environment
 
 或者一个更形象的图形化表达：
 
-![](https://nazhaimage.xyz/agent-in-action.png)
+![](https://assets.nazha.co/agent-in-action.png)
 
 当使用工具增强的大语言模型作为 Agent 大脑，它的流程如下：
 
@@ -151,7 +151,7 @@ let completion = await openai.chat.completions.create({
 
 这个[方案](https://arxiv.org/abs/2305.04091)核心主要引入了 Plan（ToDo List，规划列表），将整个任务划分成更小的任务。子任务可以循环调用多次工具来完成，这样可以避免每次工具调用都跟 LLMs 进行交互。
 
-![](https://nazhaimage.xyz/plan-and-execute-agent.png)
+![](https://assets.nazha.co/plan-and-execute-agent.png)
 
 一旦子任务完成，任务反馈结果会提交给 LLMs 进行重新规划。
 
@@ -163,11 +163,11 @@ let completion = await openai.chat.completions.create({
 
 [ReWOO](https://arxiv.org/abs/2305.18323?ref=blog.langchain.dev) 架构通过**串行工作流**的方式减少工具与 LLMs 的交互，大致的逻辑是 LLMs 在分解依赖任务之后，通过一个单独的 Worker 节点串行处理任务（上一个任务的输出变成下一个任务的输入），最后把最终结果提交给 LLMs。
 
-![](https://nazhaimage.xyz/rewoo-agent.png)
+![](https://assets.nazha.co/rewoo-agent.png)
 
 [LLMCompiler](https://arxiv.org/abs/2312.04511?ref=blog.langchain.dev) 是通过是试图通过依赖图谱的方式，并行处理子任务，以提高 Agent 执行的速度。
 
-![](https://nazhaimage.xyz/llm-compiler-agent.png)
+![](https://assets.nazha.co/llm-compiler-agent.png)
 
 ## Agent Case Studies
 
@@ -177,7 +177,7 @@ let completion = await openai.chat.completions.create({
 
 [Cline](https://github.com/cline/cline) 是一个非常典型的 ReAct 架构的 Coding Agent。它的大致实现流程如下图所示：
 
-![](https://nazhaimage.xyz/how-clline-work-more-detail.png)
+![](https://assets.nazha.co/how-clline-work-more-detail.png)
 
 在编程任务启动时，Cline 会收集系统提示词、用户自定义规则、用户输入和环境信息作为上下文（Memory）提交给 LLMs。Cline 要求 LLMs 通过 `<thinking>` 进行推理规划，然后输出 Tool Use 指令。Cline 有两类工具，一类是内置工具，比如执行命令行指令、阅读代码文件、搜索文件等等，另一类则是通过 MCP 由用户自定义扩展。
 
@@ -199,7 +199,7 @@ let completion = await openai.chat.completions.create({
 
 [MetaGPT](https://github.com/geekan/MetaGPT) 就是一个可参考的多智能体的设计，它模拟真实的软件开发过程，涉及的角色包括产品经理、架构师、项目经理、开发和测试。
 
-![](https://nazhaimage.xyz/meta_ai_screenshot.png)
+![](https://assets.nazha.co/meta_ai_screenshot.png)
 
 > 
 ## Agent 和工作流
@@ -213,7 +213,7 @@ Agent 和 workflow（工作流）一定程度上都具有“代理”的特征�
 
 一个典型的基于 Prompt Chaining 的工作流：
 
-![](https://nazhaimage.xyz/workflow-based-prompt-chaing.png)
+![](https://assets.nazha.co/workflow-based-prompt-chaing.png)
 
 工作流通常基于自动化系统，LLM 作为 Play 中的一环参与到流程中。而 Agent 是一个将 LLM 作为大脑的自动系统，LLM 主动参与推理和规划。
 

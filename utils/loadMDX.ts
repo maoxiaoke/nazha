@@ -2,14 +2,34 @@ import fs from 'fs';
 import matter from 'gray-matter';
 import { bundleMDX } from 'mdx-bundler';
 import path from 'path';
-import rehypeAutolink from 'rehype-autolink-headings';
 import rehypeSlug from 'rehype-slug';
 import remarkGfm from 'remark-gfm';
 import remarkPrism from 'remark-prism';
 import glob from 'tiny-glob';
+import { SKIP, visit } from 'unist-util-visit';
 
 import remarkHighlightSyntax from './hightlight';
-import { autoLinkHeadingsOptions } from './rehypeAutolinkPlugin';
+
+// Unwrap standalone images from their auto-generated <p> wrapper.
+// Without this, our <figure> MDX component renders as <p><figure>…</figure></p>
+// which is invalid HTML — the browser moves <figure> out of <p>, causing a
+// React hydration mismatch.
+function rehypeUnwrapImages() {
+  return (tree: any) => {
+    visit(tree, 'element', (node: any, index: number | undefined, parent: any) => {
+      if (
+        !parent ||
+        typeof index !== 'number' ||
+        node.tagName !== 'p' ||
+        !node.children.some((c: any) => c.tagName === 'img')
+      ) return;
+
+      const imgs = node.children.filter((c: any) => c.tagName === 'img');
+      parent.children.splice(index, 1, ...imgs);
+      return [SKIP, index];
+    });
+  };
+}
 
 export const RootPath = process.cwd();
 export const PostPath = path.join(RootPath, 'posts');
@@ -28,7 +48,7 @@ export async function loadMDX(source: string) {
       options.rehypePlugins = [
         ...(options?.rehypePlugins ?? []),
         rehypeSlug,
-        [rehypeAutolink, autoLinkHeadingsOptions]
+        rehypeUnwrapImages
       ];
       return options;
     }

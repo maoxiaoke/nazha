@@ -84,8 +84,10 @@ const Subscribe = () => {
       </div>
       <div>
         <form className="relative mt-4 border rounded" onSubmit={subscribe}>
+          <label htmlFor="subscribe-email" className="sr-only">Email address</label>
           <input
-            className="px-4 py-2 block w-full border-gray-300 rounded-md bg-white dark:bg-bg text-gray-900 dark:text-gray-100 pr-32 outline-none"
+            id="subscribe-email"
+            className="px-4 py-2 block w-full border-gray-300 rounded-md bg-white dark:bg-bg text-gray-900 dark:text-gray-100 pr-32 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1"
             ref={inputEl}
             placeholder="Your e-mail address"
             type="email"
@@ -98,7 +100,7 @@ const Subscribe = () => {
             {loading ? <LoadingSVG /> : 'SUBSCRIBE'}
           </button>
         </form>
-        {errMsg && <div className="mt-4 text-gray-500 text-sm">{errMsg}</div>}
+        {errMsg && <div role="alert" className="mt-4 text-gray-500 text-sm">{errMsg}</div>}
       </div>
     </div>
   );

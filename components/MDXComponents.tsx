@@ -3,13 +3,18 @@
 
 import Link from 'next/link';
 
+import { SideNote } from './SideNote';
+
+const linkClass =
+  'font-normal underline underline-offset-2 decoration-gray-300 hover:decoration-current dark:decoration-gray-600 dark:hover:decoration-current transition-colors duration-200 ease-out';
+
 export const components = {
   a: ({ href = '', ...props }) => {
     if (href.match(/http|https|mailto/)) {
       return (
         <a
           href={href}
-          className="text-[#0070F3] hover:underline hover:opacity-80"
+          className={linkClass}
           target="_blank"
           rel="noopener noreferrer"
           aria-label={props.children ? `${props.children} (opens in new tab)` : undefined}
@@ -17,13 +22,17 @@ export const components = {
         />
       );
     }
-    return (
-      <Link href={href} passHref {...props} className="text-[#0070F3]">
-        {/* <a {...props} style={{ color: '#0070F3' }} /> */}
-      </Link>
-    );
+    return <Link href={href} passHref {...props} className={linkClass} />;
   },
-  img: ({ alt = '', ...props }: { alt?: string; children?: React.ReactNode }) => (
-    <img alt={alt} {...(props as any)} className="my-10 block" />
-  )
+  img: ({ alt = '', ...props }: { alt?: string; src?: string; children?: React.ReactNode }) => (
+    <figure className="my-10">
+      <img alt={alt} {...(props as any)} className="block w-full" />
+      {alt && (
+        <figcaption className="text-center text-xs text-gray-400 dark:text-gray-500 mt-3 font-moderat not-italic">
+          {alt}
+        </figcaption>
+      )}
+    </figure>
+  ),
+  SideNote,
 };
