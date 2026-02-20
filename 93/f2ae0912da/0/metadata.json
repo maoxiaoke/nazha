@@ -1,0 +1,33 @@
+{
+  "cli_version": "0.4.5",
+  "checkpoint_id": "93f2ae0912da",
+  "session_id": "0a8fa202-9a4d-4df6-afcf-ea50f7c23717",
+  "strategy": "manual-commit",
+  "created_at": "2026-02-20T11:42:15.180354Z",
+  "branch": "master",
+  "checkpoints_count": 3,
+  "files_touched": [
+    "pages/_app.tsx",
+    "utils/loadMDX.ts"
+  ],
+  "agent": "Claude Code",
+  "turn_id": "109276c874e7",
+  "transcript_identifier_at_start": "d5da3ac5-1566-4304-a978-d24531ff0851",
+  "token_usage": {
+    "input_tokens": 1466,
+    "cache_creation_tokens": 89272,
+    "cache_read_tokens": 1757601,
+    "output_tokens": 5344,
+    "api_call_count": 39
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-02-20T11:42:14.899408Z",
+    "agent_lines": 102,
+    "human_added": 2263,
+    "human_modified": 1,
+    "human_removed": 0,
+    "total_committed": 2366,
+    "agent_percentage": 4.311073541842773
+  },
+  "transcript_path": ".claude/projects/-Users-nazha-nazha-all-nazha/0a8fa202-9a4d-4df6-afcf-ea50f7c23717.jsonl"
+}
