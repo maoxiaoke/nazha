@@ -3,7 +3,7 @@
   "checkpoint_id": "23173c31e858",
   "strategy": "manual-commit",
   "branch": "master",
-  "checkpoints_count": 1,
+  "checkpoints_count": 2,
   "files_touched": [
     "utils/loadMDX.ts"
   ],
@@ -35,13 +35,20 @@
       "context": "/23/173c31e858/3/context.md",
       "content_hash": "/23/173c31e858/3/content_hash.txt",
       "prompt": "/23/173c31e858/3/prompt.txt"
+    },
+    {
+      "metadata": "/23/173c31e858/4/metadata.json",
+      "transcript": "/23/173c31e858/4/full.jsonl",
+      "context": "/23/173c31e858/4/context.md",
+      "content_hash": "/23/173c31e858/4/content_hash.txt",
+      "prompt": "/23/173c31e858/4/prompt.txt"
     }
   ],
   "token_usage": {
-    "input_tokens": 1755,
-    "cache_creation_tokens": 704076,
-    "cache_read_tokens": 16589658,
-    "output_tokens": 80248,
-    "api_call_count": 209
+    "input_tokens": 1763,
+    "cache_creation_tokens": 706932,
+    "cache_read_tokens": 17485538,
+    "output_tokens": 80314,
+    "api_call_count": 215
   }
 }
