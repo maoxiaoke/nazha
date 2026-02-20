@@ -1,0 +1,41 @@
+{
+  "cli_version": "0.4.5",
+  "checkpoint_id": "2770e98f7385",
+  "session_id": "bb49e5b9-3b1e-453b-9156-a01afea88387",
+  "strategy": "manual-commit",
+  "created_at": "2026-02-20T02:31:26.027512Z",
+  "branch": "master",
+  "checkpoints_count": 3,
+  "files_touched": [
+    "components/FollowUp.tsx",
+    "components/Issues.tsx",
+    "components/PostPage.tsx",
+    "components/RssIcon.tsx",
+    "components/Subscribe.tsx",
+    "components/Tweet.tsx",
+    "components/tags/Tag.tsx",
+    "components/ui/tabs.tsx",
+    "pages/authenticate.tsx",
+    "pages/index.tsx"
+  ],
+  "agent": "Claude Code",
+  "turn_id": "ce7fff58c3cf",
+  "transcript_identifier_at_start": "a634c295-f121-4bbd-ac33-cf4ae6d33764",
+  "token_usage": {
+    "input_tokens": 25,
+    "cache_creation_tokens": 161202,
+    "cache_read_tokens": 1459698,
+    "output_tokens": 6818,
+    "api_call_count": 20
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-02-20T02:31:25.781405Z",
+    "agent_lines": 441,
+    "human_added": 136,
+    "human_modified": 13,
+    "human_removed": 0,
+    "total_committed": 590,
+    "agent_percentage": 74.7457627118644
+  },
+  "transcript_path": ".claude/projects/-Users-nazha-nazha-all-nazha/bb49e5b9-3b1e-453b-9156-a01afea88387.jsonl"
+}
