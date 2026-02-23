@@ -1,0 +1,38 @@
+{
+  "cli_version": "0.4.5",
+  "checkpoint_id": "b352d10b6bed",
+  "session_id": "bb49e5b9-3b1e-453b-9156-a01afea88387",
+  "strategy": "manual-commit",
+  "created_at": "2026-02-23T15:46:15.138789Z",
+  "branch": "feat/two-colums",
+  "checkpoints_count": 0,
+  "files_touched": [
+    "public/rss.xml",
+    "public/styles/font.css",
+    "components/Nav.tsx",
+    "next-env.d.ts",
+    "pages/index.tsx"
+  ],
+  "agent": "Claude Code",
+  "turn_id": "ce7fff58c3cf",
+  "transcript_identifier_at_start": "a634c295-f121-4bbd-ac33-cf4ae6d33764",
+  "checkpoint_transcript_start": 200,
+  "transcript_lines_at_start": 200,
+  "token_usage": {
+    "input_tokens": 25,
+    "cache_creation_tokens": 161202,
+    "cache_read_tokens": 1459698,
+    "output_tokens": 6818,
+    "api_call_count": 20
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-02-23T15:46:14.884001Z",
+    "agent_lines": 0,
+    "human_added": 0,
+    "human_modified": 130,
+    "human_removed": 19,
+    "total_committed": 2,
+    "agent_percentage": 0
+  },
+  "transcript_path": ".claude/projects/-Users-nazha-nazha-all-nazha/bb49e5b9-3b1e-453b-9156-a01afea88387.jsonl"
+}
