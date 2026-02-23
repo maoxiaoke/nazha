@@ -81,8 +81,6 @@ const PostRow: React.FC<PostRowProps> = ({
 
   return (
     <div className="relative" onMouseEnter={onMouseEnter}>
-      {/* Border lives outside the animated element so it never dims on hover.
-          Full-width when the year label shows, indented otherwise. */}
       <div
         className={`absolute top-0 right-0 h-px bg-gray-200/70 dark:bg-gray-700/40 ${
           showYear ? 'left-0' : 'left-14'
@@ -90,14 +88,15 @@ const PostRow: React.FC<PostRowProps> = ({
       />
       <motion.div
         className="flex items-center py-2.5"
-        initial={prefersReduced ? false : { opacity: 0, y: 8 }}
+        initial={prefersReduced ? false : { opacity: 0, y: 6 }}
         animate={{ opacity: dim ? 0.3 : 1, y: 0 }}
         transition={{
-          opacity: { duration: 0.2, ease: 'easeOut' },
+          opacity: { duration: 0.18 },
           y: {
-            duration: 0.4,
-            ease: [0.16, 1, 0.3, 1],
-            delay: prefersReduced ? 0 : index * 0.045,
+            type: 'spring',
+            stiffness: 120,
+            damping: 22,
+            delay: prefersReduced ? 0 : index * 0.04,
           },
         }}>
         <span
@@ -163,124 +162,131 @@ const Home: React.FC<Props> = ({ posts }) => {
         canonical="https://www.nazha.co"
         openGraph={{ url: 'https://www.nazha.co' }}
       />
-      <div className="w-full sm:max-w-[600px] mx-auto px-6 pt-16 pb-24">
-        {/* Header */}
-        <motion.div
-          className="mb-10 flex items-start justify-between"
-          initial={prefersReduced ? false : { opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}>
-          <div className="flex items-center gap-3">
-            <Image
-              src="/portrait/logo.jpg"
-              alt="nazha"
-              width={36}
-              height={36}
-              className="rounded-full"
-            />
-            <div>
-              <p className="text-lg font-gaegu font-bold text-gray-600 dark:text-gray-300">
-                nazha
-              </p>
-              <p
-                className="text-xs text-gray-400 dark:text-gray-500 mt-0.5 font-moderat"
-                style={{ letterSpacing: '1px' }}>
-                Updated Feb 19, 2026
-              </p>
-            </div>
-          </div>
-          {/* Controls preserved from nav */}
-          <div className="flex items-center gap-1">
-            <ThemeSwitch />
-            <RSSIcon />
-            <Link
-              href="https://twitter.com/xiaokedada"
-              aria-label="Twitter / X profile"
-              className="opacity-70 hover:opacity-100 transition-opacity duration-150 p-2">
-              <svg
-                width="18"
-                height="18"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                viewBox="0 0 24 24"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true">
-                <path d="m19 4-5.93 6.93M5 20l5.93-6.93m0 0 5.795 6.587c.19.216.483.343.794.343h1.474c.836 0 1.307-.85.793-1.435L13.07 10.93m-2.14 2.14L4.214 5.435C3.7 4.85 4.17 4 5.007 4h1.474c.31 0 .604.127.794.343l5.795 6.587" />
-              </svg>
-            </Link>
-          </div>
-        </motion.div>
+      <div className="w-full max-w-[1100px] mx-auto px-5 sm:px-8 xl:px-12 pt-12 pb-24">
+        <div className="grid grid-cols-1 md:grid-cols-[340px_1fr] gap-12 xl:gap-20">
 
-        {/* Bio */}
-        <motion.div
-          className="mb-16 space-y-4 text-sm leading-relaxed text-gray-700 dark:text-gray-300"
-          initial={prefersReduced ? false : { opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1], delay: 0.08 }}>
-          <p>Mostly building software and writing about it on the internet.</p>
-          <p>
-            Made{' '}
-            <Link
-              href="https://github.com/maoxiaoke/r2Uploader"
-              className="underline underline-offset-2 transition-opacity duration-150 hover:opacity-60">
-              R2Uploader
-            </Link>
-            , a desktop client for Cloudflare R2 storage, and{' '}
-            <Link
-              href="https://github.com/maoxiaoke/BaiJi-releases"
-              className="underline underline-offset-2 transition-opacity duration-150 hover:opacity-60">
-              BaiJi
-            </Link>
-            , a macOS app. Also keeping{' '}
-            <Link
-              href="https://hnta.nazha.co"
-              className="underline underline-offset-2 transition-opacity duration-150 hover:opacity-60">
-              Hacker News Top Archive
-            </Link>{' '}
-            going. More on{' '}
-            <Link
-              href="https://anotherme.lemonsqueezy.com/"
-              className="underline underline-offset-2 transition-opacity duration-150 hover:opacity-60">
-              Lemon Squeezy
-            </Link>
-            .
-          </p>
-          <p>
-            I also write a{' '}
-            <Link
-              href="https://quaily.com/nazha"
-              className="underline underline-offset-2 transition-opacity duration-150 hover:opacity-60">
-              newsletter
-            </Link>{' '}
-            and tend a{' '}
-            <Link
-              href="https://garden.nazha.co"
-              className="underline underline-offset-2 transition-opacity duration-150 hover:opacity-60">
-              digital garden
-            </Link>
-            .
-          </p>
-          <p>
-            Feel free to reach me at{' '}
-            <Link
-              href="https://twitter.com/xiaokedada"
-              className="underline underline-offset-2 transition-opacity duration-150 hover:opacity-60">
-              @xiaokedada
-            </Link>
-            . If you can speak Chinese, you can add my WeChat (id: nazha_m).
-          </p>
-        </motion.div>
+          {/* ── LEFT: Identity & Bio (sticky on desktop) ────────────────── */}
+          <div className="md:sticky md:top-12 md:self-start md:pb-12">
 
-        {/* Writing */}
-        <motion.div
-          initial={prefersReduced ? false : { opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1], delay: 0.16 }}>
-          <p className="text-sm text-gray-400 dark:text-gray-500 mb-3">Writing</p>
-          <PostList posts={posts} />
-        </motion.div>
+            {/* Identity row */}
+            <motion.div
+              className="flex items-start justify-between mb-10"
+              initial={prefersReduced ? false : { opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ type: 'spring', stiffness: 100, damping: 20 }}>
+              <div className="flex items-center gap-3">
+                <Image
+                  src="/portrait/logo.jpg"
+                  alt="nazha"
+                  width={40}
+                  height={40}
+                  className="rounded-full"
+                />
+                <div>
+                  <p className="text-lg font-gaegu font-bold text-gray-600 dark:text-gray-300">
+                    nazha
+                  </p>
+                  <p
+                    className="text-xs text-gray-400 dark:text-gray-500 mt-0.5 font-moderat"
+                    style={{ letterSpacing: '1px' }}>
+                    Updated Feb 19, 2026
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center gap-1">
+                <ThemeSwitch />
+                <RSSIcon />
+                <Link
+                  href="https://twitter.com/xiaokedada"
+                  aria-label="Twitter / X profile"
+                  className="opacity-70 hover:opacity-100 transition-opacity duration-150 p-2">
+                  <svg
+                    width="18"
+                    height="18"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    viewBox="0 0 24 24"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true">
+                    <path d="m19 4-5.93 6.93M5 20l5.93-6.93m0 0 5.795 6.587c.19.216.483.343.794.343h1.474c.836 0 1.307-.85.793-1.435L13.07 10.93m-2.14 2.14L4.214 5.435C3.7 4.85 4.17 4 5.007 4h1.474c.31 0 .604.127.794.343l5.795 6.587" />
+                  </svg>
+                </Link>
+              </div>
+            </motion.div>
+
+            {/* Bio */}
+            <motion.div
+              className="space-y-4 text-sm leading-relaxed text-gray-700 dark:text-gray-300"
+              initial={prefersReduced ? false : { opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ type: 'spring', stiffness: 100, damping: 20, delay: 0.07 }}>
+              <p>Mostly building software and writing about it on the internet.</p>
+              <p>
+                Made{' '}
+                <Link
+                  href="https://github.com/maoxiaoke/r2Uploader"
+                  className="underline underline-offset-2 transition-opacity duration-150 hover:opacity-60">
+                  R2Uploader
+                </Link>
+                , a desktop client for Cloudflare R2 storage, and{' '}
+                <Link
+                  href="https://github.com/maoxiaoke/BaiJi-releases"
+                  className="underline underline-offset-2 transition-opacity duration-150 hover:opacity-60">
+                  BaiJi
+                </Link>
+                , a macOS app. Also keeping{' '}
+                <Link
+                  href="https://hnta.nazha.co"
+                  className="underline underline-offset-2 transition-opacity duration-150 hover:opacity-60">
+                  Hacker News Top Archive
+                </Link>{' '}
+                going. More on{' '}
+                <Link
+                  href="https://anotherme.lemonsqueezy.com/"
+                  className="underline underline-offset-2 transition-opacity duration-150 hover:opacity-60">
+                  Lemon Squeezy
+                </Link>
+                .
+              </p>
+              <p>
+                I also write a{' '}
+                <Link
+                  href="https://quaily.com/nazha"
+                  className="underline underline-offset-2 transition-opacity duration-150 hover:opacity-60">
+                  newsletter
+                </Link>{' '}
+                and tend a{' '}
+                <Link
+                  href="https://garden.nazha.co"
+                  className="underline underline-offset-2 transition-opacity duration-150 hover:opacity-60">
+                  digital garden
+                </Link>
+                .
+              </p>
+              <p>
+                Feel free to reach me at{' '}
+                <Link
+                  href="https://twitter.com/xiaokedada"
+                  className="underline underline-offset-2 transition-opacity duration-150 hover:opacity-60">
+                  @xiaokedada
+                </Link>
+                . If you can speak Chinese, you can add my WeChat (id: nazha_m).
+              </p>
+            </motion.div>
+          </div>
+
+          {/* ── RIGHT: Writing ────────────────────────────────────────────── */}
+          <motion.div
+            initial={prefersReduced ? false : { opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ type: 'spring', stiffness: 100, damping: 20, delay: 0.14 }}>
+            <p className="text-sm text-gray-400 dark:text-gray-500 mb-3">Writing</p>
+            <PostList posts={posts} />
+          </motion.div>
+
+        </div>
       </div>
     </>
   );
